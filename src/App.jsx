@@ -2,8 +2,12 @@ import React, { Component, useContext } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 // import { authContext } from "./Context/Context";
 
-import Login from "./Containers/Login/Login";
-import Dashboard from "./Containers/Dashboard/Dashboard";
+import LandingSection from "./Containers/LandingSection/LandingSection";
+import DashboardSection from "./Containers/DashboardSection/DashboardSection";
+import AddMarkdown from "./Containers/MarkdownSection/AddMarkdown/AddMarkdown";
+
+// Global Styles
+import "./App.scss";
 
 // const App = () => (
 class App extends Component {
@@ -14,9 +18,9 @@ class App extends Component {
       <div>
         {/* <Switch> */}
         {/* {userObject.data ? null : <Route path="/login" component={Login} />} */}
-
-        <Route path="/dashboard" component={Dashboard} />
-        <Route path="/" exact component={Login} />
+        <Route path="/mom/add" component={AddMarkdown} />
+        <Route path="/dashboard" component={DashboardSection} />
+        <Route path="/" exact component={LandingSection} />
         {/* </Switch> */}
       </div>
     );
