@@ -4,6 +4,7 @@ import axios from "axios";
 /** Assets */
 import ActaLogo from "../../Assets/Acta_Logo.svg";
 
+/** Styling */
 import "./Navbar.scss";
 
 const navbar = () => {

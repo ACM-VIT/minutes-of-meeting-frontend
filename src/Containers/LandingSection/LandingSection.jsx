@@ -10,10 +10,9 @@ import "./LandingSection.scss";
 /** Assets */
 import googleLogo from "../../Assets/Google.svg";
 import actaLogo from "../../Assets/Acta_Logo.svg";
-import landingIllustration from "../../Assets/Landing_Illustration.svg";
 import landingLeaf from "../../Assets/Landing_Leaf.svg";
-import landingClock from "../../Assets/Landing_Clock.svg";
-import landingLamp from "../../Assets/Landing_Lamp.svg";
+// import landingTopLeft from "../../Assets/Land_topLeft.svg";
+import landingLeft from "../../Assets/Landing_Left.svg";
 
 // const login = () => {
 //   const { setAuthData } = useContext(authContext);
@@ -42,53 +41,48 @@ class LandingSection extends Component {
 
   render() {
     return (
-      <div className="landsection">
-        <div>
-          <div className="flex justify-between">
-            <div className="pl-36 pt-11">
-              <img src={actaLogo} alt="Acta" />
-            </div>
-            <div>
-              <img src={landingClock} alt="Clock" />
-            </div>
-            <div>
-              <img src={landingLamp} alt="Lamp" />
-            </div>
-          </div>
+      <section className="landSection">
+        <a href="/">
           <div>
             <img
-              className="w-72"
-              src={landingIllustration}
-              alt="Illustration"
+              className="absolute pt-8 pl-16"
+              src={actaLogo}
+              alt="ActaLogo"
             />
           </div>
+        </a>
+        <div className="landsection__full">
           <div>
-            <img className="w-64" src={landingLeaf} alt="leaf" />
+            <img className="ml-16" src={landingLeft} alt="LandingLeft" />
+          </div>
+          <div>
+            <div className="landsection__full__rightLeaf">
+              <img
+                className="landsection__full__rightLeaf__image"
+                src={landingLeaf}
+                alt="LandingLeaf"
+              />
+            </div>
+            <div className="landsection__full__loginSec">
+              <div>
+                <p className="text-7xl font-600">Hello, </p>
+                <p className="text-7xl mt-8 font-600">Welcome Back</p>
+              </div>
+              <div className="mt-16">
+                <a href="/">
+                  <button
+                    type="button"
+                    className="landsection__full__loginSec__btn"
+                  >
+                    <img className="pr-9" src={googleLogo} alt="google" />
+                    <span className="text-2xl">Signin with Google</span>
+                  </button>
+                </a>
+              </div>
+            </div>
           </div>
         </div>
-
-        <div className="flex-col">
-          <div className="flex-end">
-            <img
-              className="transform rotate-180 "
-              src={landingLeaf}
-              alt="leaf"
-            />
-          </div>
-          <div className="text-7xl font-600">Hello, Welcome Back</div>
-          <div>
-            <a href="/">
-              <button
-                type="button"
-                className="flex w-96 h-14 justify-center items-center bg-primary text-white rounded-lg"
-              >
-                <img className="pr-9" src={googleLogo} alt="google" />
-                <span className="text-2xl">Signin with Google</span>
-              </button>
-            </a>
-          </div>
-        </div>
-      </div>
+      </section>
     );
   }
 }
