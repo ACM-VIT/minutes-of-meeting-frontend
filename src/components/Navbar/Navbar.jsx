@@ -19,20 +19,22 @@ const navbar = () => {
   return (
     <header className="navsection">
       <div className="navsection__navbar">
-        <div>
-          <a href="{null}" className="navsection__navbar__actalogo">
-            <img src={ActaLogo} alt="ACTA" />
-          </a>
-        </div>
-        <div>
-          <nav className="navsection__navbar__nav">
-            <a href="/dashboard" className="mr-5 hover:text-gray-900">
-              Dashboard
+        <div className="flex items-center">
+          <div>
+            <a href="{null}" className="navsection__navbar__actalogo">
+              <img src={ActaLogo} alt="ACTA" />
             </a>
-            <a href="{null}" className="mr-5 hover:text-gray-900">
-              MOMs
-            </a>
-          </nav>
+          </div>
+          <div>
+            <nav className="navsection__navbar__nav">
+              <a href="/dashboard" className="mr-5 hover:text-gray-900">
+                Dashboard
+              </a>
+              <a href="{null}" className="mr-5 hover:text-gray-900">
+                MOMs
+              </a>
+            </nav>
+          </div>
         </div>
         <div>
           <button

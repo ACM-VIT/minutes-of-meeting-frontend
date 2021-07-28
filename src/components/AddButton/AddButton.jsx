@@ -8,9 +8,7 @@ const button = () => {
     <div>
       <button
         type="button"
-        className="fixed bottom-10 right-10 inline-flex items-center justify-center w-12 h-12 mr-2
-      text-indigo-100 transition-colors duration-150 bg-indigo-700 rounded-full
-      focus:shadow-outline hover:bg-indigo-800"
+        className="fixed bottom-10 right-10 inline-flex items-center justify-center w-12 h-12 mr-2 text-indigo-100 transition-colors duration-150 bg-black rounded-full focus:shadow-outline"
         onClick={addButtonHandler}
       >
         <i className="fas fa-plus" />
