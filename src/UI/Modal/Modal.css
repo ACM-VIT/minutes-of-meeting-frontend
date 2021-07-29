@@ -1,0 +1,75 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap");
+
+.modal {
+  position: fixed;
+  background-color: rgba(255, 255, 255, 0.8);
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: all 0.3s ease-in-out;
+  pointer-events: none;
+}
+
+.modal.show {
+  opacity: 1;
+  pointer-events: visible;
+}
+
+.modal-content {
+  width: 400px;
+  height: 182px;
+  background-color: #6a6a6a;
+  border-radius: 20px;
+  transform: translateY(-200px);
+  transition: all 0.3s ease-in-out;
+}
+
+.modal.show .modal-content {
+  transform: translateY(0);
+}
+
+.modal-footer {
+  padding: 10px 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-title {
+  margin: 0;
+}
+
+.modal-body {
+  padding: 10px;
+  margin-top: 25px;
+  margin-bottom: 20px;
+  color: white;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-size: 22px;
+  text-align: center;
+}
+
+.btn-delete {
+  height: 35px;
+  width: 120px;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  background-color: #f44646;
+}
+
+.btn-cancel {
+  height: 35px;
+  width: 120px;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  background-color: #22d1ee;
+}
