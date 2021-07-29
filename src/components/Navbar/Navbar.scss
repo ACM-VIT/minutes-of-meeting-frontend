@@ -1,0 +1,17 @@
+.navsection {
+  &__navbar {
+    @apply container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center;
+
+    &__actalogo {
+      @apply flex font-medium items-center text-gray-900 mb-4 md:mb-0;
+    }
+
+    &__nav {
+      @apply md:mr-auto md:ml-4 md:py-1 md:pl-4 md:border-l md:border-gray-400	flex flex-wrap items-center text-base justify-center;
+    }
+
+    &__button {
+      @apply inline-flex justify-center bg-primary border-0 py-1 px-3 w-28 focus:outline-none rounded text-base mt-4 md:mt-0;
+    }
+  }
+}

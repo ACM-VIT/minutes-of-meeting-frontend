@@ -1,0 +1,17 @@
+.landsection {
+  &__full {
+    @apply flex;
+    &__rightLeaf {
+      @apply absolute ml-96;
+      &__image {
+        @apply transform rotate-180 w-80;
+      }
+    }
+    &__loginSec {
+      @apply flex-col mt-56 ml-16;
+      &__btn {
+        @apply flex w-96 h-14 justify-center items-center bg-primary text-white rounded-lg;
+      }
+    }
+  }
+}
