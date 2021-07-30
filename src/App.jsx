@@ -6,6 +6,7 @@ import LandingSection from "./Containers/LandingSection/LandingSection";
 import DashboardSection from "./Containers/DashboardSection/DashboardSection";
 import AddMarkdown from "./Containers/MarkdownSection/AddMarkdown/AddMarkdown";
 import EditMarkdown from "./Containers/MarkdownSection/EditMarkdown/EditMarkdown";
+import AllMomSection from "./Containers/AllMomSection/AllMomSection";
 
 // Global Styles
 import "./App.scss";
@@ -19,6 +20,7 @@ class App extends Component {
       <div>
         {/* <Switch> */}
         {/* {userObject.data ? null : <Route path="/login" component={Login} />} */}
+        <Route path="/moms" component={AllMomSection} />
         <Route path="/mom/edit" component={EditMarkdown} />
         <Route path="/mom/add" component={AddMarkdown} />
         <Route path="/dashboard" component={DashboardSection} />
