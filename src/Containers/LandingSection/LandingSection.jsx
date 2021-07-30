@@ -11,7 +11,6 @@ import "./LandingSection.scss";
 import googleLogo from "../../Assets/Google.svg";
 import actaLogo from "../../Assets/Acta_Logo.svg";
 import landingLeaf from "../../Assets/Landing_Leaf.svg";
-// import landingTopLeft from "../../Assets/Land_topLeft.svg";
 import landingLeft from "../../Assets/Landing_Left.svg";
 
 // const login = () => {
@@ -21,7 +20,7 @@ class LandingSection extends Component {
   loginHandler(event) {
     event.preventDefault();
     // window.location.assign("http://localhost:9000/auth/google");
-    window.open("http://localhost:9000/auth/google", "_self");
+    window.open(process.env.REACT_APP_GOOGLE_URL, "_self");
 
     // axios
     //   .get("http://localhost:9000/getuser", {
@@ -73,6 +72,7 @@ class LandingSection extends Component {
                   <button
                     type="button"
                     className="landsection__full__loginSec__btn"
+                    onClick={this.loginHandler}
                   >
                     <img className="pr-9" src={googleLogo} alt="google" />
                     <span className="text-2xl">Signin with Google</span>
