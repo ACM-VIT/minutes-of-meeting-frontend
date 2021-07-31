@@ -3,8 +3,10 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import moment from "moment";
+
 import Navbar from "../../components/Navbar/Navbar";
 import AddButton from "../../components/AddButton/AddButton";
+import EditIcon from "../../Assets/EditIcon.svg";
 
 const SingleMomSection = () => {
   const [singleMom, setSingleMom] = useState([]);
@@ -17,10 +19,6 @@ const SingleMomSection = () => {
       .then((response) => {
         const { data } = response;
         setSingleMom(data);
-        //   setTitle(data.title);
-        //   setBody(data.body);
-        console.log(data);
-        //   console.log(setBody);
       })
       .catch((error) => console.error(`Error: ${error}`));
   }, []);
@@ -35,7 +33,12 @@ const SingleMomSection = () => {
       <section className="container h-full mx-auto px-12">
         <div className="flex h-full justify-between">
           <div className="container h-full bg-mom">
-            <div className="px-8 pt-8 text-5xl">{singleMom.title}</div>
+            <div className="flex">
+              <div className="px-8 pt-8 text-5xl">{singleMom.title}</div>
+              <a href="/">
+                <img className="pt-10" src={EditIcon} alt="edit" />
+              </a>
+            </div>
             <div className="px-8 pt-2">{date}</div>
             <div className="p-8">{singleMom.body}</div>
           </div>
