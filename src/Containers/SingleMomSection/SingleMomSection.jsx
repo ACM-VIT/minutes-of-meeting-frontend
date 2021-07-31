@@ -14,8 +14,13 @@ const SingleMomSection = () => {
   const path = useLocation();
   const id = path.pathname.split("/")[2];
   useEffect(() => {
+    const token = localStorage.getItem("Bearer");
+    const headers = {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    };
     axios
-      .get(`http://localhost:9000/moms/details/${id}`)
+      .get(`http://localhost:9000/moms/details/${id}`, { headers })
       .then((response) => {
         const { data } = response;
         setSingleMom(data);
