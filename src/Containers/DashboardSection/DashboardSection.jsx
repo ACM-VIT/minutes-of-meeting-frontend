@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useLocation, useHistory, useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import axios from "axios";
 
 import Navbar from "../../components/Navbar/Navbar";
