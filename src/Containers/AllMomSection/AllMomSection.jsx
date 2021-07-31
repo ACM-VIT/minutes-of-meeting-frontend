@@ -21,7 +21,7 @@ const AllMomSection = () => {
       Authorization: `Bearer ${token}`,
     };
     axios
-      .get(`${url}moms`, { headers: headers })
+      .get(`${url}moms`, { headers })
       .then((response) => {
         const allMomsObj = response.data;
         console.log(allMomsObj);

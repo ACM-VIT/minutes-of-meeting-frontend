@@ -29,7 +29,7 @@ const addMarkdown = () => {
           title,
           body,
         },
-        { headers: headers }
+        { headers }
       )
       .then((res) => {
         console.log(res.data);

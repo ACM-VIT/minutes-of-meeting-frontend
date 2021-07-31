@@ -18,9 +18,7 @@ const dashboardSection = () => {
     };
     // console.log(headers);
     axios
-      .get("http:/localhost:9000/moms", {
-        headers: headers,
-      })
+      .get("http:/localhost:9000/moms", { headers })
       .then((response) => {
         console.log(response.json);
       })
