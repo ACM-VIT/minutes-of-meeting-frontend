@@ -21,7 +21,7 @@ const addMarkdown = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("before axios");
+
     axios
       .post(
         process.env.REACT_APP_ALL_MOM,
@@ -35,8 +35,6 @@ const addMarkdown = () => {
         console.log(res.data);
         alert("MOM successfully added!");
       });
-
-    console.log("after axios");
   };
 
   return (
