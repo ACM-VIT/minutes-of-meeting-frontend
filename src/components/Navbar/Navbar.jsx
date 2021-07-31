@@ -9,7 +9,7 @@ import "./Navbar.scss";
 
 const navbar = () => {
   const logout = () => {
-    axios.get("http://localhost:9000/auth/logout").then((res) => {
+    axios.get(process.env.REACT_APP_GOOGLE_LOGOUT).then((res) => {
       // if (res.data === "done") {
       window.location.href = "/";
       // }
@@ -21,7 +21,7 @@ const navbar = () => {
       <div className="navsection__navbar">
         <div className="flex items-center">
           <div>
-            <a href="{null}" className="navsection__navbar__actalogo">
+            <a href="/" className="navsection__navbar__actalogo">
               <img src={ActaLogo} alt="ACTA" />
             </a>
           </div>

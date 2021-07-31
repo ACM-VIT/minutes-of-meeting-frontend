@@ -25,9 +25,12 @@ const Modal = ({ show, onClose }) => {
           <button onClick={onClose} type="submit" className="btn-cancel">
             Cancel
           </button>
-          <button onClick={onClose} type="submit" className="btn-delete">
-            Delete now
-          </button>
+
+          <a href="/dashboard">
+            <button type="submit" className="btn-delete">
+              Delete now
+            </button>
+          </a>
         </div>
       </div>
     </div>
