@@ -8,6 +8,9 @@ module.exports = {
         primary: "#2FC5DE",
         mom: "#E6FBFF",
       }),
+      textColor: {
+        primary: "#22D1EE",
+      },
     },
   },
 

@@ -14,9 +14,7 @@ const editMarkdown = () => {
   const [body, setBody] = useState("# Welcome to MOM Website");
 
   const path = useLocation();
-  console.log(path.pathname);
   const id = path.pathname.split("/")[3];
-  console.log(id);
 
   const token = localStorage.getItem("Bearer");
   const headers = {
