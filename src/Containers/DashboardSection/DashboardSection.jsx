@@ -12,20 +12,27 @@ const dashboardSection = () => {
   const token = path.search.slice(7);
 
   useEffect(() => {
-    localStorage.setItem("Bearer", token);
+    sessionStorage.setItem("TK", token);
 
-    const headers = {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
-    };
-    axios
-      .get("http:/localhost:9000/moms", { headers })
-      .then((response) => {
-        console.log(response.json);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    if (
+      sessionStorage.getItem("TK") === null ||
+      sessionStorage.getItem("TK") === ""
+    ) {
+      window.location.href = "/";
+    } else {
+      const headers = {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      };
+      axios
+        .get("http:/localhost:9000/moms", { headers })
+        .then((response) => {
+          console.log(response.json);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
   }, []);
 
   return (

@@ -13,7 +13,14 @@ const addMarkdown = () => {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("# Welcome to MOM Website");
 
-  const token = localStorage.getItem("Bearer");
+  const token = sessionStorage.getItem("TK");
+  if (
+    sessionStorage.getItem("TK") === null ||
+    sessionStorage.getItem("TK") === ""
+  ) {
+    window.location.href = "/";
+  }
+
   const headers = {
     "Content-Type": "application/json",
     Authorization: `Bearer ${token}`,

@@ -14,6 +14,7 @@ const navbar = () => {
 
   const logout = () => {
     axios.get(process.env.REACT_APP_GOOGLE_LOGOUT).then((res) => {
+      sessionStorage.removeItem("Bearer");
       window.location.href = "/";
     });
   };

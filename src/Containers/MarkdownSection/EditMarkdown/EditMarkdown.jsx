@@ -16,26 +16,38 @@ const editMarkdown = () => {
   const path = useLocation();
   const id = path.pathname.split("/")[3];
 
-  const token = localStorage.getItem("Bearer");
-  const headers = {
-    "Content-Type": "application/json",
-    Authorization: `Bearer ${token}`,
-  };
+  const token = sessionStorage.getItem("TK");
 
-  useEffect(() => {
-    axios
-      .get(`http://localhost:9000/moms/details/edit/${id}`, { headers })
-      .then((response) => {
-        const { data } = response;
-        setTitle(data.title);
-        setBody(data.body);
-        console.log(data.body);
-      })
-      .catch((error) => console.error(`Error: ${error}`));
-  }, []);
+  if (
+    sessionStorage.getItem("TK") === null ||
+    sessionStorage.getItem("TK") === ""
+  ) {
+    window.location.href = "/";
+  } else {
+    useEffect(() => {
+      const headers = {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      };
+      axios
+        .get(`http://localhost:9000/moms/details/edit/${id}`, { headers })
+        .then((response) => {
+          const { data } = response;
+          setTitle(data.title);
+          setBody(data.body);
+          console.log(data.body);
+        })
+        .catch((error) => console.error(`Error: ${error}`));
+    }, []);
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    const headers = {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    };
 
     axios
       .put(

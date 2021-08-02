@@ -15,22 +15,30 @@ const SingleMomSection = () => {
   const path = useLocation();
   const urlId = path.pathname.split("/")[2];
 
-  useEffect(() => {
-    const token = localStorage.getItem("Bearer");
-    const headers = {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
-    };
-    axios
-      .get(`http://localhost:9000/moms/details/${urlId}`, { headers })
-      .then((response) => {
-        const { data } = response;
-        const arrayOfLines = data.body.match(/[^\r\n]+/g);
-        data.body = arrayOfLines;
-        setSingleMom(data);
-      })
-      .catch((error) => console.error(`Error: ${error}`));
-  }, []);
+  const token = sessionStorage.getItem("TK");
+
+  if (
+    sessionStorage.getItem("TK") === null ||
+    sessionStorage.getItem("TK") === ""
+  ) {
+    window.location.href = "/";
+  } else {
+    useEffect(() => {
+      const headers = {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      };
+      axios
+        .get(`http://localhost:9000/moms/details/${urlId}`, { headers })
+        .then((response) => {
+          const { data } = response;
+          const arrayOfLines = data.body.match(/[^\r\n]+/g);
+          data.body = arrayOfLines;
+          setSingleMom(data);
+        })
+        .catch((error) => console.error(`Error: ${error}`));
+    }, []);
+  }
 
   const date = moment(singleMom.createdAt).format(
     "dddd, MMMM Do YYYY, h:mm:ss a"

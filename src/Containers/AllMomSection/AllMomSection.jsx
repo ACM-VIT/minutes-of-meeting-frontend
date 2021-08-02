@@ -16,20 +16,29 @@ const AllMomSection = () => {
   const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
-    const token = localStorage.getItem("Bearer");
-    const headers = {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
-    };
-    axios
-      .get(`${url}moms`, { headers })
-      .then((response) => {
-        const allMomsObj = response.data;
-        console.log(allMomsObj);
-        setAllMoms(allMomsObj.moms);
-      })
-      .catch((error) => console.error(`Error: ${error}`));
+    const token = sessionStorage.getItem("TK");
+
+    if (
+      sessionStorage.getItem("TK") === null ||
+      sessionStorage.getItem("TK") === ""
+    ) {
+      window.location.href = "/";
+    } else {
+      const headers = {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      };
+      axios
+        .get(`${url}moms`, { headers })
+        .then((response) => {
+          const allMomsObj = response.data;
+          console.log(allMomsObj);
+          setAllMoms(allMomsObj.moms);
+        })
+        .catch((error) => console.error(`Error: ${error}`));
+    }
   }, []);
+
   return (
     <>
       <div>
