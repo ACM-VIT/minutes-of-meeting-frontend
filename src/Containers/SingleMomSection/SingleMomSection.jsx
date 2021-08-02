@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 /* eslint-disable no-underscore-dangle */
 import axios from "axios";
 import React, { useState, useEffect } from "react";
@@ -9,10 +10,11 @@ import AddButton from "../../components/AddButton/AddButton";
 import EditIcon from "../../Assets/EditIcon.svg";
 
 const SingleMomSection = () => {
-  const [singleMom, setSingleMom] = useState([]);
+  const [singleMom, setSingleMom] = useState({ title: "", body: [] });
 
   const path = useLocation();
-  const id = path.pathname.split("/")[2];
+  const urlId = path.pathname.split("/")[2];
+
   useEffect(() => {
     const token = localStorage.getItem("Bearer");
     const headers = {
@@ -20,9 +22,11 @@ const SingleMomSection = () => {
       Authorization: `Bearer ${token}`,
     };
     axios
-      .get(`http://localhost:9000/moms/details/${id}`, { headers })
+      .get(`http://localhost:9000/moms/details/${urlId}`, { headers })
       .then((response) => {
         const { data } = response;
+        const arrayOfLines = data.body.match(/[^\r\n]+/g);
+        data.body = arrayOfLines;
         setSingleMom(data);
       })
       .catch((error) => console.error(`Error: ${error}`));
@@ -31,7 +35,6 @@ const SingleMomSection = () => {
   const date = moment(singleMom.createdAt).format(
     "dddd, MMMM Do YYYY, h:mm:ss a"
   );
-
   return (
     <>
       <Navbar />
@@ -40,12 +43,16 @@ const SingleMomSection = () => {
           <div className="container h-full bg-mom">
             <div className="flex">
               <div className="px-8 pt-8 text-5xl">{singleMom.title}</div>
-              <a href="/">
+              <a href={`http://localhost:3000/mom/edit/${urlId}`}>
                 <img className="pt-10" src={EditIcon} alt="edit" />
               </a>
             </div>
-            <div className="px-8 pt-2">{date}</div>
-            <div className="p-8">{singleMom.body}</div>
+            <div className="px-8 pt-2 pb-4">{date}</div>
+            {singleMom.body.map((items, i) => (
+              <div key={i} className="px-8 py-1">
+                {items}
+              </div>
+            ))}
           </div>
 
           <div className="ml-12">

@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import axios from "axios";
-
+import { NavLink } from "react-router-dom";
 /** Assets */
 import ActaLogo from "../../Assets/Acta_Logo.svg";
 
@@ -8,11 +8,13 @@ import ActaLogo from "../../Assets/Acta_Logo.svg";
 import "./Navbar.scss";
 
 const navbar = () => {
+  const { pathname } = window.location;
+  const path = pathname === "/" ? "dashboard" : pathname.substr(1);
+  const pagePath = path.split("/")[0];
+
   const logout = () => {
     axios.get(process.env.REACT_APP_GOOGLE_LOGOUT).then((res) => {
-      // if (res.data === "done") {
       window.location.href = "/";
-      // }
     });
   };
 
@@ -27,10 +29,25 @@ const navbar = () => {
           </div>
           <div>
             <nav className="navsection__navbar__nav">
-              <a href="/dashboard" className="mr-5 hover:text-gray-900">
+              <a
+                href="/dashboard"
+                className={
+                  pagePath === "dashboard"
+                    ? "navsection__navbar__nav__navlink mr-5"
+                    : ""
+                }
+              >
                 Dashboard
               </a>
-              <a href="/moms" className="mr-5 hover:text-gray-900">
+              <a
+                to="/moms"
+                href="/moms"
+                className={
+                  pagePath === "moms"
+                    ? "navsection__navbar__nav__navlink ml-5"
+                    : ""
+                }
+              >
                 MOMs
               </a>
             </nav>
@@ -49,33 +66,5 @@ const navbar = () => {
     </header>
   );
 };
-// {
-// const userObject = useContext(authContext);
-// const { setAuthData, auth } = useContext(authContext);
-// const onLogOut = () => {
-//   setAuthData(null);
-// }
-
-// const logout = () => {
-//   axios
-//     .get("http://localhost:9000/auth/logout", {
-//       withCredentials: true,
-//     })
-//     .then((res) => {
-//       console.log("[Navbar.js] response");
-//       // setAuthData(null);
-//       // window.location.href("/");
-
-//       if (res.data === "done") {
-//         window.location.href = "/login";
-//       }
-//     });
-// };
-
-// return (
-
-// );
-// };
-// )
 
 export default navbar;

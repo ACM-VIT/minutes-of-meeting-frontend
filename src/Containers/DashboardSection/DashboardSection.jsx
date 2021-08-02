@@ -1,9 +1,11 @@
 import React, { useEffect } from "react";
-import { useLocation, useHistory, useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import axios from "axios";
+
 import Navbar from "../../components/Navbar/Navbar";
 import Aux from "../../hoc/Aux/Aux";
 import AddButton from "../../components/AddButton/AddButton";
+import DashCard from "../../components/DashCard/DashCard";
 
 const dashboardSection = () => {
   const path = useLocation();
@@ -16,7 +18,6 @@ const dashboardSection = () => {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     };
-    // console.log(headers);
     axios
       .get("http:/localhost:9000/moms", { headers })
       .then((response) => {
@@ -27,11 +28,18 @@ const dashboardSection = () => {
       });
   }, []);
 
-  // });
   return (
     <Aux>
       <Navbar />
-      <div>Dashboard incoming</div>
+      <section className="container mt-2 mx-auto px-12">
+        <div className="flex-col">
+          <div className="text-5xl">Welcome ----</div>
+          <div className="mt-2">Here are your MOMs</div>
+        </div>
+        <div className="">
+          <DashCard />
+        </div>
+      </section>
       <AddButton />
     </Aux>
   );
