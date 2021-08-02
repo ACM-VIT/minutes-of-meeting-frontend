@@ -3,6 +3,7 @@
 /* eslint-disable no-underscore-dangle */
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import moment from "moment";
 
 import Navbar from "../../components/Navbar/Navbar";
 import AddButton from "../../components/AddButton/AddButton";
@@ -26,11 +27,9 @@ const AllMomSection = () => {
         const allMomsObj = response.data;
         console.log(allMomsObj);
         setAllMoms(allMomsObj.moms);
-        // console.log(allMoms);
       })
       .catch((error) => console.error(`Error: ${error}`));
   }, []);
-  //   console.log(allMomsObj);
   return (
     <>
       <div>
@@ -64,7 +63,7 @@ const AllMomSection = () => {
                 title={val.title}
                 id={val._id}
                 key={val._id}
-                // body={val.body}
+                createdAt={moment(val.createdAt).format("MMM Do YY")}
               />
             ))}
         </div>
