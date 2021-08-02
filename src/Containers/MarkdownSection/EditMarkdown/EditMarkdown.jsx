@@ -44,7 +44,7 @@ const editMarkdown = () => {
           title,
           body,
         },
-        { headers: headers }
+        { headers }
       )
       .then((res) => {
         console.log(res.data);
@@ -52,6 +52,7 @@ const editMarkdown = () => {
       });
   };
   console.log(title);
+  console.log(body);
   return (
     <Aux>
       <Navbar />
@@ -70,7 +71,7 @@ const editMarkdown = () => {
                 name="title"
                 id="title"
                 value={title}
-                onChange={(e) => setTitle(e.target.value)}
+                onChange={({ target: { value } }) => setTitle(value)}
                 placeholder="Title of the MOM"
                 aria-label="Title of the MOM"
               />

@@ -13,7 +13,7 @@ const SingleMomSection = () => {
   const [singleMom, setSingleMom] = useState({ title: "", body: [] });
 
   const path = useLocation();
-  const UrlId = path.pathname.split("/")[2];
+  const urlId = path.pathname.split("/")[2];
 
   useEffect(() => {
     const token = localStorage.getItem("Bearer");
@@ -22,7 +22,7 @@ const SingleMomSection = () => {
       Authorization: `Bearer ${token}`,
     };
     axios
-      .get(`http://localhost:9000/moms/details/${UrlId}`, { headers })
+      .get(`http://localhost:9000/moms/details/${urlId}`, { headers })
       .then((response) => {
         const { data } = response;
         const arrayOfLines = data.body.match(/[^\r\n]+/g);
@@ -43,7 +43,7 @@ const SingleMomSection = () => {
           <div className="container h-full bg-mom">
             <div className="flex">
               <div className="px-8 pt-8 text-5xl">{singleMom.title}</div>
-              <a href={`http://localhost:3000/mom/edit/${UrlId}`}>
+              <a href={`http://localhost:3000/mom/edit/${urlId}`}>
                 <img className="pt-10" src={EditIcon} alt="edit" />
               </a>
             </div>
