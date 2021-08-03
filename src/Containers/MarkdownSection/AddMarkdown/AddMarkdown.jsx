@@ -2,10 +2,12 @@
 import React, { useState } from "react";
 import axios from "axios";
 import MDEditor from "@uiw/react-md-editor";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import Navbar from "../../../components/Navbar/Navbar";
 import Aux from "../../../hoc/Aux/Aux";
-import Modal from "../../../UI/Modal/Modal";
+import MarkdownModal from "../../../UI/Modal/MarkdownModal";
 
 const addMarkdown = () => {
   const [show, setShow] = useState(false);
@@ -26,8 +28,15 @@ const addMarkdown = () => {
     Authorization: `Bearer ${token}`,
   };
 
+  const notify = () => toast.error("Fill all the fields!");
+
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if (title === "" || body === "") {
+      notify();
+      return;
+    }
 
     axios
       .post(
@@ -40,14 +49,14 @@ const addMarkdown = () => {
       )
       .then((res) => {
         console.log(res.data);
-        alert("MOM successfully added!");
-      });
+      })
+      .catch((error) => console.error(`Error: ${error}`));
   };
 
   return (
     <Aux>
       <Navbar />
-
+      <ToastContainer />
       <div className="container">
         <div className="my-4">
           <form
@@ -90,10 +99,9 @@ const addMarkdown = () => {
           </form>
         </div>
 
-        <Modal onClose={() => setShow(false)} show={show} />
+        <MarkdownModal onClose={() => setShow(false)} show={show} />
       </div>
     </Aux>
   );
 };
-
 export default addMarkdown;

@@ -9,10 +9,12 @@ import DashCard from "../../components/DashCard/DashCard";
 
 const dashboardSection = () => {
   const path = useLocation();
-  const token = path.search.slice(7);
 
   useEffect(() => {
-    sessionStorage.setItem("TK", token);
+    const token = path.search.slice(7);
+    if (path.search.substring(1, 6) === "token") {
+      sessionStorage.setItem("TK", token);
+    }
 
     if (
       sessionStorage.getItem("TK") === null ||

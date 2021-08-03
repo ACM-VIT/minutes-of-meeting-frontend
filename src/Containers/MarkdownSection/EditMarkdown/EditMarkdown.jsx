@@ -5,7 +5,7 @@ import MDEditor from "@uiw/react-md-editor";
 
 import Navbar from "../../../components/Navbar/Navbar";
 import Aux from "../../../hoc/Aux/Aux";
-import Modal from "../../../UI/Modal/Modal";
+import MarkdownModal from "../../../UI/Modal/MarkdownModal";
 
 const editMarkdown = () => {
   const [show, setShow] = useState(false);
@@ -111,7 +111,7 @@ const editMarkdown = () => {
           </form>
         </div>
 
-        <Modal onClose={() => setShow(false)} show={show} />
+        <MarkdownModal onClose={() => setShow(false)} show={show} />
       </div>
     </Aux>
   );

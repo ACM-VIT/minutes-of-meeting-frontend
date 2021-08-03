@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 
 /** Styling */
-import "./Modal.css";
+import "./MarkdownModal.css";
 
 const Modal = ({ show, onClose }) => {
   const closeOnEscapeKeyDown = (e) => {
