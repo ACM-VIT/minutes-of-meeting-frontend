@@ -2,7 +2,7 @@ import React from "react";
 
 const button = () => {
   const addButtonHandler = () => {
-    window.open("http://localhost:3000/mom/add", "_self");
+    window.open(process.env.REACT_APP_ADD_MOM, "_self");
   };
   return (
     <div>

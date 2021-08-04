@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import axios from "axios";
-import { NavLink } from "react-router-dom";
+
 /** Assets */
 import ActaLogo from "../../Assets/Acta_Logo.svg";
 
@@ -13,10 +13,21 @@ const navbar = () => {
   const pagePath = path.split("/")[0];
 
   const logout = () => {
-    axios.get(process.env.REACT_APP_GOOGLE_LOGOUT).then((res) => {
+    axios.get(process.env.REACT_APP_GOOGLE_LOGOUT).then(() => {
       sessionStorage.removeItem("TK");
       window.location.href = "/";
     });
+  };
+
+  const logoToggle = () => {
+    if (
+      sessionStorage.getItem("TK") === null ||
+      sessionStorage.getItem("TK") === ""
+    ) {
+      window.location.href = "/";
+    } else {
+      window.location.href = "/dashboard";
+    }
   };
 
   return (
@@ -24,9 +35,15 @@ const navbar = () => {
       <div className="navsection__navbar">
         <div className="flex items-center">
           <div>
-            <a href="/" className="navsection__navbar__actalogo">
+            <div
+              onClick={logoToggle}
+              className="navsection__navbar__actalogo cursor-pointer"
+            >
               <img src={ActaLogo} alt="ACTA" />
-            </a>
+            </div>
+            {/* <a href="/" className="navsection__navbar__actalogo">
+              <img src={ActaLogo} alt="ACTA" />
+            </a> */}
           </div>
           <div>
             <nav className="navsection__navbar__nav">

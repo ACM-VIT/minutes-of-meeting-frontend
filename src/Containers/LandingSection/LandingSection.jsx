@@ -1,8 +1,4 @@
 import React, { Component } from "react";
-// import { useHistory } from "react-router";
-// import axios from "axios";
-// import { authContext } from "../../Context/Context";
-import Aux from "../../hoc/Aux/Aux";
 
 /** Style */
 import "./LandingSection.scss";
@@ -13,35 +9,27 @@ import actaLogo from "../../Assets/Acta_Logo.svg";
 import landingLeaf from "../../Assets/Landing_Leaf.svg";
 import landingLeft from "../../Assets/Landing_Left.svg";
 
-// const login = () => {
-//   const { setAuthData } = useContext(authContext);
-
 class LandingSection extends Component {
-  loginHandler(event) {
-    event.preventDefault();
-    // window.location.assign("http://localhost:9000/auth/google");
-    window.open(process.env.REACT_APP_GOOGLE_URL, "_self");
+  logoToggle = () => {
+    if (
+      sessionStorage.getItem("TK") === null ||
+      sessionStorage.getItem("TK") === ""
+    ) {
+      window.location.href = "/";
+    } else {
+      window.location.href = "/dashboard";
+    }
+  };
 
-    // axios
-    //   .get("http://localhost:9000/getuser", {
-    //     headers: { "Access-Control-Allow-Origin": "*" },
-    //     withCredentials: true,
-    //   })
-    //   .then((res) => {
-    //     console.log(res);
-    //     if (res.data) {
-    //       setAuthData(res.data);
-    //     }
-    //   });
-    // history.replace("/dashboard");
-    // setAuthData(email);
-  }
-  // };
+  loginHandler = (event) => {
+    event.preventDefault();
+    window.open(process.env.REACT_APP_GOOGLE_URL, "_self");
+  };
 
   render() {
     return (
       <section className="landSection">
-        <a href="/">
+        <div onClick={this.logoToggle} className="cursor-pointer">
           <div>
             <img
               className="absolute pt-8 pl-16"
@@ -49,7 +37,7 @@ class LandingSection extends Component {
               alt="ActaLogo"
             />
           </div>
-        </a>
+        </div>
         <div className="landsection__full">
           <div>
             <img className="ml-16" src={landingLeft} alt="LandingLeft" />
