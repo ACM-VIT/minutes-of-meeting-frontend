@@ -35,7 +35,7 @@ const navbar = () => {
                 className={
                   pagePath === "dashboard"
                     ? "navsection__navbar__nav__navlink mr-5"
-                    : ""
+                    : "mr-5"
                 }
               >
                 Dashboard
@@ -44,9 +44,7 @@ const navbar = () => {
                 to="/moms"
                 href="/moms"
                 className={
-                  pagePath === "moms"
-                    ? "navsection__navbar__nav__navlink ml-5"
-                    : ""
+                  pagePath === "moms" ? "navsection__navbar__nav__navlink" : ""
                 }
               >
                 MOMs
