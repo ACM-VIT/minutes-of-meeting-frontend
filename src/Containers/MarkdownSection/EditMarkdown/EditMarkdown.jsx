@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
 import MDEditor from "@uiw/react-md-editor";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import Navbar from "../../../components/Navbar/Navbar";
 import Aux from "../../../hoc/Aux/Aux";
@@ -41,8 +43,16 @@ const editMarkdown = () => {
     }, []);
   }
 
+  const notifyError = () => toast.error("Fill all the fields!");
+  const notifySuccess = () => toast.success("MOM successfully edited!");
+
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if (title.trim() === "" || body.trim() === "") {
+      notifyError();
+      return;
+    }
 
     const headers = {
       "Content-Type": "application/json",
@@ -58,9 +68,11 @@ const editMarkdown = () => {
         },
         { headers }
       )
-      .then((res) => {
-        console.log(res.data);
-        alert("MOM successfully edited!");
+      .then(() => {
+        notifySuccess();
+        setTimeout(() => {
+          window.location.href = "/dashboard";
+        }, 2500);
       });
   };
   console.log(title);
@@ -68,6 +80,7 @@ const editMarkdown = () => {
   return (
     <Aux>
       <Navbar />
+      <ToastContainer />
 
       <div className="container">
         <div className="my-4">

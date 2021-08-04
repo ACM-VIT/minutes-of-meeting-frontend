@@ -28,13 +28,14 @@ const addMarkdown = () => {
     Authorization: `Bearer ${token}`,
   };
 
-  const notify = () => toast.error("Fill all the fields!");
+  const notifyError = () => toast.error("Fill all the fields!");
+  const notifySuccess = () => toast.success("MOM successfully saved!");
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (title === "" || body === "") {
-      notify();
+    if (title.trim() === "" || body.trim() === "") {
+      notifyError();
       return;
     }
 
@@ -48,7 +49,10 @@ const addMarkdown = () => {
         { headers }
       )
       .then((res) => {
-        console.log(res.data);
+        notifySuccess();
+        setTimeout(() => {
+          window.location.href = "/dashboard";
+        }, 2500);
       })
       .catch((error) => console.error(`Error: ${error}`));
   };
