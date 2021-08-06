@@ -37,7 +37,6 @@ const editMarkdown = () => {
           const { data } = response;
           setTitle(data.title);
           setBody(data.body);
-          console.log(data.body);
         })
         .catch((error) => console.error(`Error: ${error}`));
     }, []);
@@ -73,7 +72,8 @@ const editMarkdown = () => {
         setTimeout(() => {
           window.location.href = "/dashboard";
         }, 2500);
-      });
+      })
+      .catch((error) => console.error(`Error: ${error}`));
   };
   console.log(title);
   console.log(body);
