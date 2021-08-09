@@ -30,7 +30,7 @@ class LandingSection extends Component {
 
   render() {
     return (
-      <section className="md:landSection">
+      <section className="md:landSection xxs:h-screen xxs:flex xxs:items-center">
         <div className="container mx-auto">
           <div className="flex justify-center items-center md:absolute mt-6 ml-2">
             <img
