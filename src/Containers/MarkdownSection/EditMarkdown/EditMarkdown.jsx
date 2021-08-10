@@ -60,7 +60,7 @@ const editMarkdown = () => {
 
     axios
       .put(
-        `http://localhost:9000/moms/${id}`,
+        process.env.REACT_APP_ALL_MOM + id,
         {
           title,
           body,
