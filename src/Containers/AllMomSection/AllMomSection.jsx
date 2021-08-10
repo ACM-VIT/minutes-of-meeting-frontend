@@ -32,7 +32,6 @@ const AllMomSection = () => {
         .get(`${url}moms`, { headers })
         .then((response) => {
           const allMomsObj = response.data;
-          console.log(allMomsObj);
           setAllMoms(allMomsObj.moms);
         })
         .catch((error) => console.error(`Error: ${error}`));

@@ -24,15 +24,15 @@ const Modal = ({ show, onClose }) => {
       window.location.href = "/dashboard";
     } else {
       axios
-        .delete(`http://localhost:9000/moms/${id}`)
+        .delete(process.env.REACT_APP_ALL_MOM$ + id)
         .then(
           () => notifySuccess(),
           setTimeout(() => {
             window.location.href = "/dashboard";
-          }, 2500)
+          }, 2500),
+          console.log("MOM deleted")
         )
         .catch((error) => console.error(`Error: ${error}`));
-      console.log("MOM deleted");
     }
   };
 

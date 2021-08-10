@@ -29,7 +29,7 @@ const SingleMomSection = () => {
         Authorization: `Bearer ${token}`,
       };
       axios
-        .get(`http://localhost:9000/moms/details/${urlId}`, { headers })
+        .get(process.env.REACT_APP_SINGLE_MOM + urlId, { headers })
         .then((response) => {
           const { data } = response;
           const arrayOfLines = data.body.match(/[^\r\n]+/g);

@@ -32,7 +32,7 @@ const editMarkdown = () => {
         Authorization: `Bearer ${token}`,
       };
       axios
-        .get(`http://localhost:9000/moms/details/edit/${id}`, { headers })
+        .get(process.env.REACT_APP_EDIT_MOM + id, { headers })
         .then((response) => {
           const { data } = response;
           setTitle(data.title);

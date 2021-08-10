@@ -27,12 +27,13 @@ const dashboardSection = () => {
         Authorization: `Bearer ${token}`,
       };
       axios
-        .get("http:/localhost:9000/moms", { headers })
+        .get(process.env.REACT_APP_DASHBOARD, { headers })
         .then((response) => {
+          // Backend route not yet ready, so console logging the response itself as of now
           console.log(response.json);
         })
         .catch((error) => {
-          console.log(error);
+          console.error(`Error: ${error}`);
         });
     }
   }, []);
