@@ -2,10 +2,12 @@
 import React, { useState } from "react";
 import axios from "axios";
 import MDEditor from "@uiw/react-md-editor";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import Navbar from "../../../components/Navbar/Navbar";
 import Aux from "../../../hoc/Aux/Aux";
-import Modal from "../../../UI/Modal/Modal";
+import MarkdownModal from "../../../UI/Modal/MarkdownModal";
 
 const addMarkdown = () => {
   const [show, setShow] = useState(false);
@@ -13,14 +15,29 @@ const addMarkdown = () => {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("# Welcome to MOM Website");
 
-  const token = localStorage.getItem("Bearer");
+  const token = sessionStorage.getItem("TK");
+  if (
+    sessionStorage.getItem("TK") === null ||
+    sessionStorage.getItem("TK") === ""
+  ) {
+    window.location.href = "/";
+  }
+
   const headers = {
     "Content-Type": "application/json",
     Authorization: `Bearer ${token}`,
   };
 
+  const notifyError = () => toast.error("Fill all the fields!");
+  const notifySuccess = () => toast.success("MOM successfully saved!");
+
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if (title.trim() === "" || body.trim() === "") {
+      notifyError();
+      return;
+    }
 
     axios
       .post(
@@ -32,15 +49,18 @@ const addMarkdown = () => {
         { headers }
       )
       .then((res) => {
-        console.log(res.data);
-        alert("MOM successfully added!");
-      });
+        notifySuccess();
+        setTimeout(() => {
+          window.location.href = "/dashboard";
+        }, 2500);
+      })
+      .catch((error) => console.error(`Error: ${error}`));
   };
 
   return (
     <Aux>
       <Navbar />
-
+      <ToastContainer />
       <div className="container">
         <div className="my-4">
           <form
@@ -83,10 +103,9 @@ const addMarkdown = () => {
           </form>
         </div>
 
-        <Modal onClose={() => setShow(false)} show={show} />
+        <MarkdownModal onClose={() => setShow(false)} show={show} />
       </div>
     </Aux>
   );
 };
-
 export default addMarkdown;

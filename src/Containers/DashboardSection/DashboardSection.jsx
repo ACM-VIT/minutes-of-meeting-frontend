@@ -9,23 +9,33 @@ import DashCard from "../../components/DashCard/DashCard";
 
 const dashboardSection = () => {
   const path = useLocation();
-  const token = path.search.slice(7);
 
   useEffect(() => {
-    localStorage.setItem("Bearer", token);
+    const token = path.search.slice(7);
+    if (path.search.substring(1, 6) === "token") {
+      sessionStorage.setItem("TK", token);
+    }
 
-    const headers = {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
-    };
-    axios
-      .get("http:/localhost:9000/moms", { headers })
-      .then((response) => {
-        console.log(response.json);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    if (
+      sessionStorage.getItem("TK") === null ||
+      sessionStorage.getItem("TK") === ""
+    ) {
+      window.location.href = "/";
+    } else {
+      const headers = {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      };
+      axios
+        .get(process.env.REACT_APP_DASHBOARD, { headers })
+        .then((response) => {
+          // Backend route not yet ready, so console logging the response itself as of now
+          console.log(response.json);
+        })
+        .catch((error) => {
+          console.error(`Error: ${error}`);
+        });
+    }
   }, []);
 
   return (

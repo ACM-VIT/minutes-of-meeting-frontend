@@ -11,6 +11,10 @@ module.exports = {
       textColor: {
         primary: "#22D1EE",
       },
+      screens: {
+        xxs: { min: "320px", max: "400px" },
+        xs: { min: "400px", max: "640px" },
+      },
     },
   },
 

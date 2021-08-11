@@ -2,10 +2,12 @@ import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
 import MDEditor from "@uiw/react-md-editor";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import Navbar from "../../../components/Navbar/Navbar";
 import Aux from "../../../hoc/Aux/Aux";
-import Modal from "../../../UI/Modal/Modal";
+import MarkdownModal from "../../../UI/Modal/MarkdownModal";
 
 const editMarkdown = () => {
   const [show, setShow] = useState(false);
@@ -16,46 +18,69 @@ const editMarkdown = () => {
   const path = useLocation();
   const id = path.pathname.split("/")[3];
 
-  const token = localStorage.getItem("Bearer");
-  const headers = {
-    "Content-Type": "application/json",
-    Authorization: `Bearer ${token}`,
-  };
+  const token = sessionStorage.getItem("TK");
 
-  useEffect(() => {
-    axios
-      .get(`http://localhost:9000/moms/details/edit/${id}`, { headers })
-      .then((response) => {
-        const { data } = response;
-        setTitle(data.title);
-        setBody(data.body);
-        console.log(data.body);
-      })
-      .catch((error) => console.error(`Error: ${error}`));
-  }, []);
+  if (
+    sessionStorage.getItem("TK") === null ||
+    sessionStorage.getItem("TK") === ""
+  ) {
+    window.location.href = "/";
+  } else {
+    useEffect(() => {
+      const headers = {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      };
+      axios
+        .get(process.env.REACT_APP_EDIT_MOM + id, { headers })
+        .then((response) => {
+          const { data } = response;
+          setTitle(data.title);
+          setBody(data.body);
+        })
+        .catch((error) => console.error(`Error: ${error}`));
+    }, []);
+  }
+
+  const notifyError = () => toast.error("Fill all the fields!");
+  const notifySuccess = () => toast.success("MOM successfully edited!");
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    if (title.trim() === "" || body.trim() === "") {
+      notifyError();
+      return;
+    }
+
+    const headers = {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    };
+
     axios
       .put(
-        `http://localhost:9000/moms/${id}`,
+        process.env.REACT_APP_ALL_MOM + id,
         {
           title,
           body,
         },
         { headers }
       )
-      .then((res) => {
-        console.log(res.data);
-        alert("MOM successfully edited!");
-      });
+      .then(() => {
+        notifySuccess();
+        setTimeout(() => {
+          window.location.href = "/dashboard";
+        }, 2500);
+      })
+      .catch((error) => console.error(`Error: ${error}`));
   };
   console.log(title);
   console.log(body);
   return (
     <Aux>
       <Navbar />
+      <ToastContainer />
 
       <div className="container">
         <div className="my-4">
@@ -99,7 +124,7 @@ const editMarkdown = () => {
           </form>
         </div>
 
-        <Modal onClose={() => setShow(false)} show={show} />
+        <MarkdownModal onClose={() => setShow(false)} show={show} />
       </div>
     </Aux>
   );

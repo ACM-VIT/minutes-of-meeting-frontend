@@ -2,15 +2,15 @@
   &__full {
     @apply flex;
     &__rightLeaf {
-      @apply absolute ml-96;
+      @apply absolute md:ml-12 lg:ml-48 xl:ml-96;
       &__image {
-        @apply transform rotate-180 w-80;
+        @apply transform rotate-180 w-56 xl:w-80;
       }
     }
     &__loginSec {
-      @apply flex-col mt-56 ml-16;
+      @apply flex-col mt-56 ml-0 mr-12 hidden md:block lg:ml-16;
       &__btn {
-        @apply flex w-96 h-14 justify-center items-center bg-primary text-white rounded-lg;
+        @apply flex w-72 xs:w-72 md:w-11/12 lg:w-8/12 h-14 justify-between items-center bg-primary text-white rounded-lg;
       }
     }
   }
