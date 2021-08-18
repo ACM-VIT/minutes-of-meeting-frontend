@@ -66,7 +66,7 @@ const AllMomSection = () => {
                 return val;
               }
             })
-            .map((val, key) => (
+            .map((val) => (
               <PostCard
                 title={val.title}
                 id={val._id}

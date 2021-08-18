@@ -61,7 +61,7 @@ const addMarkdown = () => {
     <Aux>
       <Navbar />
       <ToastContainer />
-      <div className="container">
+      <div className="container mx-auto">
         <div className="my-4">
           <form
             onSubmit={(e) => {
