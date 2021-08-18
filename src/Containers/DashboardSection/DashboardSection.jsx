@@ -6,6 +6,7 @@ import Navbar from "../../components/Navbar/Navbar";
 import Aux from "../../hoc/Aux/Aux";
 import AddButton from "../../components/AddButton/AddButton";
 import DashCard from "../../components/DashCard/DashCard";
+import DashCardHeading from "../../components/DashCardHeading";
 
 const dashboardSection = () => {
   const path = useLocation();
@@ -41,12 +42,14 @@ const dashboardSection = () => {
   return (
     <Aux>
       <Navbar />
-      <section className="container mt-2 mx-auto px-12">
+      <section className="container mt-2 mx-auto">
         <div className="flex-col">
           <div className="text-5xl">Welcome ----</div>
-          <div className="mt-2">Here are your MOMs</div>
+          <div className="text-lg mt-2">Here are your MOMs</div>
         </div>
-        <div className="">
+        <div>
+          <DashCardHeading />
+          <DashCard />
           <DashCard />
         </div>
       </section>

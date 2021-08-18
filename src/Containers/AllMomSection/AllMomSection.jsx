@@ -42,7 +42,7 @@ const AllMomSection = () => {
     <>
       <div>
         <Navbar />
-        <div className="container mx-auto flex justify-between items-center mt-4 px-4">
+        <div className="container mx-auto flex justify-between items-center mt-4">
           <div className="text-6xl font-600">MOMs</div>
           <div className="flex h-8 justify-between border rounded-xl border-black">
             <input

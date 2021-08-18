@@ -1,6 +1,6 @@
 .navsection {
   &__navbar {
-    @apply container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center justify-between;
+    @apply container mx-auto flex flex-wrap py-5 flex-col md:flex-row items-center justify-between;
 
     &__actalogo {
       @apply flex font-medium items-center text-gray-900 mb-4 md:mb-0;
