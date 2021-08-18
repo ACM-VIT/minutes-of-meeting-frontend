@@ -42,7 +42,7 @@ const AllMomSection = () => {
     <>
       <div>
         <Navbar />
-        <div className="container m-auto flex justify-between mt-4 px-4">
+        <div className="container mx-auto flex justify-between items-center mt-4 px-4">
           <div className="text-6xl font-600">MOMs</div>
           <div className="flex h-8 justify-between border rounded-xl border-black">
             <input
@@ -56,7 +56,7 @@ const AllMomSection = () => {
             <img className="mr-2 w-6" src={SearchIcon} alt="search" />
           </div>
         </div>
-        <div className="flex flex-wrap">
+        <div className="container mx-auto flex flex-wrap mt-3">
           {allMoms
             .filter((val) => {
               if (searchTerm === "") {
