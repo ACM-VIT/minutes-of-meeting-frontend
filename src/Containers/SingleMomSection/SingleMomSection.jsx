@@ -15,7 +15,7 @@ const SingleMomSection = () => {
   const path = useLocation();
   const urlId = path.pathname.split("/")[2];
 
-  const token = sessionStorage.getItem("AM");
+  const secret = sessionStorage.getItem("AM");
 
   if (
     sessionStorage.getItem("AM") === null ||
@@ -26,7 +26,7 @@ const SingleMomSection = () => {
     useEffect(() => {
       const headers = {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${secret}`,
       };
       axios
         .get(process.env.REACT_APP_SINGLE_MOM + urlId, { headers })

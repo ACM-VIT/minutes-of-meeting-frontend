@@ -15,7 +15,7 @@ const addMarkdown = () => {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("# Welcome to MOM Website");
 
-  const token = sessionStorage.getItem("AM");
+  const secret = sessionStorage.getItem("AM");
   if (
     sessionStorage.getItem("AM") === null ||
     sessionStorage.getItem("AM") === ""
@@ -25,7 +25,7 @@ const addMarkdown = () => {
 
   const headers = {
     "Content-Type": "application/json",
-    Authorization: `Bearer ${token}`,
+    Authorization: `Bearer ${secret}`,
   };
 
   const notifyError = () => toast.error("Fill all the fields!");

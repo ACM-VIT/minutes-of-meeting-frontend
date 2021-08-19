@@ -18,7 +18,7 @@ const editMarkdown = () => {
   const path = useLocation();
   const id = path.pathname.split("/")[3];
 
-  const token = sessionStorage.getItem("AM");
+  const secret = sessionStorage.getItem("AM");
 
   if (
     sessionStorage.getItem("AM") === null ||
@@ -29,7 +29,7 @@ const editMarkdown = () => {
     useEffect(() => {
       const headers = {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${secret}`,
       };
       axios
         .get(process.env.REACT_APP_EDIT_MOM + id, { headers })
@@ -55,7 +55,7 @@ const editMarkdown = () => {
 
     const headers = {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
+      Authorization: `Bearer ${secret}`,
     };
 
     axios

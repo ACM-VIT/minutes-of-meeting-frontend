@@ -23,9 +23,10 @@ const dashboardSection = () => {
     ) {
       window.location.href = "/";
     } else {
+      const secret = sessionStorage.getItem("AM");
       const headers = {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${secret}`,
       };
       axios
         .get(process.env.REACT_APP_DASHBOARD, { headers })

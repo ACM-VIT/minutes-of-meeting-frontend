@@ -16,17 +16,16 @@ const AllMomSection = () => {
   const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
-    const token = sessionStorage.getItem("AM");
-
     if (
       sessionStorage.getItem("AM") === null ||
       sessionStorage.getItem("AM") === ""
     ) {
       window.location.href = "/";
     } else {
+      const secret = sessionStorage.getItem("AM");
       const headers = {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${secret}`,
       };
       axios
         .get(`${url}moms`, { headers })
