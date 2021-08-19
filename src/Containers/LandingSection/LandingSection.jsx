@@ -14,8 +14,8 @@ import Illustration from "../../Assets/Illustration.svg";
 class LandingSection extends Component {
   logoToggle = () => {
     if (
-      sessionStorage.getItem("TK") === null ||
-      sessionStorage.getItem("TK") === ""
+      sessionStorage.getItem("AM") === null ||
+      sessionStorage.getItem("AM") === ""
     ) {
       window.location.href = "/";
     } else {

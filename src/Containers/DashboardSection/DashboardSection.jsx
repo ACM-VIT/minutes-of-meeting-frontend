@@ -10,16 +10,16 @@ import DashCardHeading from "../../components/DashCardHeading";
 
 const dashboardSection = () => {
   const path = useLocation();
-
   useEffect(() => {
     const token = path.search.slice(7);
     if (path.search.substring(1, 6) === "token") {
-      sessionStorage.setItem("TK", token);
+      sessionStorage.setItem("AM", token);
+      window.history.pushState({}, document.title, "/dashboard");
     }
 
     if (
-      sessionStorage.getItem("TK") === null ||
-      sessionStorage.getItem("TK") === ""
+      sessionStorage.getItem("AM") === null ||
+      sessionStorage.getItem("AM") === ""
     ) {
       window.location.href = "/";
     } else {

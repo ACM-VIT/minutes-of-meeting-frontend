@@ -15,10 +15,10 @@ const addMarkdown = () => {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("# Welcome to MOM Website");
 
-  const token = sessionStorage.getItem("TK");
+  const token = sessionStorage.getItem("AM");
   if (
-    sessionStorage.getItem("TK") === null ||
-    sessionStorage.getItem("TK") === ""
+    sessionStorage.getItem("AM") === null ||
+    sessionStorage.getItem("AM") === ""
   ) {
     window.location.href = "/";
   }

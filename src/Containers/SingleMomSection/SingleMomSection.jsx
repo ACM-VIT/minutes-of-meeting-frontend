@@ -15,11 +15,11 @@ const SingleMomSection = () => {
   const path = useLocation();
   const urlId = path.pathname.split("/")[2];
 
-  const token = sessionStorage.getItem("TK");
+  const token = sessionStorage.getItem("AM");
 
   if (
-    sessionStorage.getItem("TK") === null ||
-    sessionStorage.getItem("TK") === ""
+    sessionStorage.getItem("AM") === null ||
+    sessionStorage.getItem("AM") === ""
   ) {
     window.location.href = "/";
   } else {

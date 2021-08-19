@@ -16,11 +16,11 @@ const AllMomSection = () => {
   const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
-    const token = sessionStorage.getItem("TK");
+    const token = sessionStorage.getItem("AM");
 
     if (
-      sessionStorage.getItem("TK") === null ||
-      sessionStorage.getItem("TK") === ""
+      sessionStorage.getItem("AM") === null ||
+      sessionStorage.getItem("AM") === ""
     ) {
       window.location.href = "/";
     } else {
