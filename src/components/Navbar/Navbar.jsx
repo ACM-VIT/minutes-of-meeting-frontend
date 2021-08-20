@@ -31,7 +31,7 @@ const navbar = () => {
   };
 
   return (
-    <header className="navsection">
+    <header className="sm:navsection hidden sm:block">
       <div className="navsection__navbar">
         <div className="flex items-center">
           <div>

@@ -42,10 +42,12 @@ const AllMomSection = () => {
       <div>
         <Navbar />
         <div className="container mx-auto flex justify-between items-center mt-4">
-          <div className="text-6xl font-600">MOMs</div>
-          <div className="flex h-8 justify-between border rounded-xl border-black">
+          <div className="text-3xl xs:text-4xl sm:text-6xl font-600 px-2 xss:px-2 sm:px-0">
+            MOMs
+          </div>
+          <div className="flex h-8 justify-between border rounded-xl border-black px-2 mr-2">
             <input
-              className="relative text-sm text-black mx-3 py-1 px-2 w-full md:w-48 focus:outline-none"
+              className="relative text-sm text-black py-1 px-2 w-32 sm:w-48 focus:outline-none"
               type="text"
               placeholder="Search..."
               onChange={(event) => {
@@ -55,7 +57,7 @@ const AllMomSection = () => {
             <img className="mr-2 w-6" src={SearchIcon} alt="search" />
           </div>
         </div>
-        <div className="container mx-auto flex flex-wrap mt-3">
+        <div className="container mx-auto flex flex-wrap justify-center lg:justify-between mt-3">
           {allMoms
             .filter((val) => {
               if (searchTerm === "") {
