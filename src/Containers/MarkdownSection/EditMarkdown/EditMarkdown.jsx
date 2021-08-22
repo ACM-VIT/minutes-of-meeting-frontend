@@ -43,7 +43,8 @@ const editMarkdown = () => {
   }
 
   const notifyError = () => toast.error("Fill all the fields!");
-  const notifySuccess = () => toast.success("MOM successfully edited!");
+  const notifySuccess = () =>
+    toast.success("MOM successfully edited! Redirecting to Dashboard");
 
   const handleSubmit = (e) => {
     e.preventDefault();

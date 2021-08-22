@@ -57,7 +57,7 @@ const AllMomSection = () => {
             <img className="mr-2 w-6" src={SearchIcon} alt="search" />
           </div>
         </div>
-        <div className="container mx-auto flex flex-wrap justify-center lg:justify-between mt-3">
+        <div className="container mx-auto flex flex-wrap mt-3">
           {allMoms
             .filter((val) => {
               if (searchTerm === "") {

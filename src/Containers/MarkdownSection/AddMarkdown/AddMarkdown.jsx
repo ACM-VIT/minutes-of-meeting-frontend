@@ -29,7 +29,8 @@ const addMarkdown = () => {
   };
 
   const notifyError = () => toast.error("Fill all the fields!");
-  const notifySuccess = () => toast.success("MOM successfully saved!");
+  const notifySuccess = () =>
+    toast.success("MOM successfully saved! Redirecting to Dashboard");
 
   const handleSubmit = (e) => {
     e.preventDefault();
