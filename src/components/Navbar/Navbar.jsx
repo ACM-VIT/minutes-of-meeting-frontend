@@ -51,8 +51,8 @@ const navbar = () => {
                 href="/dashboard"
                 className={
                   pagePath === "dashboard"
-                    ? "navsection__navbar__nav__navlink mr-5"
-                    : "mr-5"
+                    ? "navsection__navbar__nav__navlink mr-5 font-500"
+                    : "mr-5 font-500"
                 }
               >
                 Dashboard
@@ -61,7 +61,9 @@ const navbar = () => {
                 to="/moms"
                 href="/moms"
                 className={
-                  pagePath === "moms" ? "navsection__navbar__nav__navlink" : ""
+                  pagePath === "moms"
+                    ? "navsection__navbar__nav__navlink font-500"
+                    : "font-500"
                 }
               >
                 MOMs
@@ -73,9 +75,9 @@ const navbar = () => {
           <button
             type="button"
             onClick={logout}
-            className="navsection__navbar__button"
+            className="navsection__navbar__button font-500"
           >
-            LOGOUT
+            Logout
           </button>
         </div>
       </div>
