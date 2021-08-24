@@ -14,15 +14,15 @@ const navbar = () => {
 
   const logout = () => {
     axios.get(process.env.REACT_APP_GOOGLE_LOGOUT).then(() => {
-      sessionStorage.removeItem("TK");
+      sessionStorage.removeItem("AM");
       window.location.href = "/";
     });
   };
 
   const logoToggle = () => {
     if (
-      sessionStorage.getItem("TK") === null ||
-      sessionStorage.getItem("TK") === ""
+      sessionStorage.getItem("AM") === null ||
+      sessionStorage.getItem("AM") === ""
     ) {
       window.location.href = "/";
     } else {
@@ -31,7 +31,7 @@ const navbar = () => {
   };
 
   return (
-    <header className="navsection">
+    <header className="sm:navsection hidden sm:block">
       <div className="navsection__navbar">
         <div className="flex items-center">
           <div>

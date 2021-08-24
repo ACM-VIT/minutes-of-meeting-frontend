@@ -18,18 +18,18 @@ const editMarkdown = () => {
   const path = useLocation();
   const id = path.pathname.split("/")[3];
 
-  const token = sessionStorage.getItem("TK");
+  const secret = sessionStorage.getItem("AM");
 
   if (
-    sessionStorage.getItem("TK") === null ||
-    sessionStorage.getItem("TK") === ""
+    sessionStorage.getItem("AM") === null ||
+    sessionStorage.getItem("AM") === ""
   ) {
     window.location.href = "/";
   } else {
     useEffect(() => {
       const headers = {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${secret}`,
       };
       axios
         .get(process.env.REACT_APP_EDIT_MOM + id, { headers })
@@ -43,7 +43,8 @@ const editMarkdown = () => {
   }
 
   const notifyError = () => toast.error("Fill all the fields!");
-  const notifySuccess = () => toast.success("MOM successfully edited!");
+  const notifySuccess = () =>
+    toast.success("MOM successfully edited! Redirecting to Dashboard");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -55,7 +56,7 @@ const editMarkdown = () => {
 
     const headers = {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
+      Authorization: `Bearer ${secret}`,
     };
 
     axios
@@ -82,7 +83,7 @@ const editMarkdown = () => {
       <Navbar />
       <ToastContainer />
 
-      <div className="container">
+      <div className="container mx-auto">
         <div className="my-4">
           <form
             onSubmit={(e) => {

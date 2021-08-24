@@ -17,14 +17,15 @@ const Modal = ({ show, onClose }) => {
   const path = useLocation();
   const id = path.pathname.split("/")[3];
 
-  const notifySuccess = () => toast.success("MOM successfully deleted!");
+  const notifySuccess = () =>
+    toast.success("MOM successfully deleted! Redirecting to Dashboard");
 
   const deleteMom = () => {
     if (id === "" || id === undefined) {
       window.location.href = "/dashboard";
     } else {
       axios
-        .delete(process.env.REACT_APP_ALL_MOM$ + id)
+        .delete(process.env.REACT_APP_ALL_MOM + id)
         .then(
           () => notifySuccess(),
           setTimeout(() => {

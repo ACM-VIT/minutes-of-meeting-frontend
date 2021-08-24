@@ -15,18 +15,18 @@ const SingleMomSection = () => {
   const path = useLocation();
   const urlId = path.pathname.split("/")[2];
 
-  const token = sessionStorage.getItem("TK");
+  const secret = sessionStorage.getItem("AM");
 
   if (
-    sessionStorage.getItem("TK") === null ||
-    sessionStorage.getItem("TK") === ""
+    sessionStorage.getItem("AM") === null ||
+    sessionStorage.getItem("AM") === ""
   ) {
     window.location.href = "/";
   } else {
     useEffect(() => {
       const headers = {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${secret}`,
       };
       axios
         .get(process.env.REACT_APP_SINGLE_MOM + urlId, { headers })

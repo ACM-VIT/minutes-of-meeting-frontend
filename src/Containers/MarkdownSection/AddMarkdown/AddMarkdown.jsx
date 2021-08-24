@@ -15,21 +15,22 @@ const addMarkdown = () => {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("# Welcome to MOM Website");
 
-  const token = sessionStorage.getItem("TK");
+  const secret = sessionStorage.getItem("AM");
   if (
-    sessionStorage.getItem("TK") === null ||
-    sessionStorage.getItem("TK") === ""
+    sessionStorage.getItem("AM") === null ||
+    sessionStorage.getItem("AM") === ""
   ) {
     window.location.href = "/";
   }
 
   const headers = {
     "Content-Type": "application/json",
-    Authorization: `Bearer ${token}`,
+    Authorization: `Bearer ${secret}`,
   };
 
   const notifyError = () => toast.error("Fill all the fields!");
-  const notifySuccess = () => toast.success("MOM successfully saved!");
+  const notifySuccess = () =>
+    toast.success("MOM successfully saved! Redirecting to Dashboard");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -61,7 +62,7 @@ const addMarkdown = () => {
     <Aux>
       <Navbar />
       <ToastContainer />
-      <div className="container">
+      <div className="container mx-auto">
         <div className="my-4">
           <form
             onSubmit={(e) => {
