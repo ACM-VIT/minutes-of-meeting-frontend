@@ -46,24 +46,26 @@ const SingleMomSection = () => {
   return (
     <>
       <Navbar />
-      <section className="container h-full mx-auto px-12">
-        <div className="flex h-full justify-between">
-          <div className="container h-full bg-mom">
-            <div className="flex">
-              <div className="px-8 pt-8 text-5xl">{singleMom.title}</div>
-              <a href={`http://localhost:3000/mom/edit/${urlId}`}>
-                <img className="pt-10" src={EditIcon} alt="edit" />
-              </a>
+      <section className="container h-full mx-auto">
+        <div className="flex flex-col md:flex md:flex-row h-full justify-center mx-4 md:mx-0">
+          <div className="container h-full bg-mom order-2 md:order-1">
+            <div className="flex pt-8 items-center">
+              <div className="px-4 md:px-8 text-5xl">{singleMom.title}</div>
+              <div>
+                <a href={`http://localhost:3000/mom/edit/${urlId}`}>
+                  <img className="" src={EditIcon} alt="edit" />
+                </a>
+              </div>
             </div>
-            <div className="px-8 pt-2 pb-4">{date}</div>
+            <div className="px-4 md:px-8 pt-2 mb-8">{date}</div>
             {singleMom.body.map((items, i) => (
-              <div key={i} className="px-8 py-1">
+              <div key={i} className="px-4 md:px-8 py-1">
                 {items}
               </div>
             ))}
           </div>
 
-          <div className="ml-12">
+          <div className="mx-auto md:ml-12 order-1 md:order-2 mb-12 md:mb-0">
             <div className="h-64 w-64 bg-white rounded-lg border border-black">
               <div className="rounded-full">google image</div>
               <div className="mt-2">DisplayName</div>
