@@ -7,7 +7,7 @@
     }
 
     &__nav {
-      @apply md:mr-auto md:ml-4 md:py-1 md:pl-4 md:border-l md:border-gray-400	flex flex-wrap items-center text-base justify-center;
+      @apply md:mr-auto md:ml-4 md:py-1 md:pl-4 md:border-l md:border-gray-400 flex flex-wrap items-center text-base justify-center;
 
       &__navlink {
         @apply text-primary;
@@ -15,7 +15,7 @@
     }
 
     &__button {
-      @apply inline-flex justify-center bg-primary border-0 py-1 px-3 w-28 focus:outline-none rounded text-base mt-4 md:mt-0;
+      @apply inline-flex justify-center bg-primary text-white border-0 py-1 px-3 w-28 focus:outline-none rounded text-base mt-4 md:mt-0;
     }
   }
 }

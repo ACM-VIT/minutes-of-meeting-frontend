@@ -44,9 +44,11 @@ const dashboardSection = () => {
     <Aux>
       <Navbar />
       <section className="container mt-2 mx-auto">
-        <div className="flex-col">
-          <div className="text-5xl">Welcome ----</div>
-          <div className="text-lg mt-2">Here are your MOMs</div>
+        <div className="flex-col mx-2">
+          <div className="font-600 text-3xl sm:text-5xl">Welcome ----</div>
+          <div className="font-500 text-md sm:text-lg mt-2">
+            Here are your MOMs
+          </div>
         </div>
         <div>
           <DashCardHeading />

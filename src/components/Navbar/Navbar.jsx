@@ -3,6 +3,7 @@ import axios from "axios";
 
 /** Assets */
 import ActaLogo from "../../Assets/Acta_Logo.svg";
+import Dropdown from "./Dropdown";
 
 /** Styling */
 import "./Navbar.scss";
@@ -31,55 +32,61 @@ const navbar = () => {
   };
 
   return (
-    <header className="sm:navsection hidden sm:block">
-      <div className="navsection__navbar">
-        <div className="flex items-center">
-          <div>
-            <div
-              onClick={logoToggle}
-              className="navsection__navbar__actalogo cursor-pointer"
-            >
-              <img src={ActaLogo} alt="ACTA" />
-            </div>
-            {/* <a href="/" className="navsection__navbar__actalogo">
-              <img src={ActaLogo} alt="ACTA" />
-            </a> */}
-          </div>
-          <div>
-            <nav className="navsection__navbar__nav">
-              <a
-                href="/dashboard"
-                className={
-                  pagePath === "dashboard"
-                    ? "navsection__navbar__nav__navlink mr-5"
-                    : "mr-5"
-                }
-              >
-                Dashboard
-              </a>
-              <a
-                to="/moms"
-                href="/moms"
-                className={
-                  pagePath === "moms" ? "navsection__navbar__nav__navlink" : ""
-                }
-              >
-                MOMs
-              </a>
-            </nav>
-          </div>
-        </div>
-        <div>
-          <button
-            type="button"
-            onClick={logout}
-            className="navsection__navbar__button"
-          >
-            LOGOUT
-          </button>
-        </div>
+    <div>
+      <div className="md:hidden fixed top-8 right-5">
+        <Dropdown />
       </div>
-    </header>
+
+      <header className="sm:navsection hidden md:block">
+        <div className="navsection__navbar">
+          <div className="flex items-center">
+            <div>
+              <div
+                onClick={logoToggle}
+                className="navsection__navbar__actalogo cursor-pointer"
+              >
+                <img src={ActaLogo} alt="ACTA" />
+              </div>
+            </div>
+
+            <div>
+              <nav className="navsection__navbar__nav">
+                <a
+                  href="/dashboard"
+                  className={
+                    pagePath === "dashboard"
+                      ? "navsection__navbar__nav__navlink mr-5 font-500"
+                      : "mr-5 font-500"
+                  }
+                >
+                  Dashboard
+                </a>
+                <a
+                  to="/moms"
+                  href="/moms"
+                  className={
+                    pagePath === "moms"
+                      ? "navsection__navbar__nav__navlink font-500"
+                      : "font-500"
+                  }
+                >
+                  MOMs
+                </a>
+              </nav>
+            </div>
+          </div>
+          <div>
+            <button
+              type="button"
+              onClick={logout}
+              className="navsection__navbar__button font-500"
+            >
+              Logout
+            </button>
+          </div>
+        </div>
+      </header>
+    </div>
   );
 };
 

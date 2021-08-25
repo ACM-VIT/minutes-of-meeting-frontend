@@ -73,3 +73,26 @@
   color: white;
   background-color: #22d1ee;
 }
+
+@media only screen and (max-width: 425px) {
+  .modal-content {
+    width: 300px;
+    height: 160px;
+  }
+  .modal-body {
+    padding: 10px;
+    margin-top: 15px;
+    margin-bottom: 20px;
+    font-size: 22px;
+  }
+  .btn-delete {
+    width: 110px;
+  }
+
+  .btn-cancel {
+    width: 100px;
+  }
+  .modal-footer {
+    padding: 10px 30px;
+  }
+}
