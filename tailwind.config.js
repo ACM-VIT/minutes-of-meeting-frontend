@@ -7,6 +7,7 @@ module.exports = {
         ...theme("colors"),
         primary: "#2FC5DE",
         mom: "#E6FBFF",
+        dropdown: "#22D1EE",
       }),
       textColor: {
         primary: "#22D1EE",

@@ -83,14 +83,14 @@ const editMarkdown = () => {
       <Navbar />
       <ToastContainer />
 
-      <div className="container mx-auto">
+      <div className="container mx-auto md:mt-0 mt-16">
         <div className="my-4">
           <form
             onSubmit={(e) => {
               handleSubmit(e);
             }}
           >
-            <div className="border-b mx-12 space-x-0 w-72 border-black">
+            <div className="border-b space-x-0 w-72 border-black mx-2">
               <input
                 className="font-500 text-black bg-transparent w-72 mr-3 py-1 px-2 leading-tight focus:outline-none "
                 type="text"
@@ -103,11 +103,11 @@ const editMarkdown = () => {
               />
             </div>
             <div className="container mt-12">
-              <div className="mx-12">
+              <div className="mx-2">
                 <MDEditor value={body} onChange={setBody} />
               </div>
             </div>
-            <div className="flex justify-end mr-12 my-4">
+            <div className="flex justify-end my-4 mx-2">
               <button
                 type="submit"
                 className="inline-flex justify-center font-600 bg-primary border-0 py-2 px-3 w-28 focus:outline-none rounded text-white text-base mt-4 md:mt-0;"
@@ -117,9 +117,9 @@ const editMarkdown = () => {
 
               <div
                 onClick={() => setShow(true)}
-                className="inline-flex cursor-pointer justify-center ml-4 font-600 bg-primary border-0 py-2 px-3 w-28 focus:outline-none rounded text-white text-base mt-4 md:mt-0;"
+                className="inline-flex cursor-pointer justify-center ml-4 font-600 bg-red-500 border-0 py-2 px-3 w-28 focus:outline-none rounded text-white text-base mt-4 md:mt-0;"
               >
-                Cancel
+                Delete
               </div>
             </div>
           </form>

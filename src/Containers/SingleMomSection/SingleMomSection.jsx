@@ -50,10 +50,12 @@ const SingleMomSection = () => {
         <div className="flex flex-col md:flex md:flex-row h-full justify-center mx-4 md:mx-0">
           <div className="container h-full bg-mom order-2 md:order-1">
             <div className="flex pt-8 items-center">
-              <div className="px-4 md:px-8 text-5xl">{singleMom.title}</div>
+              <div className="px-4 md:px-8 text-3xl md:text-5xl">
+                {singleMom.title}
+              </div>
               <div>
                 <a href={`http://localhost:3000/mom/edit/${urlId}`}>
-                  <img className="" src={EditIcon} alt="edit" />
+                  <img className="mr-8" src={EditIcon} alt="edit" />
                 </a>
               </div>
             </div>
@@ -65,7 +67,7 @@ const SingleMomSection = () => {
             ))}
           </div>
 
-          <div className="mx-auto md:ml-12 order-1 md:order-2 mb-12 md:mb-0">
+          <div className="mx-auto md:ml-12 order-1 md:order-2 mb-12 md:mb-0 mt-16 md:mt-0">
             <div className="h-64 w-64 bg-white rounded-lg border border-black">
               <div className="rounded-full">google image</div>
               <div className="mt-2">DisplayName</div>
