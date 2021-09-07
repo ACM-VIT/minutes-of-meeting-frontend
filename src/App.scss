@@ -7,6 +7,14 @@ body {
   padding: 0;
 }
 
+body {
+  z-index: -10;
+}
+
+#root {
+  z-index: -10;
+}
+
 .DashCard {
   background: rgba(34, 209, 238, 0.2);
 }
@@ -23,4 +31,8 @@ body {
 
 .custom-color {
   color: #989898;
+}
+
+.mobile-menu-hidden {
+  display: none;
 }
