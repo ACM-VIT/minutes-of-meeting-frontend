@@ -51,7 +51,7 @@ const addMarkdown = () => {
         },
         { headers }
       )
-      .then((res) => {
+      .then(() => {
         notifySuccess();
         setTimeout(() => {
           window.location.href = "/dashboard";
