@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
+import urls from "../../urls";
 
 import Navbar from "../../components/Navbar/Navbar";
 import Aux from "../../hoc/Aux/Aux";
@@ -29,7 +30,7 @@ const dashboardSection = () => {
         Authorization: `Bearer ${secret}`,
       };
       axios
-        .get(process.env.REACT_APP_DASHBOARD, { headers })
+        .get(`${urls.SERVER_BASEURL}/moms`, { headers })
         .then((response) => {
           // Backend route not yet ready, so console logging the response itself as of now
           console.log(response.json);

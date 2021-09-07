@@ -4,6 +4,8 @@ import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+import urls from "../../urls";
+
 /** Styling */
 import "./MarkdownModal.css";
 
@@ -25,7 +27,7 @@ const Modal = ({ show, onClose }) => {
       window.location.href = "/dashboard";
     } else {
       axios
-        .delete(process.env.REACT_APP_ALL_MOM + id)
+        .delete(`${urls.SERVER_BASEURL}/moms/${id}`)
         .then(
           () => notifySuccess(),
           setTimeout(() => {

@@ -5,6 +5,8 @@ import MDEditor from "@uiw/react-md-editor";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+import urls from "../../../urls";
+
 import Navbar from "../../../components/Navbar/Navbar";
 import Aux from "../../../hoc/Aux/Aux";
 import MarkdownModal from "../../../UI/Modal/MarkdownModal";
@@ -42,7 +44,7 @@ const addMarkdown = () => {
 
     axios
       .post(
-        process.env.REACT_APP_ALL_MOM,
+        `${urls.SERVER_BASEURL}/moms`,
         {
           title,
           body,

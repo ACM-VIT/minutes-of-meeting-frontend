@@ -4,6 +4,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import moment from "moment";
+import urls from "../../urls";
 
 import Navbar from "../../components/Navbar/Navbar";
 import AddButton from "../../components/AddButton/AddButton";
@@ -11,7 +12,7 @@ import PostCard from "../../components/PostCard/PostCard";
 import SearchIcon from "../../Assets/SearchIcon.svg";
 
 const AllMomSection = () => {
-  const url = process.env.REACT_APP_BACKEND_URL;
+  const url = urls.SERVER_BASEURL;
   const [allMoms, setAllMoms] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -28,7 +29,7 @@ const AllMomSection = () => {
         Authorization: `Bearer ${secret}`,
       };
       axios
-        .get(`${url}moms`, { headers })
+        .get(`${url}/moms`, { headers })
         .then((response) => {
           const allMomsObj = response.data;
           setAllMoms(allMomsObj.moms);

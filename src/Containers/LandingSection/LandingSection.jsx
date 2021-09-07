@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import React, { Component } from "react";
-
+import urls from "../../urls";
 /** Style */
 import "./LandingSection.scss";
 
@@ -25,7 +25,7 @@ class LandingSection extends Component {
 
   loginHandler = (event) => {
     event.preventDefault();
-    window.open(process.env.REACT_APP_GOOGLE_URL, "_self");
+    window.open(urls.GOOGLE_URL, "_self");
   };
 
   render() {

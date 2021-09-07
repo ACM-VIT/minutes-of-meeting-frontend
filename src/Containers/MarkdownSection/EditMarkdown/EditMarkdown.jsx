@@ -5,6 +5,8 @@ import MDEditor from "@uiw/react-md-editor";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+import urls from "../../../urls";
+
 import Navbar from "../../../components/Navbar/Navbar";
 import Aux from "../../../hoc/Aux/Aux";
 import MarkdownModal from "../../../UI/Modal/MarkdownModal";
@@ -32,7 +34,7 @@ const editMarkdown = () => {
         Authorization: `Bearer ${secret}`,
       };
       axios
-        .get(process.env.REACT_APP_EDIT_MOM + id, { headers })
+        .get(`${urls.SERVER_BASEURL}/moms/edit/${id}`, { headers })
         .then((response) => {
           const { data } = response;
           setTitle(data.title);
@@ -61,7 +63,7 @@ const editMarkdown = () => {
 
     axios
       .put(
-        process.env.REACT_APP_ALL_MOM + id,
+        `${urls.SERVER_BASEURL}/moms/${id}`,
         {
           title,
           body,

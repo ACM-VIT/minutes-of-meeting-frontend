@@ -1,5 +1,6 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
+import urls from "../../urls";
 
 function postcard({ title, id, createdAt }) {
   function truncate(str) {
@@ -23,7 +24,7 @@ function postcard({ title, id, createdAt }) {
         </div>
         <div className="absolute bottom-0 mb-4 justify-center ml-16">
           <a
-            href={`http://localhost:3000/user/${id}`}
+            href={`${urls.CLIENT_BASEURL}/user/${id}`}
             className="w-32 h-7 m-auto bottom-0 flex justify-center items-center rounded-md bg-primary text-white"
             type="submit"
           >

@@ -5,6 +5,8 @@ import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import moment from "moment";
 
+import urls from "../../urls";
+
 import Navbar from "../../components/Navbar/Navbar";
 import AddButton from "../../components/AddButton/AddButton";
 import EditIcon from "../../Assets/EditIcon.svg";
@@ -29,7 +31,7 @@ const SingleMomSection = () => {
         Authorization: `Bearer ${secret}`,
       };
       axios
-        .get(process.env.REACT_APP_SINGLE_MOM + urlId, { headers })
+        .get(`${urls.SERVER_BASEURL}/moms/${urlId}`, { headers })
         .then((response) => {
           const { data } = response;
           const arrayOfLines = data.body.match(/[^\r\n]+/g);
@@ -51,7 +53,7 @@ const SingleMomSection = () => {
           <div className="container h-full bg-mom">
             <div className="flex">
               <div className="px-8 pt-8 text-5xl">{singleMom.title}</div>
-              <a href={`http://localhost:3000/mom/edit/${urlId}`}>
+              <a href={`${urls.CLIENT_BASEURL}/mom/edit/${urlId}`}>
                 <img className="pt-10" src={EditIcon} alt="edit" />
               </a>
             </div>

@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import urls from "../../urls";
 
 /** Assets */
 import ActaLogo from "../../Assets/Acta_Logo.svg";
@@ -13,7 +14,7 @@ const navbar = () => {
   const pagePath = path.split("/")[0];
 
   const logout = () => {
-    axios.get(process.env.REACT_APP_GOOGLE_LOGOUT).then(() => {
+    axios.get(urls.GOOGLE_LOGOUT).then(() => {
       sessionStorage.removeItem("AM");
       window.location.href = "/";
     });

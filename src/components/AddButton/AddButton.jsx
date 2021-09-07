@@ -1,8 +1,9 @@
 import React from "react";
+import urls from "../../urls";
 
 const button = () => {
   const addButtonHandler = () => {
-    window.open(process.env.REACT_APP_ADD_MOM, "_self");
+    window.open(`${urls.CLIENT_BASEURL}/mom/add`, "_self");
   };
   return (
     <div>
