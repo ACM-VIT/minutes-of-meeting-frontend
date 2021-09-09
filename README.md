@@ -10,7 +10,9 @@ A WebApp which will serve as a hub to store all the official documents and proce
   <a href="https://acmvit.in/" target="_blank">
     <img alt="made-by-acm" src="https://img.shields.io/badge/MADE%20BY-ACM%20VIT-blue?style=for-the-badge" />
   </a>
-  <img alt="license" src="https://img.shields.io/badge/License-MIT-green.svg?style=for-the-badge" />
+  <a href='https://github.com/ACM-VIT/minutes-of-meeting-frontend/blob/master/LICENSE' target="_blank">
+    <img alt="license" src="https://img.shields.io/badge/License-MIT-green.svg?style=for-the-badge" />
+  </a>
 </p>
 
 ---
@@ -39,3 +41,9 @@ npm start
 ## Authors
 
 **Contributors:** [Anish Mittal](https://github.com/ANISH0309), [Shreyas K](https://github.com/HelixW), [Yash Kumar Verma](https://github.com/YashKumarVerma)
+
+---
+
+## License
+
+Distributed under the MIT License. See [LICENSE](LICENSE) for more information.
