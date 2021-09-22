@@ -4,10 +4,10 @@ import EditIconDash from "../../Assets/EditIconDash.svg";
 import DeleteLogo from "../../Assets/DeleteLogo.svg";
 
 const DashCard = ({ title, date }) => (
-  <div className="flex justify-between my-4 mx-2 DashCard h-16 items-center px-6 xxs:px-3 md:px-12">
-    <div className="font-500">{title}</div>
-    <div className="font-500">{date}</div>
-    <div className="flex items-center">
+  <div className="flex  my-4 mx-2 DashCard h-16 items-center px-6 xxs:px-3 md:px-12">
+    <div className="flex-1 font-500 mr-3">{title}</div>
+    <div className="flex-1 font-500 mr-3">{date}</div>
+    <div className="flex-none flex items-center">
       <div className="pr-4 md:pr-8">
         <a href="/">
           <img className="w-5 md:w-6" src={DeleteLogo} alt="Delete" />
