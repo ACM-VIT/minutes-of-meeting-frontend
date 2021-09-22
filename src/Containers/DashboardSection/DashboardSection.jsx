@@ -1,6 +1,7 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
+import jwtDecode from "jwt-decode";
 import urls from "../../urls";
 
 import Navbar from "../../components/Navbar/Navbar";
@@ -11,6 +12,8 @@ import DashCardHeading from "../../components/DashCardHeading";
 
 const dashboardSection = () => {
   const path = useLocation();
+  const [heading, setHeading] = useState("");
+
   useEffect(() => {
     const token = path.search.slice(7);
     if (path.search.substring(1, 6) === "token") {
@@ -29,6 +32,9 @@ const dashboardSection = () => {
         "Content-Type": "application/json",
         Authorization: `Bearer ${secret}`,
       };
+      const decoded = jwtDecode(secret);
+      const { firstName } = decoded;
+      setHeading(firstName);
       axios
         .get(`${urls.SERVER_BASEURL}/moms`, { headers })
         .then((response) => {
@@ -46,7 +52,9 @@ const dashboardSection = () => {
       <Navbar />
       <section className="container mt-2 mx-auto">
         <div className="flex-col mx-2">
-          <div className="font-600 text-3xl sm:text-5xl">Welcome ----</div>
+          <div className="font-600 text-3xl sm:text-5xl">
+            {`Welcome ${heading}`}
+          </div>
           <div className="font-500 text-md sm:text-lg mt-2">
             Here are your MOMs
           </div>
