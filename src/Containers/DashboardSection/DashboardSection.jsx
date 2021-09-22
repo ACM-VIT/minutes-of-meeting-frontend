@@ -1,7 +1,9 @@
+/* eslint-disable no-underscore-dangle */
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
 import jwtDecode from "jwt-decode";
+import moment from "moment";
 import urls from "../../urls";
 
 import Navbar from "../../components/Navbar/Navbar";
@@ -13,6 +15,7 @@ import DashCardHeading from "../../components/DashCardHeading";
 const dashboardSection = () => {
   const path = useLocation();
   const [heading, setHeading] = useState("");
+  const [dashCard, setDashCard] = useState([]);
 
   useEffect(() => {
     const token = path.search.slice(7);
@@ -36,10 +39,10 @@ const dashboardSection = () => {
       const { firstName } = decoded;
       setHeading(firstName);
       axios
-        .get(`${urls.SERVER_BASEURL}/moms`, { headers })
+        .get(`${urls.SERVER_BASEURL}/moms/dashboard`, { headers })
         .then((response) => {
-          // Backend route not yet ready, so console logging the response itself as of now
-          console.log(response.json);
+          const dashCardObj = response.data;
+          setDashCard(dashCardObj);
         })
         .catch((error) => {
           console.error(`Error: ${error}`);
@@ -61,8 +64,14 @@ const dashboardSection = () => {
         </div>
         <div>
           <DashCardHeading />
-          <DashCard />
-          <DashCard />
+
+          {dashCard.map((val) => (
+            <DashCard
+              title={val.title}
+              date={moment(val.createdAt).format("MMM Do YY")}
+              key={val._id}
+            />
+          ))}
         </div>
       </section>
       <AddButton />
