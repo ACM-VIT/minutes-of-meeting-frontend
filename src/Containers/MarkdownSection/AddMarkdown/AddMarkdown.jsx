@@ -9,7 +9,7 @@ import urls from "../../../urls";
 
 import Navbar from "../../../components/Navbar/Navbar";
 import Aux from "../../../hoc/Aux/Aux";
-import MarkdownModal from "../../../UI/Modal/MarkdownModal";
+import AddMarkdownModal from "../../../UI/Modal/AddMarkdownModal";
 
 const addMarkdown = () => {
   const [show, setShow] = useState(false);
@@ -98,15 +98,15 @@ const addMarkdown = () => {
 
               <div
                 onClick={() => setShow(true)}
-                className="inline-flex cursor-pointer justify-center ml-4 font-600 bg-red-500 border-0 py-2 px-3 w-28 focus:outline-none rounded text-white text-base mt-4 md:mt-0;"
+                className="inline-flex cursor-pointer justify-center ml-4 font-600 bg-primary border-0 py-2 px-3 w-28 focus:outline-none rounded text-white text-base mt-4 md:mt-0;"
               >
-                Delete
+                Cancel
               </div>
             </div>
           </form>
         </div>
 
-        <MarkdownModal onClose={() => setShow(false)} show={show} />
+        <AddMarkdownModal onClose={() => setShow(false)} show={show} />
       </div>
     </Aux>
   );

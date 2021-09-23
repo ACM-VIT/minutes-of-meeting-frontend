@@ -9,7 +9,7 @@ import urls from "../../../urls";
 
 import Navbar from "../../../components/Navbar/Navbar";
 import Aux from "../../../hoc/Aux/Aux";
-import MarkdownModal from "../../../UI/Modal/MarkdownModal";
+import EditMarkdownModal from "../../../UI/Modal/EditMarkdownModal";
 
 const editMarkdown = () => {
   const [show, setShow] = useState(false);
@@ -127,7 +127,7 @@ const editMarkdown = () => {
           </form>
         </div>
 
-        <MarkdownModal onClose={() => setShow(false)} show={show} />
+        <EditMarkdownModal onClose={() => setShow(false)} show={show} />
       </div>
     </Aux>
   );

@@ -1,5 +1,4 @@
-import React, { useEffect } from "react";
-import axios from "axios";
+import React, { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -8,24 +7,12 @@ import urls from "../../urls";
 import EditIconDash from "../../Assets/EditIconDash.svg";
 import DeleteLogo from "../../Assets/DeleteLogo.svg";
 import Aux from "../../hoc/Aux/Aux";
+import DashMarkdownModal from "../../UI/Modal/DashMarkdownModal";
 
 const DashCard = ({ title, date, id }) => {
+  const [show, setShow] = useState(false);
   const deleteFunc = () => {
-    const notifySuccess = () =>
-      toast.success("MOM successfully deleted! Redirecting to Dashboard");
-
-    const secret = sessionStorage.getItem("AM");
-    const headers = {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${secret}`,
-    };
-
-    axios.delete(`${urls.SERVER_BASEURL}/moms/${id}`, { headers }).then(() => {
-      notifySuccess();
-      setTimeout(() => {
-        window.location.href = "/dashboard";
-      }, 2500);
-    });
+    setShow(true);
   };
 
   return (
@@ -53,6 +40,7 @@ const DashCard = ({ title, date, id }) => {
           </div>
         </div>
       </div>
+      <DashMarkdownModal id={id} onClose={() => setShow(false)} show={show} />
     </Aux>
   );
 };

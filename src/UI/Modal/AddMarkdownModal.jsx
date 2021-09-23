@@ -1,42 +1,25 @@
 import React, { useEffect } from "react";
-import { useLocation } from "react-router-dom";
-import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
-import urls from "../../urls";
 
 /** Styling */
 import "./MarkdownModal.css";
 
-const Modal = ({ show, onClose }) => {
+const AddModal = ({ show, onClose }) => {
   const closeOnEscapeKeyDown = (e) => {
     if ((e.charCode || e.keyCode) === 27) {
       onClose();
     }
   };
 
-  const path = useLocation();
-  const id = path.pathname.split("/")[3];
-
-  const notifySuccess = () =>
-    toast.success("MOM successfully deleted! Redirecting to Dashboard");
+  const notifySuccess = () => toast.success("Redirecting to Dashboard");
 
   const deleteMom = () => {
-    if (id === "" || id === undefined) {
+    notifySuccess();
+    console.log("from addMarkdownModal");
+    setTimeout(() => {
       window.location.href = "/dashboard";
-    } else {
-      axios
-        .delete(`${urls.SERVER_BASEURL}/moms/${id}`)
-        .then(
-          () => notifySuccess(),
-          setTimeout(() => {
-            window.location.href = "/dashboard";
-          }, 2500),
-          console.log("MOM deleted")
-        )
-        .catch((error) => console.error(`Error: ${error}`));
-    }
+    }, 2500);
   };
 
   useEffect(() => {
@@ -69,4 +52,4 @@ const Modal = ({ show, onClose }) => {
   );
 };
 
-export default Modal;
+export default AddModal;

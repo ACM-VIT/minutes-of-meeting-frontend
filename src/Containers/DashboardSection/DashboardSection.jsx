@@ -6,6 +6,7 @@ import { useLocation } from "react-router-dom";
 import axios from "axios";
 import jwtDecode from "jwt-decode";
 import moment from "moment";
+
 import urls from "../../urls";
 
 import Navbar from "../../components/Navbar/Navbar";
@@ -17,9 +18,12 @@ import SearchIcon from "../../Assets/SearchIcon.svg";
 
 const dashboardSection = () => {
   const path = useLocation();
+
   const [heading, setHeading] = useState("");
   const [dashCard, setDashCard] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+
+  const dashCardCount = dashCard.length;
 
   useEffect(() => {
     const token = path.search.slice(7);
@@ -63,8 +67,23 @@ const dashboardSection = () => {
             <div className="font-600 text-3xl sm:text-5xl">
               {`Welcome ${heading}`}
             </div>
-            <div className="font-500 text-md sm:text-lg mt-2">
+            <div
+              className={
+                dashCardCount === 0
+                  ? "hidden"
+                  : "font-500 text-md sm:text-lg mt-2"
+              }
+            >
               Here are your MOMs
+            </div>
+            <div
+              className={
+                dashCardCount === 0
+                  ? "font-500 text-md sm:text-lg mt-2"
+                  : "hidden"
+              }
+            >
+              You have any not created any MOM
             </div>
           </div>
           <div className="flex h-8 justify-between border rounded-xl border-black w-56 px-2 mr-2 mb-12 md:mb-0 mt-3 md:mt-0 ml-2 md:ml-0 order-1 md:order-2">
@@ -79,7 +98,7 @@ const dashboardSection = () => {
             <img className="mr-2 w-6" src={SearchIcon} alt="search" />
           </div>
         </div>
-        <div>
+        <div className={dashCardCount === 0 ? "hidden" : ""}>
           <DashCardHeading />
           {dashCard
             .filter((val) => {
