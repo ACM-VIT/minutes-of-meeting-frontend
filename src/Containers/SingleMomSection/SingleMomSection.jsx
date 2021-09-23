@@ -19,6 +19,7 @@ const SingleMomSection = () => {
   const [imageLogo, setimageLogo] = useState();
   const [firstNameState, setfirstNameState] = useState();
   const [dispName, setDispName] = useState();
+  const [idState, setIdState] = useState();
 
   const path = useLocation();
   const urlId = path.pathname.split("/")[2];
@@ -40,14 +41,15 @@ const SingleMomSection = () => {
         .get(`${urls.SERVER_BASEURL}/moms/${urlId}`, { headers })
         .then((response) => {
           const { data } = response;
-          console.log(response.data.user.firstName);
+          // console.log(response.data.user);
           const arrayOfLines = data.body.match(/[^\r\n]+/g);
           data.body = arrayOfLines;
           setSingleMom(data);
           setfirstNameState(response.data.user.firstName);
           setDispName(response.data.user.displayName);
           setimageLogo(response.data.user.image);
-          // setDispName(data);
+          setIdState(response.data.user._id);
+          console.log(response.data.user);
         })
         .catch((error) => console.error(`Error: ${error}`));
     }, []);
@@ -94,7 +96,7 @@ const SingleMomSection = () => {
               </div>
             </div>
             <a
-              href="/"
+              href={`${urls.CLIENT_BASEURL}/mom/user/${idState}`}
               className="flex items-center font-500 justify-center w-56 h-8 rounded text-center text-white bg-primary mt-2"
             >
               More from {firstNameState}
