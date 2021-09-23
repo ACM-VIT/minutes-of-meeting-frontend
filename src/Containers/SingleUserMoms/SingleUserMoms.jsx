@@ -4,6 +4,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import moment from "moment";
+import { useLocation } from "react-router-dom";
 import urls from "../../urls";
 
 import Navbar from "../../components/Navbar/Navbar";
@@ -11,10 +12,14 @@ import AddButton from "../../components/AddButton/AddButton";
 import PostCard from "../../components/PostCard/PostCard";
 import SearchIcon from "../../Assets/SearchIcon.svg";
 
-const AllMomSection = () => {
+const SingleUserMoms = () => {
   const url = urls.SERVER_BASEURL;
-  const [allMoms, setAllMoms] = useState([]);
+
+  const [singleMoms, setSingleMoms] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+
+  const path = useLocation();
+  const id = path.pathname.split("/")[3];
 
   useEffect(() => {
     if (
@@ -29,10 +34,10 @@ const AllMomSection = () => {
         Authorization: `Bearer ${secret}`,
       };
       axios
-        .get(`${url}/moms`, { headers })
+        .get(`${url}/moms/user/${id}`, { headers })
         .then((response) => {
-          const allMomsObj = response.data;
-          setAllMoms(allMomsObj.moms);
+          const singleMomsObj = response.data;
+          setSingleMoms(singleMomsObj);
         })
         .catch((error) => console.error(`Error: ${error}`));
     }
@@ -59,7 +64,7 @@ const AllMomSection = () => {
           </div>
         </div>
         <div className="container mx-auto flex flex-wrap mt-3">
-          {allMoms
+          {singleMoms
             .filter((val) => {
               if (searchTerm === "") {
                 return val;
@@ -85,4 +90,4 @@ const AllMomSection = () => {
     </>
   );
 };
-export default AllMomSection;
+export default SingleUserMoms;
