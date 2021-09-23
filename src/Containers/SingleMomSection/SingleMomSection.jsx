@@ -45,6 +45,7 @@ const SingleMomSection = () => {
   const date = moment(singleMom.createdAt).format(
     "dddd, MMMM Do YYYY, h:mm:ss a"
   );
+
   return (
     <>
       <Navbar />

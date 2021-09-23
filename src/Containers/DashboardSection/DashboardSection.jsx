@@ -81,7 +81,6 @@ const dashboardSection = () => {
         </div>
         <div>
           <DashCardHeading />
-
           {dashCard
             .filter((val) => {
               if (searchTerm === "") {
@@ -95,6 +94,7 @@ const dashboardSection = () => {
               <DashCard
                 title={val.title}
                 date={moment(val.createdAt).format("MMM Do YY")}
+                id={val._id}
                 key={val._id}
               />
             ))}
@@ -104,5 +104,4 @@ const dashboardSection = () => {
     </Aux>
   );
 };
-
 export default dashboardSection;
