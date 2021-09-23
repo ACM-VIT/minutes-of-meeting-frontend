@@ -12,7 +12,13 @@ import AddButton from "../../components/AddButton/AddButton";
 import EditIcon from "../../Assets/EditIcon.svg";
 
 const SingleMomSection = () => {
-  const [singleMom, setSingleMom] = useState({ title: "", body: [] });
+  const [singleMom, setSingleMom] = useState({
+    title: "",
+    body: [],
+  });
+  const [imageLogo, setimageLogo] = useState();
+  const [firstNameState, setfirstNameState] = useState();
+  const [dispName, setDispName] = useState();
 
   const path = useLocation();
   const urlId = path.pathname.split("/")[2];
@@ -34,9 +40,14 @@ const SingleMomSection = () => {
         .get(`${urls.SERVER_BASEURL}/moms/${urlId}`, { headers })
         .then((response) => {
           const { data } = response;
+          console.log(response.data.user.firstName);
           const arrayOfLines = data.body.match(/[^\r\n]+/g);
           data.body = arrayOfLines;
           setSingleMom(data);
+          setfirstNameState(response.data.user.firstName);
+          setDispName(response.data.user.displayName);
+          setimageLogo(response.data.user.image);
+          // setDispName(data);
         })
         .catch((error) => console.error(`Error: ${error}`));
     }, []);
@@ -45,7 +56,6 @@ const SingleMomSection = () => {
   const date = moment(singleMom.createdAt).format(
     "dddd, MMMM Do YYYY, h:mm:ss a"
   );
-
   return (
     <>
       <Navbar />
@@ -71,15 +81,23 @@ const SingleMomSection = () => {
           </div>
 
           <div className="mx-auto md:ml-12 order-1 md:order-2 mb-12 md:mb-0 mt-16 md:mt-0">
-            <div className="h-64 w-64 bg-white rounded-lg border border-black">
-              <div className="rounded-full">google image</div>
-              <div className="mt-2">DisplayName</div>
+            <div className="h-56 w-56 bg-white rounded-lg border border-black">
+              <div className="mt-8">
+                <div>
+                  <img
+                    src={imageLogo}
+                    alt="google"
+                    className="rounded-full mx-auto w-32"
+                  />
+                </div>
+                <div className="mt-3 font-600 text-center">{dispName}</div>
+              </div>
             </div>
             <a
               href="/"
-              className="flex items-center justify-center w-64 h-8 rounded text-center text-white bg-primary mt-2"
+              className="flex items-center font-500 justify-center w-56 h-8 rounded text-center text-white bg-primary mt-2"
             >
-              More from ----
+              More from {firstNameState}
             </a>
           </div>
         </div>
