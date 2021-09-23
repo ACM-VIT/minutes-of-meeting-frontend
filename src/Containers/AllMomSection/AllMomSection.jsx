@@ -73,6 +73,8 @@ const AllMomSection = () => {
                 title={val.title}
                 id={val._id}
                 key={val._id}
+                displayName={val.user.displayName}
+                image={val.user.image}
                 createdAt={moment(val.createdAt).format("MMM Do YY")}
               />
             ))}
