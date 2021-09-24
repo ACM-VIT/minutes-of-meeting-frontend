@@ -4,6 +4,7 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import moment from "moment";
+import jwtDecode from "jwt-decode";
 
 import urls from "../../urls";
 
@@ -20,6 +21,7 @@ const SingleMomSection = () => {
   const [firstNameState, setfirstNameState] = useState();
   const [dispName, setDispName] = useState();
   const [idState, setIdState] = useState();
+  const [editState, setEditState] = useState(false);
 
   const path = useLocation();
   const urlId = path.pathname.split("/")[2];
@@ -37,11 +39,12 @@ const SingleMomSection = () => {
         "Content-Type": "application/json",
         Authorization: `Bearer ${secret}`,
       };
+      const decoded = jwtDecode(secret);
+      const { id } = decoded;
       axios
         .get(`${urls.SERVER_BASEURL}/moms/${urlId}`, { headers })
         .then((response) => {
           const { data } = response;
-          // console.log(response.data.user);
           const arrayOfLines = data.body.match(/[^\r\n]+/g);
           data.body = arrayOfLines;
           setSingleMom(data);
@@ -49,7 +52,9 @@ const SingleMomSection = () => {
           setDispName(response.data.user.displayName);
           setimageLogo(response.data.user.image);
           setIdState(response.data.user._id);
-          console.log(response.data.user);
+          if (id === response.data.user._id) {
+            setEditState(true);
+          }
         })
         .catch((error) => console.error(`Error: ${error}`));
     }, []);
@@ -68,7 +73,7 @@ const SingleMomSection = () => {
               <div className="px-4 md:px-8 text-3xl md:text-5xl">
                 {singleMom.title}
               </div>
-              <div>
+              <div className={editState === true ? "" : "hidden"}>
                 <a href={`${urls.CLIENT_BASEURL}/mom/edit/${urlId}`}>
                   <img className="mr-8" src={EditIcon} alt="edit" />
                 </a>
