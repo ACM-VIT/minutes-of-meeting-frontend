@@ -15,12 +15,16 @@ const DashCard = ({ title, date, id }) => {
     setShow(true);
   };
 
+  function truncate(str) {
+    return str.length > 15 ? `${str.substring(0, 24)}...` : str;
+  }
+
   return (
     <Aux>
       <ToastContainer />
       <div className="flex my-4 mx-2 DashCard h-16 items-center px-6 xxs:px-3 md:px-12">
         <div className="flex-1 font-500 mr-3 text-blue-600">
-          <a href={`${urls.CLIENT_BASEURL}/user/${id}`}>{title}</a>
+          <a href={`${urls.CLIENT_BASEURL}/user/${id}`}>{truncate(title)}</a>
         </div>
         <div className="flex-1 font-500 mr-3">{date}</div>
         <div className="flex-none flex items-center">
