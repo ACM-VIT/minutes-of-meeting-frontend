@@ -83,8 +83,8 @@ const addMarkdown = () => {
                 aria-label="Title of the MOM"
               />
             </div>
-            <div className="container mt-12">
-              <div className="mx-2">
+            <div className="container main-container mt-12">
+              <div className="mx-2 main-container">
                 <MDEditor value={body} onChange={setBody} />
               </div>
             </div>
