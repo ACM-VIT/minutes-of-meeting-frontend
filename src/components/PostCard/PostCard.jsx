@@ -3,21 +3,22 @@ import { withRouter } from "react-router-dom";
 
 import urls from "../../urls";
 
-function postcard({ title, id, createdAt, displayName, image }) {
-  function truncate(str) {
-    return str.length > 15 ? `${str.substring(0, 20)}...` : str;
+function postcard({ title, id, createdAt, displayName, image, _id }) {
+  function truncateTitle(str) {
+    return str.length > 15 ? `${str.substring(0, 15)}...` : str;
   }
 
   return (
     <div className="my-2 mx-8">
-      <div className="relative h-64 w-64 bg-white rounded-lg border border-black">
+      <div className="relative h-64 w-64 bg-white postBox">
+        {/* <div className="relative h-64 w-64 bg-white rounded-lg border border-black"> */}
         <div className="flex-col">
-          <div className="text-center flex-1 mt-4 text-2xl">
-            <p>{truncate(title)}</p>
+          <div className="text-center font-600 text-postcardColor flex-1 mt-4 text-2xl">
+            <p>{truncateTitle(title)}</p>
           </div>
-          <div className="text-center flex-1">{createdAt}</div>
+          <div className="text-center font-400 flex-1">{createdAt}</div>
           <div className="flex-1">
-            <a href="/">
+            <a href={`${urls.CLIENT_BASEURL}/mom/user/${_id}`}>
               <div className="mt-8 rounded-2xl w-48 ml-8 flex items-center bg-gray-200">
                 <div>
                   <img

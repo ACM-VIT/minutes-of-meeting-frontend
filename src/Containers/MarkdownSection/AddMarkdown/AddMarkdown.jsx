@@ -11,6 +11,9 @@ import Navbar from "../../../components/Navbar/Navbar";
 import Aux from "../../../hoc/Aux/Aux";
 import AddMarkdownModal from "../../../UI/Modal/AddMarkdownModal";
 
+// Styles
+import "../../../styles/editoraddmarkdown.css";
+
 const addMarkdown = () => {
   const [show, setShow] = useState(false);
 

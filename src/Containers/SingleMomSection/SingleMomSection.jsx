@@ -3,6 +3,7 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
+import MDEditor from "@uiw/react-md-editor";
 import moment from "moment";
 import jwtDecode from "jwt-decode";
 
@@ -22,6 +23,7 @@ const SingleMomSection = () => {
   const [dispName, setDispName] = useState();
   const [idState, setIdState] = useState();
   const [editState, setEditState] = useState(false);
+  const [bodyShow, setBodyShow] = useState("");
 
   const path = useLocation();
   const urlId = path.pathname.split("/")[2];
@@ -45,9 +47,8 @@ const SingleMomSection = () => {
         .get(`${urls.SERVER_BASEURL}/moms/${urlId}`, { headers })
         .then((response) => {
           const { data } = response;
-          const arrayOfLines = data.body.match(/[^\r\n]+/g);
-          data.body = arrayOfLines;
           setSingleMom(data);
+          setBodyShow(data.body);
           setfirstNameState(response.data.user.firstName);
           setDispName(response.data.user.displayName);
           setimageLogo(response.data.user.image);
@@ -59,10 +60,10 @@ const SingleMomSection = () => {
         .catch((error) => console.error(`Error: ${error}`));
     }, []);
   }
-
   const date = moment(singleMom.createdAt).format(
     "dddd, MMMM Do YYYY, h:mm:ss a"
   );
+
   return (
     <>
       <Navbar />
@@ -80,11 +81,7 @@ const SingleMomSection = () => {
               </div>
             </div>
             <div className="px-4 md:px-8 pt-2 mb-8">{date}</div>
-            {singleMom.body.map((items, i) => (
-              <div key={i} className="px-4 md:px-8 py-1">
-                {items}
-              </div>
-            ))}
+            <MDEditor value={bodyShow} />
           </div>
 
           <div className="mx-auto md:ml-12 order-1 md:order-2 mb-12 md:mb-0 mt-16 md:mt-0">

@@ -11,6 +11,7 @@ module.exports = {
       }),
       textColor: {
         primary: "#22D1EE",
+        postcardcolor: "#232324",
       },
       screens: {
         xxs: { min: "320px", max: "400px" },

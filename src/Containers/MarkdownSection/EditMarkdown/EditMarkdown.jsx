@@ -36,6 +36,7 @@ const editMarkdown = () => {
       axios
         .get(`${urls.SERVER_BASEURL}/moms/edit/${id}`, { headers })
         .then((response) => {
+          console.log(response.data.body);
           const { data } = response;
           setTitle(data.title);
           setBody(data.body);
@@ -78,8 +79,6 @@ const editMarkdown = () => {
       })
       .catch((error) => console.error(`Error: ${error}`));
   };
-  console.log(title);
-  console.log(body);
   return (
     <Aux>
       <Navbar />

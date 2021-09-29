@@ -23,7 +23,7 @@ const DashCard = ({ title, date, id }) => {
     <Aux>
       <ToastContainer />
       <div className="flex my-4 mx-2 DashCard h-16 items-center px-6 xxs:px-3 md:px-12">
-        <div className="flex-1 font-500 mr-3 text-blue-600">
+        <div className="flex-1 font-500 mr-3">
           <a href={`${urls.CLIENT_BASEURL}/user/${id}`}>{truncate(title)}</a>
         </div>
         <div className="flex-1 font-500 mr-3">{date}</div>
