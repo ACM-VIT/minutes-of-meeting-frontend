@@ -4,6 +4,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import moment from "moment";
+import jwtDecode from "jwt-decode";
 import urls from "../../urls";
 
 import Navbar from "../../components/Navbar/Navbar";
@@ -13,8 +14,10 @@ import SearchIcon from "../../Assets/SearchIcon.svg";
 
 const AllMomSection = () => {
   const url = urls.SERVER_BASEURL;
+
   const [allMoms, setAllMoms] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const [addSecret, setAddSecret] = useState();
 
   useEffect(() => {
     if (
@@ -28,10 +31,14 @@ const AllMomSection = () => {
         "Content-Type": "application/json",
         Authorization: `Bearer ${secret}`,
       };
+      const decoded = jwtDecode(secret);
+      setAddSecret(decoded);
+
       axios
         .get(`${url}/moms`, { headers })
         .then((response) => {
           const allMomsObj = response.data;
+          console.log(allMomsObj.moms[0].user._id);
           setAllMoms(allMomsObj.moms);
         })
         .catch((error) => console.error(`Error: ${error}`));
@@ -71,15 +78,20 @@ const AllMomSection = () => {
               }
             })
             .map((val) => (
-              <PostCard
-                title={val.title}
-                id={val._id}
+              <div
                 key={val._id}
-                _id={val.user._id}
-                displayName={val.user.displayName}
-                image={val.user.image}
-                createdAt={moment(val.createdAt).format("MMM Do YY")}
-              />
+                className={val.user._id === addSecret.id ? "hidden" : ""}
+              >
+                <PostCard
+                  title={val.title}
+                  id={val._id}
+                  key={val._id}
+                  _id={val.user._id}
+                  displayName={val.user.displayName}
+                  image={val.user.image}
+                  createdAt={moment(val.createdAt).format("MMM Do YY")}
+                />
+              </div>
             ))}
         </div>
 
