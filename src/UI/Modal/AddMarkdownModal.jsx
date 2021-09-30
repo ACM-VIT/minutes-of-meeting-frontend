@@ -12,15 +12,15 @@ const AddModal = ({ show, onClose }) => {
     }
   };
 
-  const notifySuccess = () => toast.success("Redirecting to Dashboard");
+  // const notifySuccess = () => toast.success("Redirecting to Dashboard");
 
-  const deleteMom = () => {
-    notifySuccess();
-    console.log("from addMarkdownModal");
-    setTimeout(() => {
-      window.location.href = "/dashboard";
-    }, 2500);
-  };
+  // const deleteMom = () => {
+  //   notifySuccess();
+  //   console.log("from addMarkdownModal");
+  //   setTimeout(() => {
+  //     window.location.href = "/dashboard";
+  //   }, 2500);
+  // };
 
   useEffect(() => {
     document.body.addEventListener("keydown", closeOnEscapeKeyDown);
@@ -37,14 +37,15 @@ const AddModal = ({ show, onClose }) => {
           <div className="modal-body">Are you sure ?</div>
           <div className="modal-footer">
             <button onClick={onClose} type="submit" className="btn-cancel">
-              Cancel
+              No, keep it!
             </button>
-
-            <div onClick={deleteMom}>
-              <button type="submit" className="btn-delete">
-                Delete now
-              </button>
-            </div>
+            <a href="/dashboard">
+              <div>
+                <button type="submit" className="btn-delete">
+                  Yes, cancel!
+                </button>
+              </div>
+            </a>
           </div>
         </div>
       </div>

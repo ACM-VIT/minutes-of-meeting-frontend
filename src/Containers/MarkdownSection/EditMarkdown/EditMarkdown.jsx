@@ -115,13 +115,11 @@ const editMarkdown = () => {
               >
                 Update
               </button>
-
-              <div
-                onClick={() => setShow(true)}
-                className="inline-flex cursor-pointer justify-center ml-4 font-600 bg-red-500 border-0 py-2 px-3 w-28 focus:outline-none rounded text-white text-base mt-4 md:mt-0;"
-              >
-                Delete
-              </div>
+              <a href="/dashboard">
+                <div className="inline-flex cursor-pointer justify-center ml-4 font-600 bg-red-500 border-0 py-2 px-3 w-28 focus:outline-none rounded text-white text-base mt-4 md:mt-0;">
+                  Cancel
+                </div>
+              </a>
             </div>
           </form>
         </div>
