@@ -1,7 +1,5 @@
 import React from "react";
-import { withRouter } from "react-router-dom";
-
-import urls from "../../urls";
+import { Link, NavLink, withRouter } from "react-router-dom";
 
 import Clock from "../../Assets/Clock.svg";
 import Calendar from "../../Assets/Calendar.svg";
@@ -14,14 +12,14 @@ function postcard({ title, id, createdAt, displayName, image, _id }) {
   const time = createdAt.substr(0, 8);
   const date = createdAt.substr(9);
   return (
-    <div className="my-2 mx-8">
-      <a href={`${urls.CLIENT_BASEURL}/user/${id}`}>
+    <div className="relative my-2 mx-8">
+      <NavLink to={`/user/${id}`}>
         <div className="flex-col h-56 w-72 bg-dropdown rounded-3xl">
           <div className="h-40">
             <div className="font-600 text-white text-xl pt-10 px-6 text-center">
               <p>{truncateTitle(title)}</p>
             </div>
-            <div className="flex px-6 mt-12">
+            <div className="absolute bottom-20 flex px-6">
               <div className="flex items-center mr-6">
                 <div className="mr-1">
                   <img src={Clock} alt="clock" />
@@ -36,7 +34,7 @@ function postcard({ title, id, createdAt, displayName, image, _id }) {
               </div>
             </div>
           </div>
-          <a href={`${urls.CLIENT_BASEURL}/mom/user/${_id}`}>
+          <Link to={`/mom/user/${_id}`}>
             <div className="flex items-center bg-white h-16 postBox rounded-b-3xl pl-3">
               <div>
                 <img
@@ -47,9 +45,9 @@ function postcard({ title, id, createdAt, displayName, image, _id }) {
               </div>
               <div className="font-600">{displayName}</div>
             </div>
-          </a>
+          </Link>
         </div>
-      </a>
+      </NavLink>
     </div>
   );
 }
