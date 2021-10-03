@@ -78,9 +78,10 @@ const SingleUserMoms = () => {
                 title={val.title}
                 id={val._id}
                 key={val._id}
+                _id={val.user._id}
                 displayName={val.user.displayName}
                 image={val.user.image}
-                createdAt={moment(val.createdAt).format("MMM Do YY")}
+                createdAt={moment(val.createdAt).format("hh:mm A Do MMM YYYY")}
               />
             ))}
         </div>

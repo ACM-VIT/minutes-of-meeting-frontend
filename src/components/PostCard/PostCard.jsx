@@ -3,44 +3,53 @@ import { withRouter } from "react-router-dom";
 
 import urls from "../../urls";
 
+import Clock from "../../Assets/Clock.svg";
+import Calendar from "../../Assets/Calendar.svg";
+
 function postcard({ title, id, createdAt, displayName, image, _id }) {
   function truncateTitle(str) {
-    return str.length > 15 ? `${str.substring(0, 15)}...` : str;
+    return str.length > 15 ? `${str.substring(0, 40)}...` : str;
   }
+
+  const time = createdAt.substr(0, 8);
+  const date = createdAt.substr(9);
   return (
     <div className="my-2 mx-8">
-      <div className="relative h-64 w-64 bg-white postBox">
-        {/* <div className="relative h-64 w-64 bg-white rounded-lg border border-black"> */}
-        <div className="flex-col">
-          <div className="text-center font-600 text-postcardColor flex-1 mt-4 text-2xl">
-            <p>{truncateTitle(title)}</p>
-          </div>
-          <div className="text-center font-400 flex-1">{createdAt}</div>
-          <div className="flex-1">
-            <a href={`${urls.CLIENT_BASEURL}/mom/user/${_id}`}>
-              <div className="mt-8 rounded-2xl w-48 ml-8 flex items-center bg-gray-200">
-                <div>
-                  <img
-                    src={image}
-                    className="w-8 mr-2 rounded-3xl"
-                    alt="google"
-                  />
+      <a href={`${urls.CLIENT_BASEURL}/user/${id}`}>
+        <div className="flex-col h-56 w-72 bg-dropdown rounded-3xl">
+          <div className="h-40">
+            <div className="font-600 text-white text-xl pt-10 px-6 text-center">
+              <p>{truncateTitle(title)}</p>
+            </div>
+            <div className="flex px-6 mt-12">
+              <div className="flex items-center mr-6">
+                <div className="mr-1">
+                  <img src={Clock} alt="clock" />
                 </div>
-                <div className="ml-5">{displayName}</div>
+                <div className="text-white text-xs">{time}</div>
               </div>
-            </a>
+              <div className="flex items-center">
+                <div className="mr-1">
+                  <img src={Calendar} alt="calendar" />
+                </div>
+                <div className="text-white text-xs">{date}</div>
+              </div>
+            </div>
           </div>
-        </div>
-        <div className="absolute bottom-0 mb-4 justify-center ml-16">
-          <a
-            href={`${urls.CLIENT_BASEURL}/user/${id}`}
-            className="w-32 h-7 m-auto bottom-0 flex justify-center items-center rounded-md bg-primary text-white"
-            type="submit"
-          >
-            Read More
+          <a href={`${urls.CLIENT_BASEURL}/mom/user/${_id}`}>
+            <div className="flex items-center bg-white h-16 postBox rounded-b-3xl pl-3">
+              <div>
+                <img
+                  src={image}
+                  className="w-10 h-10 mr-2 rounded-3xl"
+                  alt="google"
+                />
+              </div>
+              <div className="font-600">{displayName}</div>
+            </div>
           </a>
         </div>
-      </div>
+      </a>
     </div>
   );
 }
