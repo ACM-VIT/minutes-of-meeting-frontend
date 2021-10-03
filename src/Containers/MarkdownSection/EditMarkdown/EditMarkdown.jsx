@@ -109,17 +109,17 @@ const editMarkdown = () => {
               </div>
             </div>
             <div className="flex justify-end my-4 mx-2">
-              <button
-                type="submit"
-                className="inline-flex justify-center font-600 bg-primary border-0 py-2 px-3 w-28 focus:outline-none rounded text-white text-base mt-4 md:mt-0;"
-              >
-                Update
-              </button>
               <a href="/dashboard">
-                <div className="inline-flex cursor-pointer justify-center ml-4 font-600 bg-red-500 border-0 py-2 px-3 w-28 focus:outline-none rounded text-white text-base mt-4 md:mt-0;">
+                <div className="inline-flex cursor-pointer justify-center font-600 bg-red-500 border-0 py-2 px-3 w-28 focus:outline-none rounded text-white text-base mt-4 md:mt-0;">
                   Cancel
                 </div>
               </a>
+              <button
+                type="submit"
+                className="inline-flex justify-center font-600 bg-primary border-0 py-2 px-3 ml-4 w-28 focus:outline-none rounded text-white text-base mt-4 md:mt-0;"
+              >
+                Update
+              </button>
             </div>
           </form>
         </div>
