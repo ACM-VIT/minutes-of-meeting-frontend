@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -24,7 +25,8 @@ const DashCard = ({ title, date, id }) => {
       <ToastContainer />
       <div className="flex my-4 mx-2 DashCard h-16 items-center px-6 xxs:px-3 md:px-12">
         <div className="flex-1 font-500 mr-3">
-          <a href={`${urls.CLIENT_BASEURL}/user/${id}`}>{truncate(title)}</a>
+          <Link to={`/user/${id}`}>{truncate(title)}</Link>
+          {/* <a href={`${urls.CLIENT_BASEURL}/user/${id}`}>{truncate(title)}</a> */}
         </div>
         <div className="flex-1 font-500 mr-3">{date}</div>
         <div className="flex-none flex items-center">
