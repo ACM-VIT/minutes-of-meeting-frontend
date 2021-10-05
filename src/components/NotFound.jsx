@@ -1,7 +1,7 @@
 import React from "react";
 import magGlass from "../Assets/Mag_Glass.svg";
 const NotFound = () => (
-  <div className="">
+  <div>
     <div className="flex-col items-center justify-center text-center w-72 h-48 mx-auto mt-32">
       <div className="w-16 mx-auto mb-3">
         <img src={magGlass} alt="notFound" />

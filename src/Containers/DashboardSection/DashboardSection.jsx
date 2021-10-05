@@ -71,7 +71,7 @@ const dashboardSection = () => {
     }
   });
 
-  const test = result.map(() => console.log());
+  const resultLength = result.map(() => console.log());
 
   return (
     <Aux>
@@ -86,7 +86,7 @@ const dashboardSection = () => {
             <div
               className={
                 dashCardCount !== 0 &&
-                test.length === 0 &&
+                resultLength.length === 0 &&
                 searchTerm.length > 0
                   ? "hidden"
                   : "font-500 text-md sm:text-lg mt-2"
@@ -123,7 +123,7 @@ const dashboardSection = () => {
           </div>
         </div>
         <div className={dashCardCount === 0 ? "hidden" : ""}>
-          {test.length === 0 && searchTerm.length > 0 ? (
+          {resultLength.length === 0 && searchTerm.length > 0 ? (
             <NotFound />
           ) : (
             <DashCardHeading />
