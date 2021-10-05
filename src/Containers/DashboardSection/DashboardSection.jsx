@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 /* eslint-disable consistent-return */
 /* eslint-disable array-callback-return */
 /* eslint-disable no-underscore-dangle */
@@ -15,6 +16,7 @@ import AddButton from "../../components/AddButton/AddButton";
 import DashCard from "../../components/DashCard/DashCard";
 import DashCardHeading from "../../components/DashCardHeading";
 import SearchIcon from "../../Assets/SearchIcon.svg";
+import NotFound from "../../components/NotFound";
 
 const dashboardSection = () => {
   const path = useLocation();
@@ -58,6 +60,19 @@ const dashboardSection = () => {
     }
   }, []);
 
+  const result = dashCard.filter((val) => {
+    if (
+      searchTerm !== "" &&
+      !val.title.toLowerCase().includes(searchTerm.toLowerCase())
+    ) {
+      console.log();
+    } else {
+      return val;
+    }
+  });
+
+  const test = result.map(() => console.log());
+
   return (
     <Aux>
       <Navbar />
@@ -67,9 +82,12 @@ const dashboardSection = () => {
             <div className="font-600 text-3xl sm:text-5xl">
               {`Welcome ${heading}`}
             </div>
+
             <div
               className={
-                dashCardCount === 0
+                dashCardCount !== 0 &&
+                test.length === 0 &&
+                searchTerm.length > 0
                   ? "hidden"
                   : "font-500 text-md sm:text-lg mt-2"
               }
@@ -83,10 +101,16 @@ const dashboardSection = () => {
                   : "hidden"
               }
             >
-              You have any not created any MOM
+              You haven't created any MOM!
             </div>
           </div>
-          <div className="flex h-8 justify-between border rounded-xl border-black w-56 px-2 mr-2 mb-12 md:mb-0 mt-3 md:mt-0 ml-2 md:ml-0 order-1 md:order-2">
+          <div
+            className={
+              dashCardCount === 0
+                ? "hidden"
+                : "flex h-8 justify-between border rounded-xl border-black w-56 px-2 mr-2 mb-12 md:mb-0 mt-3 md:mt-0 ml-2 md:ml-0 order-1 md:order-2"
+            }
+          >
             <input
               className="relative text-sm text-black py-1 px-2 w-32 sm:w-48 focus:outline-none"
               type="text"
@@ -99,24 +123,21 @@ const dashboardSection = () => {
           </div>
         </div>
         <div className={dashCardCount === 0 ? "hidden" : ""}>
-          <DashCardHeading />
-          {dashCard
-            .filter((val) => {
-              if (searchTerm === "") {
-                return val;
-              }
-              if (val.title.toLowerCase().includes(searchTerm.toLowerCase())) {
-                return val;
-              }
-            })
-            .map((val) => (
+          {test.length === 0 && searchTerm.length > 0 ? (
+            <NotFound />
+          ) : (
+            <DashCardHeading />
+          )}
+
+          {result.map((val) => (
+            <>
               <DashCard
                 title={val.title}
-                date={moment(val.createdAt).format("MMM Do YY")}
+                date={moment(val.createdAt).format("Do MMM YYYY")}
                 id={val._id}
-                key={val._id}
               />
-            ))}
+            </>
+          ))}
         </div>
       </section>
       <AddButton />
