@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState, useRef } from "react";
 import { Transition } from "@headlessui/react";
-import axios from "axios";
+import { Link } from "react-router-dom";
 
 import Hamburger from "../../Assets/Hamburger.svg";
 import useOutsideClick from "../useOutsideClick/useOutsideClick";
@@ -17,10 +17,8 @@ function Nav() {
   });
 
   const logout = () => {
-    axios.get(process.env.REACT_APP_GOOGLE_LOGOUT).then(() => {
-      sessionStorage.removeItem("AM");
-      window.location.href = "/";
-    });
+    sessionStorage.removeItem("AM");
+    window.location.href = "/";
   };
 
   return (
@@ -49,31 +47,31 @@ function Nav() {
           >
             <div ref={ref} className="space-y-1 w-full mr-2 flex flex-col">
               <div className="mt-2 pb-1 flex">
-                <a href="/dashboard" className="font-500 w-full px-2">
+                <Link to="/dashboard" className="font-500 w-full px-2">
                   Dashboard
-                </a>
+                </Link>
               </div>
 
               <div className="flex pb-1">
-                <a href="/moms" className="font-500 w-full px-2">
+                <Link to="/moms" className="font-500 w-full px-2">
                   MOMs
-                </a>
+                </Link>
               </div>
 
               <div
-                className="flex items-center"
+                onClick={logout}
+                className="flex items-center cursor-pointer"
                 style={{ marginBottom: "8px" }}
               >
                 <div>
                   <button
                     type="button"
-                    onClick={logout}
-                    className="font-500 w-full px-2"
+                    className="font-500 w-full px-2 outline-none"
                   >
                     Logout
                   </button>
                 </div>
-                <div onClick={logout}>
+                <div>
                   <img src={Logout} alt="logout" />
                 </div>
               </div>
