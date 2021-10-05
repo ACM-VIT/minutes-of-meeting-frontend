@@ -11,6 +11,7 @@ import Navbar from "../../components/Navbar/Navbar";
 import AddButton from "../../components/AddButton/AddButton";
 import PostCard from "../../components/PostCard/PostCard";
 import SearchIcon from "../../Assets/SearchIcon.svg";
+import NotFound from "../../components/NotFound";
 
 const SingleUserMoms = () => {
   const url = urls.SERVER_BASEURL;
@@ -43,6 +44,19 @@ const SingleUserMoms = () => {
     }
   }, []);
 
+  const result = singleMoms.filter((val) => {
+    if (
+      searchTerm !== "" &&
+      !val.title.toLowerCase().includes(searchTerm.toLowerCase())
+    ) {
+      console.log();
+    } else {
+      return val;
+    }
+  });
+
+  const resultLength = result.map(() => console.log());
+
   return (
     <>
       <div>
@@ -63,27 +77,20 @@ const SingleUserMoms = () => {
             <img className="mr-2 w-6" src={SearchIcon} alt="search" />
           </div>
         </div>
+        {resultLength.length === 0 && searchTerm.length > 0 ? <NotFound /> : ""}
+
         <div className="container mx-auto flex flex-wrap mt-3">
-          {singleMoms
-            .filter((val) => {
-              if (searchTerm === "") {
-                return val;
-              }
-              if (val.title.toLowerCase().includes(searchTerm.toLowerCase())) {
-                return val;
-              }
-            })
-            .map((val) => (
-              <PostCard
-                title={val.title}
-                id={val._id}
-                key={val._id}
-                _id={val.user._id}
-                displayName={val.user.displayName}
-                image={val.user.image}
-                createdAt={moment(val.createdAt).format("hh:mm A Do MMM YYYY")}
-              />
-            ))}
+          {result.map((val) => (
+            <PostCard
+              title={val.title}
+              id={val._id}
+              key={val._id}
+              _id={val.user._id}
+              displayName={val.user.displayName}
+              image={val.user.image}
+              createdAt={moment(val.createdAt).format("hh:mm A Do MMM YYYY")}
+            />
+          ))}
         </div>
 
         <AddButton />
