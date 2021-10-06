@@ -11,6 +11,9 @@ import Navbar from "../../../components/Navbar/Navbar";
 import Aux from "../../../hoc/Aux/Aux";
 import AddMarkdownModal from "../../../UI/Modal/AddMarkdownModal";
 
+// Styles
+import "../../../styles/editoraddmarkdown.css";
+
 const addMarkdown = () => {
   const [show, setShow] = useState(false);
 
@@ -83,25 +86,24 @@ const addMarkdown = () => {
                 aria-label="Title of the MOM"
               />
             </div>
-            <div className="container mt-12">
-              <div className="mx-2">
+            <div className="container main-container mt-12">
+              <div className="mx-2 main-container">
                 <MDEditor value={body} onChange={setBody} />
               </div>
             </div>
             <div className="flex justify-end my-4 mx-2">
-              <button
-                type="submit"
-                className="inline-flex justify-center font-600 bg-primary border-0 py-2 px-3 w-28 focus:outline-none rounded text-white text-base mt-4 md:mt-0;"
-              >
-                Save
-              </button>
-
               <div
                 onClick={() => setShow(true)}
-                className="inline-flex cursor-pointer justify-center ml-4 font-600 bg-primary border-0 py-2 px-3 w-28 focus:outline-none rounded text-white text-base mt-4 md:mt-0;"
+                className="inline-flex cursor-pointer justify-center font-600 bg-primary border-0 py-2 px-3 w-28 focus:outline-none rounded text-white text-base mt-4 md:mt-0;"
               >
                 Cancel
               </div>
+              <button
+                type="submit"
+                className="inline-flex justify-center font-600 bg-primary border-0 py-2 px-3 w-28 ml-4 focus:outline-none rounded text-white text-base mt-4 md:mt-0;"
+              >
+                Save
+              </button>
             </div>
           </form>
         </div>

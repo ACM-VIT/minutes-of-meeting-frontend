@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 import urls from "../../urls";
 
 /** Assets */
@@ -52,8 +53,8 @@ const navbar = () => {
 
             <div>
               <nav className="navsection__navbar__nav">
-                <a
-                  href="/dashboard"
+                <Link
+                  to="/dashboard"
                   className={
                     pagePath === "dashboard"
                       ? "navsection__navbar__nav__navlink mr-5 font-500"
@@ -61,10 +62,9 @@ const navbar = () => {
                   }
                 >
                   Dashboard
-                </a>
-                <a
+                </Link>
+                <Link
                   to="/moms"
-                  href="/moms"
                   className={
                     pagePath === "moms"
                       ? "navsection__navbar__nav__navlink font-500"
@@ -72,7 +72,7 @@ const navbar = () => {
                   }
                 >
                   MOMs
-                </a>
+                </Link>
               </nav>
             </div>
           </div>

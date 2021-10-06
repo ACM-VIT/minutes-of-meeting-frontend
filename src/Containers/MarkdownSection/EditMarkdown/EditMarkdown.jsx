@@ -36,6 +36,7 @@ const editMarkdown = () => {
       axios
         .get(`${urls.SERVER_BASEURL}/moms/edit/${id}`, { headers })
         .then((response) => {
+          console.log(response.data.body);
           const { data } = response;
           setTitle(data.title);
           setBody(data.body);
@@ -78,8 +79,6 @@ const editMarkdown = () => {
       })
       .catch((error) => console.error(`Error: ${error}`));
   };
-  console.log(title);
-  console.log(body);
   return (
     <Aux>
       <Navbar />
@@ -110,19 +109,17 @@ const editMarkdown = () => {
               </div>
             </div>
             <div className="flex justify-end my-4 mx-2">
+              <a href="/dashboard">
+                <div className="inline-flex cursor-pointer justify-center font-600 bg-red-500 border-0 py-2 px-3 w-28 focus:outline-none rounded text-white text-base mt-4 md:mt-0;">
+                  Cancel
+                </div>
+              </a>
               <button
                 type="submit"
-                className="inline-flex justify-center font-600 bg-primary border-0 py-2 px-3 w-28 focus:outline-none rounded text-white text-base mt-4 md:mt-0;"
+                className="inline-flex justify-center font-600 bg-primary border-0 py-2 px-3 ml-4 w-28 focus:outline-none rounded text-white text-base mt-4 md:mt-0;"
               >
                 Update
               </button>
-
-              <div
-                onClick={() => setShow(true)}
-                className="inline-flex cursor-pointer justify-center ml-4 font-600 bg-red-500 border-0 py-2 px-3 w-28 focus:outline-none rounded text-white text-base mt-4 md:mt-0;"
-              >
-                Delete
-              </div>
             </div>
           </form>
         </div>

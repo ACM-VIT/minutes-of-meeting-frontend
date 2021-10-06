@@ -12,7 +12,6 @@ import SingleUserMoms from "./Containers/SingleUserMoms/SingleUserMoms";
 // Global Styles
 import "./App.scss";
 
-// const App = () => (
 class App extends Component {
   render() {
     return (
@@ -28,6 +27,5 @@ class App extends Component {
     );
   }
 }
-// );
 
 export default App;

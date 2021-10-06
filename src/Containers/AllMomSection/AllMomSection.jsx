@@ -4,17 +4,21 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import moment from "moment";
+import jwtDecode from "jwt-decode";
 import urls from "../../urls";
 
 import Navbar from "../../components/Navbar/Navbar";
 import AddButton from "../../components/AddButton/AddButton";
 import PostCard from "../../components/PostCard/PostCard";
 import SearchIcon from "../../Assets/SearchIcon.svg";
+import NotFound from "../../components/NotFound";
 
 const AllMomSection = () => {
   const url = urls.SERVER_BASEURL;
+
   const [allMoms, setAllMoms] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const [addSecret, setAddSecret] = useState();
 
   useEffect(() => {
     if (
@@ -28,6 +32,9 @@ const AllMomSection = () => {
         "Content-Type": "application/json",
         Authorization: `Bearer ${secret}`,
       };
+      const decoded = jwtDecode(secret);
+      setAddSecret(decoded);
+
       axios
         .get(`${url}/moms`, { headers })
         .then((response) => {
@@ -37,6 +44,19 @@ const AllMomSection = () => {
         .catch((error) => console.error(`Error: ${error}`));
     }
   }, []);
+
+  const result = allMoms.filter((val) => {
+    if (
+      searchTerm !== "" &&
+      !val.title.toLowerCase().includes(searchTerm.toLowerCase())
+    ) {
+      console.log();
+    } else {
+      return val;
+    }
+  });
+
+  const resultLength = result.map(() => console.log());
 
   return (
     <>
@@ -58,26 +78,25 @@ const AllMomSection = () => {
             <img className="mr-2 w-6" src={SearchIcon} alt="search" />
           </div>
         </div>
+        {resultLength.length === 0 && searchTerm.length > 0 ? <NotFound /> : ""}
+
         <div className="container mx-auto flex flex-wrap mt-3">
-          {allMoms
-            .filter((val) => {
-              if (searchTerm === "") {
-                return val;
-              }
-              if (val.title.toLowerCase().includes(searchTerm.toLowerCase())) {
-                return val;
-              }
-            })
-            .map((val) => (
+          {result.map((val) => (
+            <div
+              key={val._id}
+              className={val.user._id === addSecret.id ? "hidden" : ""}
+            >
               <PostCard
                 title={val.title}
                 id={val._id}
                 key={val._id}
+                _id={val.user._id}
                 displayName={val.user.displayName}
                 image={val.user.image}
-                createdAt={moment(val.createdAt).format("MMM Do YY")}
+                createdAt={moment(val.createdAt).format("hh:mm A Do MMM YYYY")}
               />
-            ))}
+            </div>
+          ))}
         </div>
 
         <AddButton />
