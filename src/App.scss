@@ -51,3 +51,19 @@ body {
 .main-container {
   height: 500px;
 }
+
+.displayNone{
+  display: none;
+}
+
+.containerMom{
+  margin: auto;
+  width: 100%;
+  box-shadow: none;
+  padding: 10px 33px;
+}
+
+.containerHeight{
+  height: 550px !important;
+  overflow: none;
+}
