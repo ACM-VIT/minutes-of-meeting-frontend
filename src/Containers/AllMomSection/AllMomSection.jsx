@@ -76,7 +76,7 @@ const AllMomSection = () => {
 
           <div
             className={
-              allMomLength > 0
+              allMomLength.length > 0
                 ? "flex h-8 justify-between border rounded-xl border-black w-56 px-2 mr-2 mb-12 md:mb-0 mt-3 md:mt-0 ml-2 md:ml-0 order-1 md:order-2"
                 : "hidden"
             }
@@ -94,9 +94,9 @@ const AllMomSection = () => {
         </div>
         <div
           className={
-            allMomLength > 0
+            allMomLength.length > 0
               ? "hidden"
-              : "container font-500 text-md sm:text-lg mt-2 mx-auto"
+              : "container mx-auto font-500 text-md sm:text-lg mt-2 px-2"
           }
         >
           There aren't any MOMs to show!
