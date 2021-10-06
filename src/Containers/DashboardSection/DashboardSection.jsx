@@ -85,9 +85,8 @@ const dashboardSection = () => {
 
             <div
               className={
-                dashCardCount !== 0 &&
-                resultLength.length === 0 &&
-                searchTerm.length > 0
+                dashCardCount === 0 ||
+                (resultLength.length === 0 && searchTerm.length > 0)
                   ? "hidden"
                   : "font-500 text-md sm:text-lg mt-2"
               }
