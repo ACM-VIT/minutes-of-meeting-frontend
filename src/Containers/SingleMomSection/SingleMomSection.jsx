@@ -1,8 +1,11 @@
+/* eslint-disable no-plusplus */
+/* eslint-disable no-const-assign */
+/* eslint-disable no-return-assign */
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable no-underscore-dangle */
 import axios from "axios";
 import React, { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import MDEditor from "@uiw/react-md-editor";
 import moment from "moment";
 import jwtDecode from "jwt-decode";
@@ -64,6 +67,31 @@ const SingleMomSection = () => {
     "dddd, MMMM Do YYYY, h:mm:ss a"
   );
 
+  const elems = document.querySelectorAll(".w-md-editor-toolbar");
+  [].forEach.call(elems, (el) => {
+    el.classList.add("displayNone");
+  });
+
+  const elems2 = document.querySelectorAll(".w-md-editor-input");
+  [].forEach.call(elems2, (el) => {
+    el.classList.add("displayNone");
+  });
+
+  const elems3 = document.querySelectorAll(".w-md-editor-preview");
+  [].forEach.call(elems3, (el) => {
+    el.classList.add("containerMom");
+  });
+
+  const elems4 = document.querySelectorAll(".w-md-editor");
+  [].forEach.call(elems4, (el) => {
+    el.classList.add("containerHeight");
+  });
+
+  const elems5 = document.querySelectorAll(".w-md-editor-content");
+  [].forEach.call(elems5, (el) => {
+    el.classList.add("containerHeight");
+  });
+
   return (
     <>
       <Navbar />
@@ -75,34 +103,40 @@ const SingleMomSection = () => {
                 {singleMom.title}
               </div>
               <div className={editState === true ? "" : "hidden"}>
-                <a href={`${urls.CLIENT_BASEURL}/mom/edit/${urlId}`}>
-                  <img className="mr-8" src={EditIcon} alt="edit" />
-                </a>
+                <Link to={`/mom/edit/${urlId}`}>
+                  <img className="mr-8 xs:w-8" src={EditIcon} alt="edit" />
+                </Link>
               </div>
             </div>
             <div className="px-4 md:px-8 pt-2 mb-8">{date}</div>
-            <MDEditor value={bodyShow} />
+
+            <MDEditor
+              className="bg-mom border-none shadow-none"
+              value={bodyShow}
+            />
           </div>
 
           <div className="mx-auto md:ml-12 order-1 md:order-2 mb-12 md:mb-0 mt-16 md:mt-0">
-            <div className="h-56 w-56 bg-white rounded-lg border border-black">
-              <div className="mt-8">
-                <div>
+            <div className="h-56 w-56 bg-white postBox">
+              <div>
+                <div className="pt-8">
                   <img
                     src={imageLogo}
                     alt="google"
                     className="rounded-full mx-auto w-32"
                   />
                 </div>
-                <div className="mt-3 font-600 text-center">{dispName}</div>
+                <div className="pt-4 font-600 text-center">{dispName}</div>
               </div>
             </div>
-            <a
-              href={`${urls.CLIENT_BASEURL}/mom/user/${idState}`}
-              className="flex items-center font-500 justify-center w-56 h-8 rounded text-center text-white bg-primary mt-2"
-            >
-              More from {firstNameState}
-            </a>
+            <Link to={`/mom/user/${idState}`}>
+              <button
+                type="button"
+                className="flex items-center font-500 justify-center w-56 h-8 rounded text-center text-white bg-primary mt-2"
+              >
+                More from {firstNameState}
+              </button>
+            </Link>
           </div>
         </div>
       </section>

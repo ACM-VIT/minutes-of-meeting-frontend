@@ -112,7 +112,7 @@ class LandingSection extends Component {
                     src={googleLogo}
                     alt="google"
                   />
-                  <span className="md:pr-11 lg:pr-12 text-xl lg:text-2xl">
+                  <span className="md:pr-11 mdplus:pr-8 md:text-xl lgplus:pr-8 lgplus:text-xl lg:pr-12 text-xl lg:text-2xl">
                     Signin with Google
                   </span>
                 </button>

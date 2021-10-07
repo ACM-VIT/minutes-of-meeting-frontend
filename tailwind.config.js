@@ -1,6 +1,7 @@
 module.exports = {
   purge: ["./src/**/*.{js,jsx,ts,tsx}", "./public/index.html"],
   darkMode: false,
+  important: true,
   theme: {
     extend: {
       backgroundColor: (theme) => ({
@@ -16,6 +17,8 @@ module.exports = {
       screens: {
         xxs: { min: "320px", max: "400px" },
         xs: { min: "400px", max: "640px" },
+        mdplus: { min: "768px", max: "90px" },
+        lgplus: { min: "1024px", max: "1190px" },
       },
     },
   },
