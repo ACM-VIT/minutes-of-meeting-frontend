@@ -129,13 +129,12 @@ const dashboardSection = () => {
           )}
 
           {result.map((val) => (
-            <>
-              <DashCard
-                title={val.title}
-                date={moment(val.createdAt).format("Do MMM YYYY")}
-                id={val._id}
-              />
-            </>
+            <DashCard
+              title={val.title}
+              date={moment(val.createdAt).format("Do MMM YYYY")}
+              id={val._id}
+              key={val._id}
+            />
           ))}
         </div>
       </section>
