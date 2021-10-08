@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 import axios from "axios";
 import MDEditor from "@uiw/react-md-editor";
 import { ToastContainer, toast } from "react-toastify";
@@ -109,11 +109,11 @@ const editMarkdown = () => {
               </div>
             </div>
             <div className="flex justify-end my-4 mx-2">
-              <a href="/dashboard">
+              <Link to="/dashboard">
                 <div className="inline-flex cursor-pointer justify-center font-600 bg-red-500 border-0 py-2 px-3 w-28 focus:outline-none rounded text-white text-base mt-4 md:mt-0;">
                   Cancel
                 </div>
-              </a>
+              </Link>
               <button
                 type="submit"
                 className="inline-flex justify-center font-600 bg-primary border-0 py-2 px-3 ml-4 w-28 focus:outline-none rounded text-white text-base mt-4 md:mt-0;"
