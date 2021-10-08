@@ -12,7 +12,7 @@ function postcard({ title, id, createdAt, displayName, image, _id }) {
   const time = createdAt.substr(0, 8);
   const date = createdAt.substr(9);
   return (
-    <div className="relative h-56 w-72">
+    <div className="relative h-56 w-72 -z-20">
       <Link to={`/user/${id}`}>
         <div className="flex-col bg-dropdown rounded-t-3xl">
           <div className="h-40">

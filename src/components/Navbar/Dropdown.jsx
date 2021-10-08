@@ -41,7 +41,7 @@ function Nav() {
       <Transition show={isOpen}>
         <div
           ref={menu}
-          className="md:hidden border absolute right-2 top-3 text-white bg-dropdown rounded-md z-50"
+          className="md:hidden border border-bg-dropdown absolute right-2 top-3 text-white bg-dropdown rounded-md z-100"
           id="mobile-menu"
         >
           <div className="space-y-1 w-full mr-2 flex flex-col">

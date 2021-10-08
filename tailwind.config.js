@@ -10,6 +10,10 @@ module.exports = {
         mom: "#E6FBFF",
         dropdown: "#22D1EE",
       }),
+      zIndex: {
+        "-10": "-10",
+        "-20": "-20",
+      },
       textColor: {
         primary: "#22D1EE",
         postcardcolor: "#232324",

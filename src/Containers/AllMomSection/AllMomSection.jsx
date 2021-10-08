@@ -109,8 +109,8 @@ const AllMomSection = () => {
           There aren't any MOMs to show!
         </div>
         {resultLength.length === 0 && searchTerm.length > 0 ? <NotFound /> : ""}
-        <div className="container mx-auto">
-          <div className="grid justify-items-center xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 gap-x-10 gap-y-8 mt-6">
+        <div className="container mx-auto mb-8">
+          <div className="grid justify-items-center xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 gap-x-10 gap-y-8 mt-6 ">
             {result.map((val) => (
               <div
                 key={val._id}
