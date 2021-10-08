@@ -39,45 +39,43 @@ function Nav() {
       </div>
 
       <Transition show={isOpen}>
-        {(ref) => (
-          <div
-            ref={menu}
-            className="md:hidden border absolute right-2 top-3 text-white bg-dropdown rounded-md z-50"
-            id="mobile-menu"
-          >
-            <div ref={ref} className="space-y-1 w-full mr-2 flex flex-col">
-              <div className="mt-2 pb-1 flex">
-                <Link to="/dashboard" className="font-500 w-full px-2">
-                  Dashboard
-                </Link>
-              </div>
+        <div
+          ref={menu}
+          className="md:hidden border absolute right-2 top-3 text-white bg-dropdown rounded-md z-50"
+          id="mobile-menu"
+        >
+          <div className="space-y-1 w-full mr-2 flex flex-col">
+            <div className="mt-2 pb-1 flex">
+              <Link to="/dashboard" className="font-500 w-full px-2">
+                Dashboard
+              </Link>
+            </div>
 
-              <div className="flex pb-1">
-                <Link to="/moms" className="font-500 w-full px-2">
-                  MOMs
-                </Link>
-              </div>
+            <div className="flex pb-1">
+              <Link to="/moms" className="font-500 w-full px-2">
+                MOMs
+              </Link>
+            </div>
 
-              <div
-                onClick={logout}
-                className="flex items-center cursor-pointer"
-                style={{ marginBottom: "8px" }}
-              >
-                <div>
-                  <button
-                    type="button"
-                    className="font-500 w-full px-2 outline-none"
-                  >
-                    Logout
-                  </button>
-                </div>
-                <div>
-                  <img src={Logout} alt="logout" />
-                </div>
+            <div
+              onClick={logout}
+              className="flex items-center cursor-pointer"
+              style={{ marginBottom: "8px" }}
+            >
+              <div>
+                <button
+                  type="button"
+                  className="font-500 w-full px-2 outline-none pb-2"
+                >
+                  Logout
+                </button>
+              </div>
+              <div>
+                <img className="pb-2" src={Logout} alt="logout" />
               </div>
             </div>
           </div>
-        )}
+        </div>
       </Transition>
     </div>
   );
