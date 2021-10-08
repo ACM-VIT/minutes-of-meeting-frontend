@@ -12,7 +12,7 @@ function postcard({ title, id, createdAt, displayName, image, _id }) {
   const time = createdAt.substr(0, 8);
   const date = createdAt.substr(9);
   return (
-    <div className="relative my-2 mx-8">
+    <div className="relative">
       <NavLink to={`/user/${id}`}>
         <div className="flex-col h-56 w-72 bg-dropdown rounded-3xl">
           <div className="h-40">

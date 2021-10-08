@@ -109,24 +109,27 @@ const AllMomSection = () => {
           There aren't any MOMs to show!
         </div>
         {resultLength.length === 0 && searchTerm.length > 0 ? <NotFound /> : ""}
-
-        <div className="container mx-auto flex flex-wrap mt-3">
-          {result.map((val) => (
-            <div
-              key={val._id}
-              className={val.user._id === addSecret.id ? "hidden" : ""}
-            >
-              <PostCard
-                title={val.title}
-                id={val._id}
+        <div className="container mx-auto">
+          <div className="grid justify-items-center xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 gap-x-10 gap-y-8 mt-6">
+            {result.map((val) => (
+              <div
                 key={val._id}
-                _id={val.user._id}
-                displayName={val.user.displayName}
-                image={val.user.image}
-                createdAt={moment(val.createdAt).format("hh:mm A Do MMM YYYY")}
-              />
-            </div>
-          ))}
+                className={val.user._id === addSecret.id ? "hidden" : ""}
+              >
+                <PostCard
+                  title={val.title}
+                  id={val._id}
+                  key={val._id}
+                  _id={val.user._id}
+                  displayName={val.user.displayName}
+                  image={val.user.image}
+                  createdAt={moment(val.createdAt).format(
+                    "hh:mm A Do MMM YYYY"
+                  )}
+                />
+              </div>
+            ))}
+          </div>
         </div>
 
         <AddButton />
