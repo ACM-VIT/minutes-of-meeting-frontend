@@ -45,7 +45,14 @@ const AllMomSection = () => {
         .catch((error) => console.error(`Error: ${error}`));
     }
   }, []);
-  const result = allMoms.filter((val) => {
+
+  const filteredAllMoms = allMoms.filter((val) => {
+    if (val.user._id !== addSecret.id) {
+      return val;
+    }
+  });
+
+  const result = filteredAllMoms.filter((val) => {
     if (
       searchTerm !== "" &&
       !val.title.toLowerCase().includes(searchTerm.toLowerCase())
