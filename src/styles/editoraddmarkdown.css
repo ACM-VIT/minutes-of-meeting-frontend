@@ -1,6 +1,6 @@
 .w-md-editor {
   height: 500px !important;
-  z-index: -50 !important;
+  z-index: 20 !important;
 }
 
 .w-md-editor-content {

@@ -79,7 +79,7 @@ const dashboardSection = () => {
       <section className="container mt-2 mx-auto">
         <div className="flex flex-col md:flex md:flex-row justify-between">
           <div className="flex-col mx-2 order-2 md:order-1">
-            <div className="font-600 text-3xl sm:text-5xl">
+            <div className="font-600 text-3xl sm:text-5xl mt-16 md:mt-0">
               {`Welcome ${heading}`}
             </div>
 

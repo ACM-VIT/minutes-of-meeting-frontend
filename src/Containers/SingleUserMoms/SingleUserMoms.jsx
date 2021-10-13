@@ -12,12 +12,14 @@ import AddButton from "../../components/AddButton/AddButton";
 import PostCard from "../../components/PostCard/PostCard";
 import SearchIcon from "../../Assets/SearchIcon.svg";
 import NotFound from "../../components/NotFound";
+import NotFound404 from "../../components/404/404";
 
 const SingleUserMoms = () => {
   const url = urls.SERVER_BASEURL;
 
   const [singleMoms, setSingleMoms] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const [showError, setShowError] = useState(false);
 
   const path = useLocation();
   const id = path.pathname.split("/")[3];
@@ -40,7 +42,7 @@ const SingleUserMoms = () => {
           const singleMomsObj = response.data;
           setSingleMoms(singleMomsObj);
         })
-        .catch((error) => console.error(`Error: ${error}`));
+        .catch(() => setShowError(true));
     }
   }, []);
 
@@ -59,7 +61,7 @@ const SingleUserMoms = () => {
 
   return (
     <>
-      <div>
+      <div className={showError === true ? "hidden" : ""}>
         <Navbar />
         <div className="container mx-auto flex flex-col md:flex md:flex-row md:justify-between md:items-center mt-4">
           <div className="text-3xl xs:text-4xl sm:text-6xl font-600 px-2 xss:px-2 sm:px-0 order-2 md:order-1">
@@ -78,8 +80,8 @@ const SingleUserMoms = () => {
           </div>
         </div>
         {resultLength.length === 0 && searchTerm.length > 0 ? <NotFound /> : ""}
-        <div className="container mx-auto mb-8">
-          <div className="grid justify-items-center xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 gap-x-10 gap-y-8 mt-6 z-100">
+        <div className="container mx-auto mb-8 z-20">
+          <div className="grid justify-items-center xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 gap-x-10 gap-y-8 mt-6 z-20">
             {result.map((val) => (
               <PostCard
                 title={val.title}
@@ -95,6 +97,9 @@ const SingleUserMoms = () => {
         </div>
 
         <AddButton />
+      </div>
+      <div className={showError === true ? "" : "hidden"}>
+        <NotFound404 />
       </div>
     </>
   );
