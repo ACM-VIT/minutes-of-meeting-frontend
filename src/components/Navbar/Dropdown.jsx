@@ -22,9 +22,10 @@ function Nav() {
   };
 
   return (
-    <div>
-      <div className="flex md:hidden">
+    <div className="z-50">
+      <div className="flex md:hidden z-50">
         <button
+          className="z-50"
           onClick={() => {
             setTimeout(() => {
               setIsOpen(!isOpen);
@@ -34,44 +35,48 @@ function Nav() {
           aria-controls="mobile-menu"
           aria-expanded="false"
         >
-          {!isOpen ? <img src={Hamburger} alt="cross" /> : null}
+          {!isOpen ? (
+            <img className="z-50" src={Hamburger} alt="cross" />
+          ) : null}
         </button>
       </div>
 
       <Transition show={isOpen}>
-        <div
-          ref={menu}
-          className="md:hidden border border-bg-dropdown absolute right-2 top-3 text-white bg-dropdown rounded-md z-100"
-          id="mobile-menu"
-        >
-          <div className="space-y-1 w-full mr-2 flex flex-col">
-            <div className="mt-2 pb-1 flex">
-              <Link to="/dashboard" className="font-500 w-full px-2">
-                Dashboard
-              </Link>
-            </div>
-
-            <div className="flex pb-1">
-              <Link to="/moms" className="font-500 w-full px-2">
-                MOMs
-              </Link>
-            </div>
-
-            <div
-              onClick={logout}
-              className="flex items-center cursor-pointer"
-              style={{ marginBottom: "8px" }}
-            >
-              <div>
-                <button
-                  type="button"
-                  className="font-500 w-full px-2 outline-none pb-2"
-                >
-                  Logout
-                </button>
+        <div className="relative z-50">
+          <div
+            ref={menu}
+            className="md:hidden border border-bg-dropdown absolute right-2 top-3 text-white bg-dropdown rounded-md z-50"
+            id="mobile-menu"
+          >
+            <div className="space-y-1 w-full mr-2 flex flex-col z-50">
+              <div className="mt-2 pb-1 flex z-50">
+                <Link to="/dashboard" className="font-500 w-full px-2 z-50">
+                  Dashboard
+                </Link>
               </div>
-              <div>
-                <img className="pb-2" src={Logout} alt="logout" />
+
+              <div className="flex pb-1 z-50">
+                <Link to="/moms" className="font-500 w-full px-2 z-50">
+                  MOMs
+                </Link>
+              </div>
+
+              <div
+                onClick={logout}
+                className="flex items-center cursor-pointer z-50"
+                style={{ marginBottom: "8px" }}
+              >
+                <div>
+                  <button
+                    type="button"
+                    className="font-500 w-full px-2 outline-none pb-2"
+                  >
+                    Logout
+                  </button>
+                </div>
+                <div>
+                  <img className="pb-2" src={Logout} alt="logout" />
+                </div>
               </div>
             </div>
           </div>

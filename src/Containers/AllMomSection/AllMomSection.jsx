@@ -64,17 +64,27 @@ const AllMomSection = () => {
   });
   const resultLength = result.map(() => console.log());
 
+  // const allMomLength = allMoms.map((val) => {
+  //   let count = 0;
+  //   if (val.user._id === addSecret.id) {
+  //     count = +1;
+  //     return count;
+  //   }
+  // });
   const allMomLength = allMoms.map((val) => {
     let count = 0;
     if (val.user._id !== addSecret.id) {
       count = +1;
+      return count;
     }
-    return count;
   });
-
+  console.log(allMomLength.length);
+  // console.log(filteredAllMoms.length);
+  // console.log(result.length);
+  // console.log(filteredAllMoms.length);
   return (
     <>
-      <div>
+      <div className="z-20">
         <Navbar />
         <div className="container mx-auto flex flex-col md:flex md:flex-row md:justify-between md:items-center mt-4">
           <div className="text-3xl xs:text-4xl sm:text-6xl font-600 px-2 xss:px-2 sm:px-0 order-2 md:order-1">
@@ -103,14 +113,14 @@ const AllMomSection = () => {
           className={
             allMomLength.length > 0
               ? "hidden"
-              : "container mx-auto font-500 text-md sm:text-lg mt-2 px-2"
+              : "container mx-auto font-500 text-md sm:text-lg mt-2"
           }
         >
           There aren't any MOMs to show!
         </div>
         {resultLength.length === 0 && searchTerm.length > 0 ? <NotFound /> : ""}
-        <div className="container mx-auto mb-8">
-          <div className="grid justify-items-center xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 gap-x-10 gap-y-8 mt-6 ">
+        <div className="container mx-auto mb-8 z-20">
+          <div className="grid justify-items-center xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 gap-x-10 gap-y-8 mt-6 z-20">
             {result.map((val) => (
               <div
                 key={val._id}
