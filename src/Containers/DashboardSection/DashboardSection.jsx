@@ -84,7 +84,7 @@ const dashboardSection = () => {
               <div
                 className={
                   dashCardCount === 0
-                    ? "font-600 text-3xl sm:text-5xl mt-16 md:mt-0"
+                    ? "font-600 text-3xl sm:text-5xl mt-4 md:mt-0"
                     : "font-600 text-3xl sm:text-5xl"
                 }
               >

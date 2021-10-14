@@ -77,7 +77,7 @@ const AllMomSection = () => {
               className={
                 filteredAllMoms.length > 0
                   ? "text-3xl xs:text-4xl sm:text-6xl font-600 px-2 xss:px-2 order-2 md:order-1"
-                  : "text-3xl xs:text-4xl sm:text-6xl font-600 px-2 xss:px-2 order-2 md:order-1 mt-16 md:mt-0"
+                  : "text-3xl xs:text-4xl sm:text-6xl font-600 px-2 xss:px-2 order-2 md:order-1 mt-4 md:mt-0"
               }
             >
               MOMs
