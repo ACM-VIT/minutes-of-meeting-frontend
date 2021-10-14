@@ -8,7 +8,6 @@ import "react-toastify/dist/ReactToastify.css";
 import urls from "../../../urls";
 
 import Navbar from "../../../components/Navbar/Navbar";
-import Aux from "../../../hoc/Aux/Aux";
 import EditMarkdownModal from "../../../UI/Modal/EditMarkdownModal";
 import NotFound404 from "../../../components/404/404";
 
@@ -78,7 +77,7 @@ const editMarkdown = () => {
           window.location.href = "/dashboard";
         }, 2500);
       })
-      .catch((error) => console.error(`Error: ${error}`));
+      .catch(() => setShowError(true));
   };
   return (
     <>
