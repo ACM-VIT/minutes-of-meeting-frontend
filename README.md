@@ -38,9 +38,9 @@ npm start
 
 ---
 
-## Authors
+**Author:** [Anish Mittal](https://github.com/ANISH0309)
 
-**Contributors:** [Anish Mittal](https://github.com/ANISH0309), [Shreyas K](https://github.com/HelixW), [Yash Kumar Verma](https://github.com/YashKumarVerma)
+**Mentors:** [Shreyas K](https://github.com/HelixW) , [Yash Kumar Verma](https://github.com/YashKumarVerma)
 
 ---
 
