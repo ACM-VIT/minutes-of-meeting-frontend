@@ -28,12 +28,12 @@ const AddModal = ({ show, onClose }) => {
           <div className="modal-body">Are you sure ?</div>
           <div className="modal-footer">
             <button onClick={onClose} type="submit" className="btn-cancel">
-              No, keep it!
+              No, Keep It!
             </button>
             <Link to="/dashboard">
               <div>
                 <button type="submit" className="btn-delete">
-                  Yes, cancel!
+                  Yes, Cancel!
                 </button>
               </div>
             </Link>
