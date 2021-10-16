@@ -59,7 +59,7 @@ const EditModal = ({ show, onClose }) => {
 
               <div onClick={deleteMom}>
                 <button type="submit" className="btn-delete">
-                  Delete now
+                  Delete Now
                 </button>
               </div>
             </div>
