@@ -64,7 +64,7 @@ const SingleUserMoms = () => {
       <div className={showError === true ? "hidden" : ""}>
         <Navbar />
         <div className="container mx-auto flex flex-col md:flex md:flex-row md:justify-between md:items-center mt-4">
-          <div className="text-3xl xs:text-4xl sm:text-6xl font-600 px-2 xss:px-2 sm:px-0 order-2 md:order-1">
+          <div className="text-3xl xs:text-4xl sm:text-6xl font-600 px-2 xss:px-2 order-2 md:order-1">
             MOMs
           </div>
           <div className="flex h-8 justify-between border rounded-xl border-black w-56 px-2 mr-2 mb-12 md:mb-0 mt-3 md:mt-0 ml-2 md:ml-0 order-1 md:order-2">

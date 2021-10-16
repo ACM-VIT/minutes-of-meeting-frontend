@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
 import urls from "../../urls";
 
@@ -27,9 +25,6 @@ const EditModal = ({ show, onClose }) => {
     if (id === "" || id === undefined) {
       window.location.href = "/dashboard";
     } else {
-      const notifySuccess = () =>
-        toast.success("MOM successfully deleted! Redirecting to Dashboard");
-
       const secret = sessionStorage.getItem("AM");
       const headers = {
         "Content-Type": "application/json",
@@ -38,10 +33,7 @@ const EditModal = ({ show, onClose }) => {
       axios
         .delete(`${urls.SERVER_BASEURL}/moms/${id}`, { headers })
         .then(() => {
-          notifySuccess();
-          setTimeout(() => {
-            window.location.href = "/dashboard";
-          }, 2500);
+          window.location.href = "/dashboard";
         })
         .catch(() => setShowError(true));
     }
@@ -57,7 +49,6 @@ const EditModal = ({ show, onClose }) => {
   return (
     <>
       <div className={showError === true ? "hidden" : ""}>
-        <ToastContainer />
         <div className={`modal ${show ? "show" : ""}`} onClick={onClose}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
             <div className="modal-body">Are you sure ?</div>

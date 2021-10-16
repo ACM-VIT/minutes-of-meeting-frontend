@@ -35,8 +35,6 @@ const addMarkdown = () => {
   };
 
   const notifyError = () => toast.error("Fill all the fields!");
-  // const notifySuccess = () =>
-  //   toast.success("MOM successfully saved! Redirecting to Dashboard");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -56,10 +54,7 @@ const addMarkdown = () => {
         { headers }
       )
       .then(() => {
-        // notifySuccess();
-        // setTimeout(() => {
         window.location.href = "/dashboard";
-        // }, 1000);
       })
       .catch(() => setShowError(true));
   };

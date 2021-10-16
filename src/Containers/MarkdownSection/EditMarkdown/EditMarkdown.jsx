@@ -46,8 +46,6 @@ const editMarkdown = () => {
   }
 
   const notifyError = () => toast.error("Fill all the fields!");
-  const notifySuccess = () =>
-    toast.success("MOM successfully edited! Redirecting to Dashboard");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -72,10 +70,7 @@ const editMarkdown = () => {
         { headers }
       )
       .then(() => {
-        notifySuccess();
-        setTimeout(() => {
-          window.location.href = "/dashboard";
-        }, 2500);
+        window.location.href = "/dashboard";
       })
       .catch(() => setShowError(true));
   };
