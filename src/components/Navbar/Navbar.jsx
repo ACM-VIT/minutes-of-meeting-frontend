@@ -35,7 +35,7 @@ const navbar = () => {
 
   return (
     <div>
-      <div className="md:hidden fixed top-8 right-5">
+      <div className="md:hidden fixed top-7 right-5 z-50">
         <Dropdown />
       </div>
 

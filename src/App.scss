@@ -7,14 +7,6 @@ body {
   padding: 0;
 }
 
-body {
-  z-index: -10;
-}
-
-#root {
-  z-index: -10;
-}
-
 .DashCard {
   background: rgba(34, 209, 238, 0.2);
 }
@@ -66,4 +58,16 @@ body {
 .containerHeight{
   height: 550px !important;
   overflow: none;
+}
+
+// Media queries
+
+@media screen and (max-width: 650px) {
+  .w-md-editor-toolbar {
+    height: 50px !important;
+  }
+
+  .w-md-editor-content {
+    height: calc(100% - 50px) !important;
+  }
 }

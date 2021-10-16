@@ -11,12 +11,12 @@ import moment from "moment";
 import urls from "../../urls";
 
 import Navbar from "../../components/Navbar/Navbar";
-import Aux from "../../hoc/Aux/Aux";
 import AddButton from "../../components/AddButton/AddButton";
 import DashCard from "../../components/DashCard/DashCard";
 import DashCardHeading from "../../components/DashCardHeading";
 import SearchIcon from "../../Assets/SearchIcon.svg";
 import NotFound from "../../components/NotFound";
+import NotFound404 from "../../components/404/404";
 
 const dashboardSection = () => {
   const path = useLocation();
@@ -24,6 +24,7 @@ const dashboardSection = () => {
   const [heading, setHeading] = useState("");
   const [dashCard, setDashCard] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const [showError, setShowError] = useState(false);
 
   const dashCardCount = dashCard.length;
 
@@ -54,8 +55,8 @@ const dashboardSection = () => {
           const dashCardObj = response.data;
           setDashCard(dashCardObj);
         })
-        .catch((error) => {
-          console.error(`Error: ${error}`);
+        .catch(() => {
+          setShowError(true);
         });
     }
   }, []);
@@ -74,73 +75,83 @@ const dashboardSection = () => {
   const resultLength = result.map(() => console.log());
 
   return (
-    <Aux>
-      <Navbar />
-      <section className="container mt-2 mx-auto">
-        <div className="flex flex-col md:flex md:flex-row justify-between">
-          <div className="flex-col mx-2 order-2 md:order-1">
-            <div className="font-600 text-3xl sm:text-5xl">
-              {`Welcome ${heading}`}
-            </div>
+    <>
+      <div className={showError === true ? "hidden" : ""}>
+        <Navbar />
+        <section className="container mt-2 mx-auto">
+          <div className="flex flex-col md:flex md:flex-row justify-between">
+            <div className="flex-col mx-2 order-2 md:order-1">
+              <div
+                className={
+                  dashCardCount === 0
+                    ? "font-600 text-3xl sm:text-5xl mt-4 md:mt-0"
+                    : "font-600 text-3xl sm:text-5xl"
+                }
+              >
+                {`Welcome ${heading}`}
+              </div>
 
-            <div
-              className={
-                dashCardCount === 0 ||
-                (resultLength.length === 0 && searchTerm.length > 0)
-                  ? "hidden"
-                  : "font-500 text-md sm:text-lg mt-2"
-              }
-            >
-              Here are your MOMs
+              <div
+                className={
+                  dashCardCount === 0 ||
+                  (resultLength.length === 0 && searchTerm.length > 0)
+                    ? "hidden"
+                    : "font-500 text-md sm:text-lg mt-2"
+                }
+              >
+                Here are your MOMs
+              </div>
+              <div
+                className={
+                  dashCardCount === 0
+                    ? "font-500 text-md sm:text-lg mt-2"
+                    : "hidden"
+                }
+              >
+                You haven't created any MOM!
+              </div>
             </div>
             <div
               className={
                 dashCardCount === 0
-                  ? "font-500 text-md sm:text-lg mt-2"
-                  : "hidden"
+                  ? "hidden"
+                  : "flex h-8 justify-between border rounded-xl border-black w-56 px-2 mr-2 mb-12 md:mb-0 mt-3 md:mt-0 ml-2 md:ml-0 order-1 md:order-2"
               }
             >
-              You haven't created any MOM!
+              <input
+                className="relative text-sm text-black py-1 px-2 w-32 sm:w-48 focus:outline-none"
+                type="text"
+                placeholder="Search..."
+                onChange={(event) => {
+                  setSearchTerm(event.target.value);
+                }}
+              />
+              <img className="mr-2 w-6" src={SearchIcon} alt="search" />
             </div>
           </div>
-          <div
-            className={
-              dashCardCount === 0
-                ? "hidden"
-                : "flex h-8 justify-between border rounded-xl border-black w-56 px-2 mr-2 mb-12 md:mb-0 mt-3 md:mt-0 ml-2 md:ml-0 order-1 md:order-2"
-            }
-          >
-            <input
-              className="relative text-sm text-black py-1 px-2 w-32 sm:w-48 focus:outline-none"
-              type="text"
-              placeholder="Search..."
-              onChange={(event) => {
-                setSearchTerm(event.target.value);
-              }}
-            />
-            <img className="mr-2 w-6" src={SearchIcon} alt="search" />
-          </div>
-        </div>
-        <div className={dashCardCount === 0 ? "hidden" : ""}>
-          {resultLength.length === 0 && searchTerm.length > 0 ? (
-            <NotFound />
-          ) : (
-            <DashCardHeading />
-          )}
+          <div className={dashCardCount === 0 ? "hidden" : ""}>
+            {resultLength.length === 0 && searchTerm.length > 0 ? (
+              <NotFound />
+            ) : (
+              <DashCardHeading />
+            )}
 
-          {result.map((val) => (
-            <>
+            {result.map((val) => (
               <DashCard
                 title={val.title}
                 date={moment(val.createdAt).format("Do MMM YYYY")}
                 id={val._id}
+                key={val._id}
               />
-            </>
-          ))}
-        </div>
-      </section>
-      <AddButton />
-    </Aux>
+            ))}
+          </div>
+        </section>
+        <AddButton />
+      </div>
+      <div className={showError === true ? "" : "hidden"}>
+        <NotFound404 />
+      </div>
+    </>
   );
 };
 export default dashboardSection;

@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
+import { Link } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 
 /** Styling */
@@ -11,16 +12,6 @@ const AddModal = ({ show, onClose }) => {
       onClose();
     }
   };
-
-  // const notifySuccess = () => toast.success("Redirecting to Dashboard");
-
-  // const deleteMom = () => {
-  //   notifySuccess();
-  //   console.log("from addMarkdownModal");
-  //   setTimeout(() => {
-  //     window.location.href = "/dashboard";
-  //   }, 2500);
-  // };
 
   useEffect(() => {
     document.body.addEventListener("keydown", closeOnEscapeKeyDown);
@@ -37,15 +28,15 @@ const AddModal = ({ show, onClose }) => {
           <div className="modal-body">Are you sure ?</div>
           <div className="modal-footer">
             <button onClick={onClose} type="submit" className="btn-cancel">
-              No, keep it!
+              No, Keep It!
             </button>
-            <a href="/dashboard">
+            <Link to="/dashboard">
               <div>
                 <button type="submit" className="btn-delete">
-                  Yes, cancel!
+                  Yes, Cancel!
                 </button>
               </div>
-            </a>
+            </Link>
           </div>
         </div>
       </div>

@@ -7,14 +7,11 @@ import "@material-tailwind/react/tailwind.css";
 import "./index.scss";
 
 import App from "./App";
-// import AuthProvider from "./Context/Context";
 
 const app = (
-  // <AuthProvider>
   <BrowserRouter>
     <App />
   </BrowserRouter>
-  // </AuthProvider>
 );
 
 ReactDOM.render(
