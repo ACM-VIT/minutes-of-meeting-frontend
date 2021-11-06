@@ -23,7 +23,7 @@ const AddModal = ({ show, onClose }) => {
   return (
     <>
       <ToastContainer />
-      <div className={`modal z-30 ${show ? "show" : ""}`} onClick={onClose}>
+      <div className={`modal ${show ? "show" : ""}`} onClick={onClose}>
         <div className="modal-content" onClick={(e) => e.stopPropagation()}>
           <div className="modal-body">Are you sure ?</div>
           <div className="modal-footer">
