@@ -43,7 +43,7 @@ function Nav() {
         <div className="relative z-50">
           <div
             ref={menu}
-            className="md:hidden border border-bg-dropdown absolute right-1 top-2 text-white bg-dropdown rounded-md z-50"
+            className="md:hidden border border-bg-dropdown absolute right-1 top-1 text-white bg-dropdown rounded-md z-50"
             id="mobile-menu"
           >
             <div className="space-y-1 w-full mr-2 flex flex-col z-50">
