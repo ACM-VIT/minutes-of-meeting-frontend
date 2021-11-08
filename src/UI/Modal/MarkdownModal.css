@@ -58,6 +58,8 @@
 }
 
 .btn-delete {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
   height: 35px;
   width: 120px;
   border: none;
@@ -67,6 +69,8 @@
 }
 
 .btn-cancel {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
   height: 35px;
   width: 120px;
   border: none;

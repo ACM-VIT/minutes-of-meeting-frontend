@@ -35,9 +35,7 @@ function Nav() {
           aria-controls="mobile-menu"
           aria-expanded="false"
         >
-          {!isOpen ? (
-            <img className="z-50" src={Hamburger} alt="cross" />
-          ) : null}
+          {!isOpen ? <img className="z-50" src={Hamburger} alt="ham" /> : null}
         </button>
       </div>
 
@@ -45,7 +43,7 @@ function Nav() {
         <div className="relative z-50">
           <div
             ref={menu}
-            className="md:hidden border border-bg-dropdown absolute right-2 top-3 text-white bg-dropdown rounded-md z-50"
+            className="md:hidden border border-bg-dropdown absolute right-1 top-2 text-white bg-dropdown rounded-md z-50"
             id="mobile-menu"
           >
             <div className="space-y-1 w-full mr-2 flex flex-col z-50">

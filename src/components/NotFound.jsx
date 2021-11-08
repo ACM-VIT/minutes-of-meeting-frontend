@@ -8,7 +8,7 @@ const NotFound = () => (
       </div>
       <div className="text-2xl mb-2">No Matching MOM</div>
       <div className="text-sm text-gray-400">
-        There were no MOM matching your search
+        There were no MOMs matching your search
       </div>
     </div>
   </div>

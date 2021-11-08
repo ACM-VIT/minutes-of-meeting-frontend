@@ -17,6 +17,7 @@ import "../../../styles/editoraddmarkdown.css";
 const addMarkdown = () => {
   const [show, setShow] = useState(false);
   const [showError, setShowError] = useState(false);
+  const [btnDisable, setBtnDisable] = useState(false);
 
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("# Welcome to MOM Website");
@@ -38,6 +39,7 @@ const addMarkdown = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setBtnDisable(true);
 
     if (title.trim() === "" || body.trim() === "") {
       notifyError();
@@ -97,7 +99,11 @@ const addMarkdown = () => {
                 </div>
                 <button
                   type="submit"
-                  className="inline-flex justify-center font-600 bg-primary border-0 py-2 px-3 w-28 ml-4 focus:outline-none rounded text-white text-base mt-4 md:mt-0;"
+                  className={
+                    btnDisable === false
+                      ? "inline-flex justify-center font-600 bg-primary border-0 py-2 px-3 w-28 ml-4 focus:outline-none rounded text-white text-base mt-4 md:mt-0"
+                      : "inline-flex justify-center font-600 bg-primary border-0 py-2 px-3 w-28 ml-4 focus:outline-none rounded text-white text-base mt-4 md:mt-0 btn-disable"
+                  }
                 >
                   Save
                 </button>
