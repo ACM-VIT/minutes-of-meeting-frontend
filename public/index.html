@@ -3,28 +3,38 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta
-      name="description"
-      content="A WebApp which will serve as a hub to store all the official documents and proceedings for ACM-VIT"
-    />
 
-    <!-- Primary Meta Tags -->
-    <title>ACTA</title>
     <meta name="title" content="ACTA" />
     <meta
       name="description"
       content="A WebApp which will serve as a hub to store all the official documents and proceedings for ACM-VIT"
     />
 
-    <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://acta.vercel.app/" />
     <meta property="og:title" content="ACTA" />
+    <meta name="author" content="ACM VIT" />
     <meta
       property="og:description"
       content="A WebApp which will serve as a hub to store all the official documents and proceedings for ACM-VIT"
     />
     <meta property="og:image" content="%PUBLIC_URL%/meta.png" />
+
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://acta.vercel.app/" />
+    <meta property="twitter:title" content="ACTA" />
+    <meta
+      property="twitter:description"
+      content="A WebApp which will serve as a hub to store all the official documents and proceedings for ACM-VIT"
+    />
+    <meta property="twitter:image" content="%PUBLIC_URL%/meta.svg" />
+
+    <meta
+      name="keywords"
+      content="VIT, ACM, minutes of meeting, mom, storage, documents"
+    />
+
+    <link rel="manifest" href="/manifest.json" />
 
     <link itemprop="thumbnailUrl" href="%PUBLIC_URL%/meta.png" />
     <span
@@ -34,21 +44,6 @@
     >
       <link itemprop="url" href="%PUBLIC_URL%/meta.png" />
     </span>
-
-    <meta
-      name="keywords"
-      content="VIT, ACM, minutes of meeting, mom, storage, documents"
-    />
-
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://acta.vercel.app/" />
-    <meta property="twitter:title" content="ACTA" />
-    <meta
-      property="twitter:description"
-      content="A WebApp which will serve as a hub to store all the official documents and proceedings for ACM-VIT"
-    />
-    <meta property="twitter:image" content="%PUBLIC_URL%/meta.svg" />
 
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
     <link
@@ -74,11 +69,6 @@
       color="#5bbad5"
     />
 
-    <link rel="manifest" href="%PUBLIC_URL%/site.webmanifest" />
-
-    <meta name="msapplication-TileColor" content="#da532c" />
-    <meta name="theme-color" content="#ffffff" />
-
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link
       rel="stylesheet"
@@ -86,6 +76,7 @@
       integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
       crossorigin="anonymous"
     />
+
     <link
       href="https://fonts.googleapis.com/css2?family=Ropa+Sans&display=swap"
       rel="stylesheet"
@@ -101,10 +92,23 @@
       href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap"
       rel="stylesheet"
     />
+
+    <meta name="msapplication-TileColor" content="#da532c" />
+    <meta name="theme-color" content="#ffffff" />
     <title>ACTA</title>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker
+            .register("./serviceworker.js")
+            .then((reg) => console.log("Success: ", reg.scope))
+            .catch((err) => console.log("Failure: ", err));
+        });
+      }
+    </script>
   </body>
 </html>
