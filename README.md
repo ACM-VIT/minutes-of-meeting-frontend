@@ -3,7 +3,7 @@
 <h1 align="center"> ACTA </h1>
 
 <p align="center"> 
-A WebApp which will serve as a hub to store all the official documents and proceedings for ACM-VIT
+A Progressive Web App which will serve as a hub to store all the official minutes of meeting documents for ACM VIT. It serves the purpose of tracking documents written in Markdown by the various members of the chapter.
 </p>
 
 <p>
