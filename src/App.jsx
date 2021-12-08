@@ -9,6 +9,7 @@ import AllMomSection from "./Containers/AllMomSection/AllMomSection";
 import SingleMomSection from "./Containers/SingleMomSection/SingleMomSection";
 import SingleUserMoms from "./Containers/SingleUserMoms/SingleUserMoms";
 import NotFound404 from "./components/404/404";
+import UnauthRoute from "./components/401/401";
 
 // Global Styles
 import "./App.scss";
@@ -25,7 +26,9 @@ class App extends Component {
           <Route path="/mom/add" exact component={AddMarkdown} />
           <Route path="/dashboard" exact component={DashboardSection} />
           <Route path="/" exact component={LandingSection} />
+          <Route path="/401" component={UnauthRoute} />
           <Route path="*" component={NotFound404} />
+          {/* <UnauthRoute path="/401" component={UnauthRoute} redirect="/401" /> */}
         </Switch>
       </div>
     );
