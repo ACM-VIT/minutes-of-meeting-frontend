@@ -9,6 +9,7 @@ import { Link, useLocation } from "react-router-dom";
 import MDEditor from "@uiw/react-md-editor";
 import moment from "moment";
 import jwtDecode from "jwt-decode";
+import LoadingOverlay from "react-loading-overlay";
 
 import urls from "../../urls";
 
@@ -29,6 +30,7 @@ const SingleMomSection = () => {
   const [editState, setEditState] = useState(false);
   const [bodyShow, setBodyShow] = useState("");
   const [showError, setShowError] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const path = useLocation();
   const urlId = path.pathname.split("/")[2];
@@ -48,9 +50,11 @@ const SingleMomSection = () => {
       };
       const decoded = jwtDecode(secret);
       const { id } = decoded;
+      setLoading(true);
       axios
         .get(`${urls.SERVER_BASEURL}/moms/${urlId}`, { headers })
         .then((response) => {
+          setLoading(false);
           const { data } = response;
           setSingleMom(data);
           setBodyShow(data.body);
@@ -63,9 +67,16 @@ const SingleMomSection = () => {
           }
         })
         .catch(() => {
+          setLoading(false);
           setShowError(true);
         });
     }, []);
+  }
+
+  if (loading) {
+    document.body.style.overflow = "hidden";
+  } else {
+    document.body.style.overflow = "visible";
   }
 
   const date = moment(singleMom.createdAt).format(
@@ -99,55 +110,62 @@ const SingleMomSection = () => {
 
   return (
     <>
-      <div className={showError === true ? "hidden" : ""}>
-        <Navbar />
-        <section className="container h-full mx-auto">
-          <div className="flex flex-col md:flex md:flex-row h-full justify-center mx-4 md:mx-0">
-            <div className="container h-full bg-mom order-2 md:order-1">
-              <div className="flex pt-8 items-center">
-                <div className="px-4 md:px-8 text-3xl md:text-5xl">
-                  {singleMom.title}
-                </div>
-                <div className={editState === true ? "" : "hidden"}>
-                  <Link to={`/mom/edit/${urlId}`}>
-                    <img className="mr-8 xs:w-8" src={EditIcon} alt="edit" />
-                  </Link>
-                </div>
-              </div>
-              <div className="px-4 md:px-8 pt-2 mb-8">{date}</div>
-
-              <MDEditor
-                className="bg-mom border-none shadow-none"
-                value={bodyShow}
-              />
-            </div>
-
-            <div className="mx-auto md:ml-12 order-1 md:order-2 mb-12 md:mb-0 mt-16 md:mt-0">
-              <div className="h-56 w-56 bg-white postBox">
-                <div>
-                  <div className="pt-8">
-                    <img
-                      src={imageLogo}
-                      alt="google"
-                      className="rounded-full mx-auto w-32"
-                    />
+      <LoadingOverlay
+        className="h-screen"
+        active={loading}
+        spinner
+        text="Loading..."
+      >
+        <div className={showError === true ? "hidden" : ""}>
+          <Navbar />
+          <section className="container h-full mx-auto">
+            <div className="flex flex-col md:flex md:flex-row h-full justify-center mx-4 md:mx-0">
+              <div className="container h-full bg-mom order-2 md:order-1">
+                <div className="flex pt-8 items-center">
+                  <div className="px-4 md:px-8 text-3xl md:text-5xl">
+                    {singleMom.title}
                   </div>
-                  <div className="pt-4 font-600 text-center">{dispName}</div>
+                  <div className={editState === true ? "" : "hidden"}>
+                    <Link to={`/mom/edit/${urlId}`}>
+                      <img className="mr-8 xs:w-8" src={EditIcon} alt="edit" />
+                    </Link>
+                  </div>
                 </div>
+                <div className="px-4 md:px-8 pt-2 mb-8">{date}</div>
+
+                <MDEditor
+                  className="bg-mom border-none shadow-none"
+                  value={bodyShow}
+                />
               </div>
-              <Link to={`/mom/user/${idState}`}>
-                <button
-                  type="button"
-                  className="flex items-center font-500 justify-center w-56 h-8 rounded text-center text-white bg-primary mt-2"
-                >
-                  More from {firstNameState}
-                </button>
-              </Link>
+
+              <div className="mx-auto md:ml-12 order-1 md:order-2 mb-12 md:mb-0 mt-16 md:mt-0">
+                <div className="h-56 w-56 bg-white postBox">
+                  <div>
+                    <div className="pt-8">
+                      <img
+                        src={imageLogo}
+                        alt="google"
+                        className="rounded-full mx-auto w-32"
+                      />
+                    </div>
+                    <div className="pt-4 font-600 text-center">{dispName}</div>
+                  </div>
+                </div>
+                <Link to={`/mom/user/${idState}`}>
+                  <button
+                    type="button"
+                    className="flex items-center font-500 justify-center w-56 h-8 rounded text-center text-white bg-primary mt-2"
+                  >
+                    More from {firstNameState}
+                  </button>
+                </Link>
+              </div>
             </div>
-          </div>
-        </section>
-        <AddButton />
-      </div>
+          </section>
+          <AddButton />
+        </div>
+      </LoadingOverlay>
       <div className={showError === true ? "" : "hidden"}>
         <NotFound404 />
       </div>
