@@ -65,6 +65,12 @@ const dashboardSection = () => {
     }
   }, []);
 
+  if (loading) {
+    document.body.style.overflow = "hidden";
+  } else {
+    document.body.style.overflow = "visible";
+  }
+
   const result = dashCard.filter((val) => {
     if (
       searchTerm !== "" &&

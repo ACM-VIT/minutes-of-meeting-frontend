@@ -70,12 +70,18 @@ const AllMomSection = () => {
     }
   });
 
+  if (loading) {
+    document.body.style.overflow = "hidden";
+  } else {
+    document.body.style.overflow = "visible";
+  }
+
   const resultLength = result.map(() => console.log());
 
   return (
     <>
       <LoadingOverlay
-        // className="h-screen"
+        className="h-screen"
         active={loading}
         spinner
         text="Loading..."
