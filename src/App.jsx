@@ -28,7 +28,6 @@ class App extends Component {
           <Route path="/" exact component={LandingSection} />
           <Route path="/401" component={UnauthRoute} />
           <Route path="*" component={NotFound404} />
-          {/* <UnauthRoute path="/401" component={UnauthRoute} redirect="/401" /> */}
         </Switch>
       </div>
     );

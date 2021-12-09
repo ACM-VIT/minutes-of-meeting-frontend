@@ -13,7 +13,7 @@ import Navbar from "../../../components/Navbar/Navbar";
 import NotFound404 from "../../../components/404/404";
 
 const editMarkdown = () => {
-  const [show, setShow] = useState(false);
+  // const [show, setShow] = useState(false);
   const [showError, setShowError] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -98,7 +98,7 @@ const editMarkdown = () => {
           <Navbar />
           <ToastContainer />
 
-          <div className="container mx-auto md:mt-0 mt-16">
+          <div className="container mx-auto md:pt-0 pt-16">
             <div className="my-4">
               <form
                 onSubmit={(e) => {
