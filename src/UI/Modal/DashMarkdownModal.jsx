@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import LoadingOverlay from "react-loading-overlay";
 
 import urls from "../../urls";
 
@@ -9,6 +10,8 @@ import "./MarkdownModal.css";
 import NotFound404 from "../../components/404/404";
 
 const DashModal = ({ show, onClose, id }) => {
+  const [loading, setLoading] = useState(false);
+
   const closeOnEscapeKeyDown = (e) => {
     if ((e.charCode || e.keyCode) === 27) {
       onClose();
@@ -23,9 +26,12 @@ const DashModal = ({ show, onClose, id }) => {
       "Content-Type": "application/json",
       Authorization: `Bearer ${secret}`,
     };
+
+    setLoading(true);
     axios
       .delete(`${urls.SERVER_BASEURL}/moms/${id}`, { headers })
       .then(() => {
+        setLoading(false);
         window.location.href = "/dashboard";
       })
       .catch(() => setShowError(true));
@@ -38,8 +44,20 @@ const DashModal = ({ show, onClose, id }) => {
     };
   }, []);
 
+  if (loading) {
+    document.body.style.overflow = "hidden";
+  } else {
+    document.body.style.overflow = "visible";
+  }
+
   return (
     <>
+      {/* <LoadingOverlay
+        className="h-screen"
+        active={loading}
+        spinner
+        text="Loading..."
+      > */}
       <div className={showError === true ? "hidden" : ""}>
         <div className={`modal ${show ? "show" : ""}`} onClick={onClose}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
@@ -58,6 +76,7 @@ const DashModal = ({ show, onClose, id }) => {
           </div>
         </div>
       </div>
+      {/* </LoadingOverlay> */}
       <div className={showError === true ? "" : "hidden"}>
         <NotFound404 />
       </div>

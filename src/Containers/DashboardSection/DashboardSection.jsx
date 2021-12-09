@@ -7,6 +7,7 @@ import { useLocation } from "react-router-dom";
 import axios from "axios";
 import jwtDecode from "jwt-decode";
 import moment from "moment";
+import LoadingOverlay from "react-loading-overlay";
 
 import urls from "../../urls";
 
@@ -25,6 +26,7 @@ const dashboardSection = () => {
   const [dashCard, setDashCard] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [showError, setShowError] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const dashCardCount = dashCard.length;
 
@@ -41,6 +43,7 @@ const dashboardSection = () => {
     ) {
       window.location.href = "/";
     } else {
+      setLoading(true);
       const secret = sessionStorage.getItem("AM");
       const headers = {
         "Content-Type": "application/json",
@@ -52,6 +55,7 @@ const dashboardSection = () => {
       axios
         .get(`${urls.SERVER_BASEURL}/moms/dashboard`, { headers })
         .then((response) => {
+          setLoading(false);
           const dashCardObj = response.data;
           setDashCard(dashCardObj);
         })
@@ -60,6 +64,12 @@ const dashboardSection = () => {
         });
     }
   }, []);
+
+  if (loading) {
+    document.body.style.overflow = "hidden";
+  } else {
+    document.body.style.overflow = "visible";
+  }
 
   const result = dashCard.filter((val) => {
     if (
@@ -76,78 +86,85 @@ const dashboardSection = () => {
 
   return (
     <>
-      <div className={showError === true ? "hidden" : ""}>
-        <Navbar />
-        <section className="container mt-2 mx-auto">
-          <div className="flex flex-col md:flex md:flex-row justify-between">
-            <div className="flex-col mx-2 order-2 md:order-1">
+      <LoadingOverlay
+        className="h-screen"
+        active={loading}
+        spinner
+        text="Loading..."
+      >
+        <div className={showError === true ? "hidden" : ""}>
+          <Navbar />
+          <section className="container pt-2 mx-auto">
+            <div className="flex flex-col md:flex md:flex-row justify-between">
+              <div className="flex-col mx-2 order-2 md:order-1">
+                <div
+                  className={
+                    dashCardCount === 0
+                      ? "font-600 text-3xl sm:text-5xl mt-4 md:mt-0"
+                      : "font-600 text-3xl sm:text-5xl"
+                  }
+                >
+                  {`Welcome ${heading}`}
+                </div>
+
+                <div
+                  className={
+                    dashCardCount === 0 ||
+                    (resultLength.length === 0 && searchTerm.length > 0)
+                      ? "hidden"
+                      : "font-500 text-md sm:text-lg mt-2"
+                  }
+                >
+                  Here are your MOMs
+                </div>
+                <div
+                  className={
+                    dashCardCount === 0
+                      ? "font-500 text-md sm:text-lg mt-2"
+                      : "hidden"
+                  }
+                >
+                  You haven't created any MOM!
+                </div>
+              </div>
               <div
                 className={
                   dashCardCount === 0
-                    ? "font-600 text-3xl sm:text-5xl mt-4 md:mt-0"
-                    : "font-600 text-3xl sm:text-5xl"
-                }
-              >
-                {`Welcome ${heading}`}
-              </div>
-
-              <div
-                className={
-                  dashCardCount === 0 ||
-                  (resultLength.length === 0 && searchTerm.length > 0)
                     ? "hidden"
-                    : "font-500 text-md sm:text-lg mt-2"
+                    : "flex h-8 justify-between border rounded-xl border-black w-56 px-2 mr-2 mb-12 md:mb-0 mt-3 md:mt-0 ml-2 md:ml-0 order-1 md:order-2"
                 }
               >
-                Here are your MOMs
-              </div>
-              <div
-                className={
-                  dashCardCount === 0
-                    ? "font-500 text-md sm:text-lg mt-2"
-                    : "hidden"
-                }
-              >
-                You haven't created any MOM!
+                <input
+                  className="relative text-sm text-black py-1 px-2 w-32 sm:w-48 focus:outline-none"
+                  type="text"
+                  placeholder="Search..."
+                  onChange={(event) => {
+                    setSearchTerm(event.target.value);
+                  }}
+                />
+                <img className="mr-2 w-6" src={SearchIcon} alt="search" />
               </div>
             </div>
-            <div
-              className={
-                dashCardCount === 0
-                  ? "hidden"
-                  : "flex h-8 justify-between border rounded-xl border-black w-56 px-2 mr-2 mb-12 md:mb-0 mt-3 md:mt-0 ml-2 md:ml-0 order-1 md:order-2"
-              }
-            >
-              <input
-                className="relative text-sm text-black py-1 px-2 w-32 sm:w-48 focus:outline-none"
-                type="text"
-                placeholder="Search..."
-                onChange={(event) => {
-                  setSearchTerm(event.target.value);
-                }}
-              />
-              <img className="mr-2 w-6" src={SearchIcon} alt="search" />
-            </div>
-          </div>
-          <div className={dashCardCount === 0 ? "hidden" : ""}>
-            {resultLength.length === 0 && searchTerm.length > 0 ? (
-              <NotFound />
-            ) : (
-              <DashCardHeading />
-            )}
+            <div className={dashCardCount === 0 ? "hidden" : ""}>
+              {resultLength.length === 0 && searchTerm.length > 0 ? (
+                <NotFound />
+              ) : (
+                <DashCardHeading />
+              )}
 
-            {result.map((val) => (
-              <DashCard
-                title={val.title}
-                date={moment(val.createdAt).format("Do MMM YYYY")}
-                id={val._id}
-                key={val._id}
-              />
-            ))}
-          </div>
-        </section>
-        <AddButton />
-      </div>
+              {result.map((val) => (
+                <DashCard
+                  title={val.title}
+                  date={moment(val.createdAt).format("Do MMM YYYY")}
+                  id={val._id}
+                  key={val._id}
+                />
+              ))}
+            </div>
+          </section>
+          <AddButton />
+        </div>
+      </LoadingOverlay>
       <div className={showError === true ? "" : "hidden"}>
         <NotFound404 />
       </div>

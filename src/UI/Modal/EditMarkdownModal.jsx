@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
+import LoadingOverlay from "react-loading-overlay";
 
 import urls from "../../urls";
 
@@ -10,6 +11,8 @@ import "./MarkdownModal.css";
 import NotFound404 from "../../components/404/404";
 
 const EditModal = ({ show, onClose }) => {
+  const [loading, setLoading] = useState(false);
+
   const closeOnEscapeKeyDown = (e) => {
     if ((e.charCode || e.keyCode) === 27) {
       onClose();
@@ -22,6 +25,7 @@ const EditModal = ({ show, onClose }) => {
   const id = path.pathname.split("/")[3];
 
   const deleteMom = () => {
+    setLoading(true);
     if (id === "" || id === undefined) {
       window.location.href = "/dashboard";
     } else {
@@ -33,6 +37,7 @@ const EditModal = ({ show, onClose }) => {
       axios
         .delete(`${urls.SERVER_BASEURL}/moms/${id}`, { headers })
         .then(() => {
+          setLoading(false);
           window.location.href = "/dashboard";
         })
         .catch(() => setShowError(true));
@@ -46,26 +51,39 @@ const EditModal = ({ show, onClose }) => {
     };
   }, []);
 
+  if (loading) {
+    document.body.style.overflow = "hidden";
+  } else {
+    document.body.style.overflow = "visible";
+  }
+
   return (
     <>
-      <div className={showError === true ? "hidden" : ""}>
-        <div className={`modal ${show ? "show" : ""}`} onClick={onClose}>
-          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <div className="modal-body">Are you sure ?</div>
-            <div className="modal-footer">
-              <button onClick={onClose} type="submit" className="btn-cancel">
-                Cancel
-              </button>
-
-              <div onClick={deleteMom}>
-                <button type="submit" className="btn-delete">
-                  Delete Now
+      <LoadingOverlay
+        className="h-screen"
+        active={loading}
+        spinner
+        text="Loading..."
+      >
+        <div className={showError === true ? "hidden" : ""}>
+          <div className={`modal ${show ? "show" : ""}`} onClick={onClose}>
+            <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+              <div className="modal-body">Are you sure ?</div>
+              <div className="modal-footer">
+                <button onClick={onClose} type="submit" className="btn-cancel">
+                  Cancel
                 </button>
+
+                <div onClick={deleteMom}>
+                  <button type="submit" className="btn-delete">
+                    Delete Now
+                  </button>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </LoadingOverlay>
       <div className={showError === true ? "" : "hidden"}>
         <NotFound404 />
       </div>

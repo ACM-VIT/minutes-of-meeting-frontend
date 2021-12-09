@@ -1,5 +1,7 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
+import LoadingOverlay from "react-loading-overlay";
+
 import urls from "../../urls";
 /** Style */
 import "./LandingSection.scss";
@@ -11,8 +13,18 @@ import landingLeaf from "../../Assets/Landing_Leaf.svg";
 import landingLeft from "../../Assets/Landing_Left.svg";
 import Illustration from "../../Assets/Illustration.svg";
 
-class LandingSection extends Component {
-  logoToggle = () => {
+const LandingSection = () => {
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    const key = sessionStorage.getItem("AM");
+    if (key) {
+      window.location.href = "/dashboard";
+    }
+  }, []);
+
+  const logoToggle = () => {
+    setLoading(true);
     if (
       sessionStorage.getItem("AM") === null ||
       sessionStorage.getItem("AM") === ""
@@ -23,20 +35,32 @@ class LandingSection extends Component {
     }
   };
 
-  loginHandler = (event) => {
+  const loginHandler = (event) => {
+    setLoading(true);
     event.preventDefault();
     window.open(urls.GOOGLE_URL, "_self");
   };
 
-  render() {
-    return (
+  if (loading) {
+    document.body.style.overflow = "hidden";
+  } else {
+    document.body.style.overflow = "visible";
+  }
+
+  return (
+    <LoadingOverlay
+      className="h-screen"
+      active={loading}
+      spinner
+      text="Loading..."
+    >
       <section className="md:landSection xxs:h-screen xxs:flex xxs:items-center">
         <div className="container mx-auto">
           <div className="flex justify-center items-center md:absolute mt-6 ml-2">
             <img
               src={actaLogo}
               alt="ActaLogo"
-              onClick={this.logoToggle}
+              onClick={logoToggle}
               className="cursor-pointer"
             />
           </div>
@@ -58,7 +82,7 @@ class LandingSection extends Component {
             <button
               type="button"
               className="landsection__full__loginSec__btn"
-              onClick={this.loginHandler}
+              onClick={loginHandler}
             >
               <img
                 className="w-14 xs:w-14  sm:pl-6 xs:pl-6 pl-6"
@@ -105,7 +129,7 @@ class LandingSection extends Component {
                 <button
                   type="button"
                   className="landsection__full__loginSec__btn"
-                  onClick={this.loginHandler}
+                  onClick={loginHandler}
                 >
                   <img
                     className="md:pl-11 lg:pl-12"
@@ -121,8 +145,8 @@ class LandingSection extends Component {
           </div>
         </div>
       </section>
-    );
-  }
-}
+    </LoadingOverlay>
+  );
+};
 
 export default LandingSection;

@@ -22,17 +22,6 @@ const navbar = () => {
     });
   };
 
-  const logoToggle = () => {
-    if (
-      sessionStorage.getItem("AM") === null ||
-      sessionStorage.getItem("AM") === ""
-    ) {
-      window.location.href = "/";
-    } else {
-      window.location.href = "/dashboard";
-    }
-  };
-
   return (
     <div>
       <div className="md:hidden fixed top-7 right-5 z-50">
@@ -43,12 +32,11 @@ const navbar = () => {
         <div className="navsection__navbar">
           <div className="flex items-center">
             <div>
-              <div
-                onClick={logoToggle}
-                className="navsection__navbar__actalogo cursor-pointer"
-              >
-                <img src={ActaLogo} alt="ACTA" />
-              </div>
+              <Link to="/dashboard">
+                <div className="navsection__navbar__actalogo cursor-pointer">
+                  <img src={ActaLogo} alt="ACTA" />
+                </div>
+              </Link>
             </div>
 
             <div>
