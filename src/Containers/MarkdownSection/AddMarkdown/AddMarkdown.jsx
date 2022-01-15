@@ -22,7 +22,7 @@ const addMarkdown = () => {
   const [loading, setLoading] = useState(false);
 
   const [title, setTitle] = useState("");
-  const [body, setBody] = useState("# Welcome to MOM Website");
+  const [body, setBody] = useState("# Welcome to Acta");
 
   const secret = sessionStorage.getItem("AM");
   if (

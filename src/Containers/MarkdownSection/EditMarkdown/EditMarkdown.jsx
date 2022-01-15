@@ -9,16 +9,14 @@ import LoadingOverlay from "react-loading-overlay";
 import urls from "../../../urls";
 
 import Navbar from "../../../components/Navbar/Navbar";
-// import EditMarkdownModal from "../../../UI/Modal/EditMarkdownModal";
 import NotFound404 from "../../../components/404/404";
 
 const editMarkdown = () => {
-  // const [show, setShow] = useState(false);
   const [showError, setShowError] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const [title, setTitle] = useState("");
-  const [body, setBody] = useState("# Welcome to MOM Website");
+  const [body, setBody] = useState("# Welcome to Acta");
 
   const path = useLocation();
   const id = path.pathname.split("/")[3];
@@ -137,8 +135,6 @@ const editMarkdown = () => {
                 </div>
               </form>
             </div>
-
-            {/* <EditMarkdownModal onClose={() => setShow(false)} show={show} /> */}
           </div>
         </div>
       </LoadingOverlay>
