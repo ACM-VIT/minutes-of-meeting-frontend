@@ -53,17 +53,18 @@ const editMarkdown = () => {
     document.body.style.overflow = "visible";
   }
 
+  const notifySuccess = () => toast.success("Updating the MOM!");
   const notifyError = () => toast.error("Fill all the fields!");
 
   const handleSubmit = (e) => {
-    setLoading(true);
     e.preventDefault();
-
+    console.log(title);
+    console.log(title.trim());
     if (title.trim() === "" || body.trim() === "") {
       notifyError();
       return;
     }
-
+    notifySuccess();
     const headers = {
       "Content-Type": "application/json",
       Authorization: `Bearer ${secret}`,

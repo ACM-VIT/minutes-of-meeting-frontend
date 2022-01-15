@@ -37,6 +37,7 @@ const addMarkdown = () => {
     Authorization: `Bearer ${secret}`,
   };
 
+  const notifySuccess = () => toast.success("Saving the MOM!");
   const notifyError = () => toast.error("Fill all the fields!");
 
   const handleSubmit = (e) => {
@@ -49,6 +50,8 @@ const addMarkdown = () => {
       setLoading(false);
       return;
     }
+
+    notifySuccess();
 
     setBtnDisable(true);
     axios
