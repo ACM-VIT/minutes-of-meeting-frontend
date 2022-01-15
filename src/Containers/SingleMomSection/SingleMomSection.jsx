@@ -140,7 +140,7 @@ const SingleMomSection = () => {
               </div>
 
               <div className="mx-auto md:ml-12 order-1 md:order-2 mb-12 md:mb-0 mt-16 md:mt-0">
-                <div className="h-56 w-56 bg-white postBox">
+                <div className="h-56 w-60 bg-white postBox">
                   <div>
                     <div className="pt-8">
                       <img
@@ -149,13 +149,15 @@ const SingleMomSection = () => {
                         className="rounded-full mx-auto w-32"
                       />
                     </div>
-                    <div className="pt-4 font-600 text-center">{dispName}</div>
+                    <div className="pt-4 font-600 text-center mx-2">
+                      {dispName}
+                    </div>
                   </div>
                 </div>
                 <Link to={`/mom/user/${idState}`}>
                   <button
                     type="button"
-                    className="flex items-center font-500 justify-center w-56 h-8 rounded text-center text-white bg-primary mt-2"
+                    className="flex items-center font-500 justify-center w-60 h-8 rounded text-center text-white bg-primary mt-2 px-2"
                   >
                     More from {firstNameState}
                   </button>
