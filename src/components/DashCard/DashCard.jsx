@@ -43,7 +43,12 @@ const DashCard = ({ title, date, id }) => {
           </div>
         </div>
       </div>
-      <DashMarkdownModal id={id} onClose={() => setShow(false)} show={show} />
+      <DashMarkdownModal
+        id={id}
+        onDelete={() => setShow(false)}
+        onClose={() => setShow(false)}
+        show={show}
+      />
     </Aux>
   );
 };
