@@ -1,6 +1,8 @@
+/* eslint-disable no-nested-ternary */
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import LoadingOverlay from "react-loading-overlay";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import urls from "../../urls";
 
@@ -9,7 +11,7 @@ import "./MarkdownModal.css";
 
 import NotFound404 from "../../components/404/404";
 
-const DashModal = ({ show, onClose, id }) => {
+const DashModal = ({ show, onClose, id, onDelete }) => {
   const [loading, setLoading] = useState(false);
 
   const closeOnEscapeKeyDown = (e) => {
@@ -21,6 +23,9 @@ const DashModal = ({ show, onClose, id }) => {
   const [showError, setShowError] = useState(false);
 
   const deleteMom = () => {
+    const notifySuccess = () => toast.success("Deleting the MOM!");
+    notifySuccess();
+    onDelete();
     const secret = sessionStorage.getItem("AM");
     const headers = {
       "Content-Type": "application/json",
@@ -52,6 +57,7 @@ const DashModal = ({ show, onClose, id }) => {
 
   return (
     <>
+      <ToastContainer />
       {/* <LoadingOverlay
         className="h-screen"
         active={loading}
