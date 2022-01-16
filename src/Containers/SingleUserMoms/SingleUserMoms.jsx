@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 /* eslint-disable consistent-return */
 /* eslint-disable array-callback-return */
 /* eslint-disable no-underscore-dangle */
@@ -68,6 +69,9 @@ const SingleUserMoms = () => {
     }
   });
 
+  // To fetch firstname of the user for heading
+  const displayNameArr = result.map((val) => val.user.firstName);
+  const displayName = displayNameArr[0];
   const resultLength = result.map(() => console.log());
 
   return (
@@ -82,7 +86,7 @@ const SingleUserMoms = () => {
           <Navbar />
           <div className="container mx-auto flex flex-col md:flex md:flex-row md:justify-between md:items-center pt-4">
             <div className="text-3xl xs:text-4xl sm:text-6xl font-600 px-2 xss:px-2 order-2 md:order-1">
-              MOMs
+              {displayName}'s MOMs
             </div>
             <div className="flex h-8 justify-between border rounded-xl border-black w-56 px-2 mr-2 mb-12 md:mb-0 mt-3 md:mt-0 ml-2 md:ml-0 order-1 md:order-2">
               <input
