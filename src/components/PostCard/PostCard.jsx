@@ -46,7 +46,7 @@ function postcard({ title, id, createdAt, displayName, image, _id }) {
               alt="google"
             />
           </div>
-          <div className="font-600">{displayName}</div>
+          <div className="font-600 px-2">{displayName}</div>
         </div>
       </Link>
     </div>
