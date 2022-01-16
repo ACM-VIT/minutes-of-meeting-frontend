@@ -157,7 +157,7 @@ const SingleMomSection = () => {
                 <Link to={`/mom/user/${idState}`}>
                   <button
                     type="button"
-                    className="flex items-center font-500 justify-center w-60 h-8 rounded text-center text-white bg-primary mt-2 px-2"
+                    className=" flex items-center font-500 justify-center w-60 rounded text-center text-white bg-primary mt-2 px-2 py-1"
                   >
                     More from {firstNameState}
                   </button>
