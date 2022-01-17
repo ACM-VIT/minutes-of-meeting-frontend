@@ -24,6 +24,7 @@ const SingleUserMoms = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [showError, setShowError] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [firstName, setFirstName] = useState("");
 
   const path = useLocation();
   const id = path.pathname.split("/")[3];
@@ -44,9 +45,10 @@ const SingleUserMoms = () => {
       axios
         .get(`${url}/moms/user/${id}`, { headers })
         .then((response) => {
-          setLoading(false);
           const singleMomsObj = response.data;
+          setFirstName(singleMomsObj[0].user.firstName);
           setSingleMoms(singleMomsObj);
+          setLoading(false);
         })
         .catch(() => setShowError(true));
     }
@@ -68,10 +70,6 @@ const SingleUserMoms = () => {
       return val;
     }
   });
-
-  // To fetch firstname of the user for heading
-  const displayNameArr = result.map((val) => val.user.firstName);
-  const displayName = displayNameArr[0];
   const resultLength = result.map(() => console.log());
 
   return (
@@ -86,7 +84,7 @@ const SingleUserMoms = () => {
           <Navbar />
           <div className="container mx-auto flex flex-col md:flex md:flex-row md:justify-between md:items-center pt-4">
             <div className="text-3xl xs:text-4xl sm:text-6xl font-600 px-2 xss:px-2 order-2 md:order-1">
-              {displayName}'s MOMs
+              {firstName}'s MOMs
             </div>
             <div className="flex h-8 justify-between border rounded-xl border-black w-56 px-2 mr-2 mb-12 md:mb-0 mt-3 md:mt-0 ml-2 md:ml-0 order-1 md:order-2">
               <input
