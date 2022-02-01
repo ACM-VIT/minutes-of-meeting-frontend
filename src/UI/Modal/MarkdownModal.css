@@ -73,12 +73,12 @@
   font-family: "Poppins", sans-serif;
   font-weight: 400;
   height: 35px;
-  outline: none;
   width: 120px;
   border: none;
   border-radius: 4px;
   color: white;
   background-color: #22d1ee;
+  outline: none;
 }
 
 .btn-cancel:focus {
@@ -101,7 +101,7 @@
     font-size: 22px;
   }
   .btn-delete {
-    width: 110px;
+    width: 100px;
   }
 
   .btn-cancel {
