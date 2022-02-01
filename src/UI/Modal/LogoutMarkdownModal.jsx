@@ -11,9 +11,7 @@ import "./MarkdownModal.css";
 
 import NotFound404 from "../../components/404/404";
 
-const DashModal = ({ show, onClose, id, onDelete }) => {
-  const [loading, setLoading] = useState(false);
-
+const LogoutModal = ({ show, onClose }) => {
   const closeOnEscapeKeyDown = (e) => {
     if ((e.charCode || e.keyCode) === 27) {
       onClose();
@@ -22,24 +20,20 @@ const DashModal = ({ show, onClose, id, onDelete }) => {
 
   const [showError, setShowError] = useState(false);
 
-  const deleteMom = () => {
-    const notifySuccess = () => toast.success("Deleting the MOM!");
+  const logout = () => {
+    const notifySuccess = () => toast.success("Logout successfully!");
     notifySuccess();
-    onDelete();
+
     const secret = sessionStorage.getItem("AM");
     const headers = {
       "Content-Type": "application/json",
       Authorization: `Bearer ${secret}`,
     };
 
-    setLoading(true);
-    axios
-      .delete(`${urls.SERVER_BASEURL}/moms/${id}`, { headers })
-      .then(() => {
-        setLoading(false);
-        window.location.href = "/dashboard";
-      })
-      .catch(() => setShowError(true));
+    axios.get(urls.GOOGLE_LOGOUT, { headers }).then((res) => {
+      sessionStorage.removeItem("AM");
+      window.location.href = "/";
+    });
   };
 
   useEffect(() => {
@@ -49,27 +43,21 @@ const DashModal = ({ show, onClose, id, onDelete }) => {
     };
   }, []);
 
-  if (loading) {
-    document.body.style.overflow = "hidden";
-  } else {
-    document.body.style.overflow = "visible";
-  }
-
   return (
     <>
       <ToastContainer />
       <div className={showError === true ? "hidden" : ""}>
         <div className={`modal ${show ? "show" : ""}`} onClick={onClose}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <div className="modal-body">Are you sure ?</div>
+            <div className="modal-body">Are you sure?</div>
             <div className="modal-footer">
               <button onClick={onClose} type="submit" className="btn-cancel">
-                Cancel
+                No
               </button>
 
-              <div onClick={deleteMom}>
+              <div onClick={logout}>
                 <button type="submit" className="btn-delete">
-                  Delete Now
+                  Yes
                 </button>
               </div>
             </div>
@@ -83,4 +71,4 @@ const DashModal = ({ show, onClose, id, onDelete }) => {
   );
 };
 
-export default DashModal;
+export default LogoutModal;
