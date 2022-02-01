@@ -66,17 +66,27 @@
   border-radius: 4px;
   color: white;
   background-color: #f44646;
+  outline: none;
 }
 
 .btn-cancel {
   font-family: "Poppins", sans-serif;
   font-weight: 400;
   height: 35px;
+  outline: none;
   width: 120px;
   border: none;
   border-radius: 4px;
   color: white;
   background-color: #22d1ee;
+}
+
+.btn-cancel:focus {
+  outline: none;
+}
+
+.btn-delete:focus {
+  outline: none;
 }
 
 @media only screen and (max-width: 425px) {
