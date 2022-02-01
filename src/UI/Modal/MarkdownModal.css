@@ -66,6 +66,7 @@
   border-radius: 4px;
   color: white;
   background-color: #f44646;
+  outline: none;
 }
 
 .btn-cancel {
@@ -77,6 +78,15 @@
   border-radius: 4px;
   color: white;
   background-color: #22d1ee;
+  outline: none;
+}
+
+.btn-cancel:focus {
+  outline: none;
+}
+
+.btn-delete:focus {
+  outline: none;
 }
 
 @media only screen and (max-width: 425px) {
@@ -91,7 +101,7 @@
     font-size: 22px;
   }
   .btn-delete {
-    width: 110px;
+    width: 100px;
   }
 
   .btn-cancel {

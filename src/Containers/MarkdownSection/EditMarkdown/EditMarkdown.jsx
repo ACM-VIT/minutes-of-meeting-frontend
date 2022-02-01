@@ -58,8 +58,6 @@ const editMarkdown = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(title);
-    console.log(title.trim());
     if (title.trim() === "" || body.trim() === "") {
       notifyError();
       return;
